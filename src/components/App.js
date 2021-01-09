@@ -6,7 +6,7 @@ function App() {
     <div className="app">
       <div className="header-wrapper">
         <header className="header">
-          <a href="/" className="title">
+          <a href="/wordlisted" className="title">
             <i className="fas fa-file-alt title-logo"></i>
             <span className="title-text title-1">Word</span>
             <span className="title-text title-2">listed</span>
