@@ -9,7 +9,7 @@ function App() {
           <a href="/wordlisted" className="title">
             <i className="fas fa-file-alt title-logo"></i>
             <span className="title-text title-1">Word</span>
-            <span className="title-text title-2">listed</span>
+            <span className="title-text title-2">listed<sup>™</sup></span>
           </a>
           <div className="subtitle">Quick wordlist search tool</div>
           <div className="subsubtitle">
@@ -27,6 +27,10 @@ function App() {
       </div>
 
       <SearchArea />
+
+      <footer className="footer">
+        © {new Date().getFullYear()} Adam Aaronson • <a href="https://aaronson.org">Aaronson.org</a>
+      </footer>
       
     </div>
   );

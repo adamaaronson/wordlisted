@@ -92,6 +92,7 @@ body {
 
 /*        */
 /* HEADER */
+/* FOOTER */
 /*        */
 
 .title-logo {
@@ -100,15 +101,26 @@ body {
   padding-right: calc(0.5 * var(--spacing-unit));
 }
 
-header {
+header, footer {
   position: relative;
   background-color: var(--lightblack);
   display: inline-block;
+}
+
+header {
   padding-top: calc(var(--spacing-unit) * 0.75);
   padding-bottom: calc(var(--spacing-unit) * 1.5);
 }
 
-header:before {
+footer {
+  padding: var(--spacing-unit);
+  opacity: 0.5;
+  font-size: 0.8em;
+  font-weight: normal;
+  /* color: var(--highlight); */
+}
+
+header:before, footer:before {
   display: block;
   position: absolute;
   left: calc(50% - 50vw);
@@ -119,7 +131,7 @@ header:before {
   background-image: linear-gradient(to left, var(--lightblack), var(--darkblack));
 }
 
-header:after {
+header:after, footer:after {
   display: block;
   position: absolute;
   left: 100%;
@@ -149,6 +161,12 @@ header:after {
 .title-2 {
   font-weight: 500;
   color: var(--orange);
+}
+
+.title sup {
+  display: inline-block;
+  font-size: 1rem;
+  vertical-align: text-top;
 }
 
 .subtitle {
@@ -331,6 +349,12 @@ header:after {
   font-size: 0.9em;
   font-weight: 500;
   line-height: 1.6em;
+}
+
+.modal-header {
+  font-family: var(--logo-font);
+  font-weight: 400;
+  font-size: 2em;
 }
 
 .modal-header, .modal-text {
@@ -644,20 +668,20 @@ select:hover {
 }
 
 @media (max-width: 500px) {
-  header {
+  header, footer {
     width: 100%;
     text-align: center;
   }
 
-  body, header {
+  body {
     font-size: 1em !important;
   }
 
-  header:before {
+  header:before, footer:before {
     display: none;
   }
 
-  header:after {
+  header:after, footer:after {
     display: none;
   }
 
