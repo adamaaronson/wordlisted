@@ -240,8 +240,8 @@ header:after, footer:after {
   font: inherit;
   background: var(--orange);
   color: var(--darkblack);
-  width: 260px;
-  height: 160px;
+  min-width: 260px;
+  min-height: 160px;
   align-items: center;
   font-size: 1.6em;
   font-weight: 600;

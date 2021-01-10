@@ -8,7 +8,7 @@ export default class WordlistUploadButton extends Component {
                     <div className="upload-list-wrapper">
                         <label htmlFor="file-upload" className="wordlist-box upload-list">
                             <i className="fas fa-file-upload wordlist-icon"></i>
-                            <div className="wordlist-label wordlist-label-upload">Upload your own wordlist</div>
+                            <div className="wordlist-label wordlist-label-upload">Upload<br/>your own<br/>wordlist</div>
                         </label>
                             <input
                             id="file-upload"
@@ -27,7 +27,7 @@ export default class WordlistUploadButton extends Component {
                     </div>
                     <span className="or"> or </span>
                     <button className="wordlist-box dictionary" onClick={this.props.onDictionaryClick}>
-                        <div className="wordlist-label wordlist-label-dictionary">Use the English dictionary</div>
+                        <div className="wordlist-label wordlist-label-dictionary">Use the<br/>English<br/>dictionary</div>
                         <i className="fas fa-book wordlist-icon"></i>
                     </button>
                 </div>
