@@ -28,9 +28,9 @@ function App() {
 
       <SearchArea />
 
-      <footer className="footer">
+      {/* <footer className="footer">
         © {new Date().getFullYear()} Adam Aaronson • <a href="https://aaronson.org">Aaronson.org</a>
-      </footer>
+      </footer> */}
       
     </div>
   );
