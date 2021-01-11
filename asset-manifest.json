@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/wordlisted/static/css/main.41ad4a8b.chunk.css",
-    "main.js": "/wordlisted/static/js/main.1290bbca.chunk.js",
-    "main.js.map": "/wordlisted/static/js/main.1290bbca.chunk.js.map",
+    "main.css": "/wordlisted/static/css/main.3e9c86ac.chunk.css",
+    "main.js": "/wordlisted/static/js/main.7ba1adf8.chunk.js",
+    "main.js.map": "/wordlisted/static/js/main.7ba1adf8.chunk.js.map",
     "runtime-main.js": "/wordlisted/static/js/runtime-main.ca6ffee1.js",
     "runtime-main.js.map": "/wordlisted/static/js/runtime-main.ca6ffee1.js.map",
     "static/js/2.9aea8e4a.chunk.js": "/wordlisted/static/js/2.9aea8e4a.chunk.js",
     "static/js/2.9aea8e4a.chunk.js.map": "/wordlisted/static/js/2.9aea8e4a.chunk.js.map",
     "index.html": "/wordlisted/index.html",
-    "static/css/main.41ad4a8b.chunk.css.map": "/wordlisted/static/css/main.41ad4a8b.chunk.css.map",
+    "static/css/main.3e9c86ac.chunk.css.map": "/wordlisted/static/css/main.3e9c86ac.chunk.css.map",
     "static/js/2.9aea8e4a.chunk.js.LICENSE.txt": "/wordlisted/static/js/2.9aea8e4a.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.ca6ffee1.js",
     "static/js/2.9aea8e4a.chunk.js",
-    "static/css/main.41ad4a8b.chunk.css",
-    "static/js/main.1290bbca.chunk.js"
+    "static/css/main.3e9c86ac.chunk.css",
+    "static/js/main.7ba1adf8.chunk.js"
   ]
 }
