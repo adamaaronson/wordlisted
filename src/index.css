@@ -614,6 +614,10 @@ select:hover {
   margin-bottom: var(--spacing-unit);
 }
 
+.no-results {
+  margin-bottom: 0 !important;
+}
+
 .results-count-number {
   color: var(--blue);
   font-size: 2em;
@@ -625,14 +629,10 @@ select:hover {
   color: var(--blue);
 }
 
-.no-results {
-  color: var(--blue);
-}
-
 .no-results-icon {
   font-size: 8em;
   padding: var(--spacing-unit);
-  
+  color: var(--blue);
   background-color: var(--darkblack);
   border-radius: 50%;
 }
@@ -641,7 +641,7 @@ select:hover {
   font-size: 1.5em;
   font-weight: 500;
   color: var(--blue);
-  margin: var(--spacing-unit);
+  margin-bottom: var(--spacing-unit);
 }
 
 /*        */

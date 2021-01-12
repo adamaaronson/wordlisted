@@ -24,7 +24,7 @@ export default class SearchInputArea extends Component {
                         )}
                     </div>
                     {this.props.submitError &&
-                        <div class="error-message">
+                        <div className="error-message">
                             <i className="fas fa-exclamation-triangle error-icon"></i> It seems there was an error in your input!
                         </div>
                     }

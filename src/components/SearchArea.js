@@ -5,6 +5,7 @@ import SearchOptionMenu from './SearchOptionMenu.js';
 import SearchInputArea from './SearchInputArea.js';
 import SearchResults from './SearchResults.js';
 import ResultsSorter from './ResultsSorter.js';
+import ResultsCounter from './ResultsCounter.js';
 import InfoModal from './InfoModal.js';
 
 import Wordlist from '../js/wordlist.js';
@@ -64,7 +65,6 @@ export default class SearchArea extends Component {
         var functionInputs = []
         for (const field of this.state.option.fields) {
             var inputValue = this.state.inputValues[field]
-            inputValue = inputValue.toUpperCase().replaceAll(' ', '');
             if (inputValue === '' || inputValue === undefined) {
                 // blank input, raise error!
                 this.setState({
@@ -72,6 +72,7 @@ export default class SearchArea extends Component {
                 })
                 return;
             }
+            inputValue = inputValue.toUpperCase().replaceAll(' ', '');
             functionInputs.push(inputValue);
         }
 
@@ -98,7 +99,7 @@ export default class SearchArea extends Component {
 
         this.sortResults(this.state.sortOrder)
     }
-
+    
     handleFileChange(event) {
         let file = event.target.files[0];
 
@@ -229,7 +230,10 @@ export default class SearchArea extends Component {
                 <div className="search-body-box content-box">
                     <div className={"search-curtain" + (this.state.selectingWordlist ? "" : " search-curtain-off")}></div>
                     
-                    <SearchOptionMenu onOptionChange={this.handleOptionChange} option={this.state.option} />
+                    <SearchOptionMenu
+                        onOptionChange={this.handleOptionChange}
+                        option={this.state.option}
+                    />
 
                     <SearchInputArea
                         option={this.state.option}
@@ -245,7 +249,13 @@ export default class SearchArea extends Component {
 
                         <ResultsSorter onSortChange={this.handleSortChange}/>
 
-                        {this.state.gotResults &&
+                        { this.state.gotResults &&
+                            <ResultsCounter 
+                                results={this.state.results}
+                            />
+                        }
+
+                        { this.state.gotResults &&
                             <SearchResults
                                 results={this.state.results}
                                 sortOrder={this.state.sortOrder}
