@@ -82,14 +82,6 @@ const SEARCH_OPTIONS = [
         func: word => (x => Wordlist.isSandwichWord(x, word))
     },
     {
-        id: "supervocalics",
-        name: "Supervocalics",
-        desc: "Words containing all five vowels exactly once; e.g. EDUCATION.",
-        fields: [],
-        isPairs: false,
-        func: () => (x => Wordlist.isSupervocalic(x))
-    },
-    {
         id: "replacement",
         name: "Replacement",
         desc: "Pairs of words formed by replacing one group of letters with another; e.g. replacing S with GR yields SOUP → GROUP.",
@@ -144,6 +136,14 @@ const SEARCH_OPTIONS = [
         fields: [],
         isPairs: true,
         func: () => (x => Wordlist.getSemordnilap(x))
+    },
+    {
+        id: "supervocalics",
+        name: "Supervocalics",
+        desc: "Words containing all five vowels exactly once; e.g. EDUCATION.",
+        fields: [],
+        isPairs: false,
+        func: () => (x => Wordlist.isSupervocalic(x))
     },
     {
         id: "spellingbee",

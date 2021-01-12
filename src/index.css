@@ -69,15 +69,27 @@ a:hover, .linky-button:hover {
   transition: 0.2s opacity;
 }
 
+.normal-button {
+  appearance: none;
+  background-color: var(--orange);
+  border: none;
+  border-radius: var(--spacing-unit);
+  border-bottom: 5px solid var(--highlight);
+  padding: 10px var(--spacing-unit);
+  color: var(--darkblack);
+  font-weight: 500;
+  font-size: 1em;
+  cursor: pointer;
+  transition: 0.3s background-color;
+}
+
 body {
   text-align: center;
   background-color: var(--darkblack);
   color: var(--white);
-  /* font-family: "Lato", sans-serif; */
   font-family: var(--main-font);
   font-weight: 500;
   color: var(--white);
-
   font-size: 1.1em;
 }
 
@@ -361,18 +373,10 @@ header:after, footer:after {
   margin-bottom: var(--spacing-unit);
 }
 
+
+
 .modal-close-button {
-  appearance: none;
   background-color: var(--orange);
-  border: none;
-  border-radius: var(--spacing-unit);
-  border-bottom: 5px solid var(--highlight);
-  padding: 10px var(--spacing-unit);
-  color: var(--darkblack);
-  font-weight: 500;
-  font-size: 1em;
-  cursor: pointer;
-  transition: 0.3s background-color;
 }
 
 .modal-close-button:hover {
@@ -533,6 +537,10 @@ select:hover {
 /* RESULTS */
 /*         */
 
+.search-results {
+  margin-top: var(--spacing-unit);
+}
+
 .results-sort-wrapper {
   display: inline-block;
   position: relative;
@@ -605,13 +613,47 @@ select:hover {
   padding-left: 3px;
 }
 
+.results-count-specifier {
+  color: var(--blue);
+  padding-bottom: var(--spacing-unit);
+}
+
+.results-counter {
+  position: relative;
+  display: inline-block;
+  padding: 0 var(--spacing-unit);
+}
+
+.more-results-button {
+  background: var(--blue);
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.more-results-button:hover {
+  background: var(--lightblue);
+}
+
+.prev-results-button {
+  left: 0;
+  transform: translateX(-100%) translateY(-50%);
+}
+
+.next-results-button {
+  left: 100%;
+}
+
+.download-results-button {
+  margin-bottom: var(--spacing-unit);
+}
+
 .results-item:hover {
   background-color: var(--darkblack);
 }
 
 .results-count {
-  margin-top: var(--spacing-unit);
-  margin-bottom: var(--spacing-unit);
+  /* margin-bottom: var(--spacing-unit); */
 }
 
 .no-results {
@@ -694,5 +736,19 @@ select:hover {
     margin-right: 0;
     display: block;
     text-align: center;
+  }
+
+  .more-results-button {
+    position: static;
+    transform: none !important;
+    margin-bottom: var(--spacing-unit);
+  }
+
+  .more-results-button:last-child:not(:first-child) {
+    margin-left: var(--spacing-unit);
+  }
+
+  .search-results-box {
+    margin-bottom: 0;
   }
 }

@@ -25,7 +25,7 @@ export default class InfoModal extends Component {
                                 This app uses the JavaScript File API and doesn't save your wordlist anywhere, so rest assured that no one can steal your words!
                             </p>
                         </div>
-                        <button className="modal-close-button modal-closer" value="modal-closer" onClick={this.props.onCloseModal}>
+                        <button className="modal-close-button normal-button modal-closer" value="modal-closer" onClick={this.props.onCloseModal}>
                             Cool beans!
                         </button>
                     </div>

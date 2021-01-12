@@ -5,7 +5,6 @@ import SearchOptionMenu from './SearchOptionMenu.js';
 import SearchInputArea from './SearchInputArea.js';
 import SearchResults from './SearchResults.js';
 import ResultsSorter from './ResultsSorter.js';
-import ResultsCounter from './ResultsCounter.js';
 import InfoModal from './InfoModal.js';
 
 import Wordlist from '../js/wordlist.js';
@@ -99,7 +98,7 @@ export default class SearchArea extends Component {
 
         this.sortResults(this.state.sortOrder)
     }
-    
+
     handleFileChange(event) {
         let file = event.target.files[0];
 
@@ -250,15 +249,10 @@ export default class SearchArea extends Component {
                         <ResultsSorter onSortChange={this.handleSortChange}/>
 
                         { this.state.gotResults &&
-                            <ResultsCounter 
-                                results={this.state.results}
-                            />
-                        }
-
-                        { this.state.gotResults &&
                             <SearchResults
                                 results={this.state.results}
                                 sortOrder={this.state.sortOrder}
+                                optionId={this.state.option.id}
                             /> 
                         }
                     </div>
