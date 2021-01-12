@@ -652,10 +652,6 @@ select:hover {
   background-color: var(--darkblack);
 }
 
-.results-count {
-  /* margin-bottom: var(--spacing-unit); */
-}
-
 .no-results {
   margin-bottom: 0 !important;
 }
