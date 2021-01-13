@@ -4,7 +4,7 @@ export default class SearchInputArea extends Component {
     render() {
         return (
             <div>
-                <form onSubmit={this.props.onSubmit}>
+                <form onSubmit={this.props.onSubmit} id="input-form">
                     <div className="input-area">
                         {this.props.option.fields.map(field =>
                             <div className="input-row" key={"row-" + field}>

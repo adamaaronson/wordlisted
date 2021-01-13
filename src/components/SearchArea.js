@@ -45,6 +45,8 @@ export default class SearchArea extends Component {
             inputValues: {},
             submitError: false
         });
+
+        document.getElementById("input-form").reset();
     }
 
     handleInputChange(event) {

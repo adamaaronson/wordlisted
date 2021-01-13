@@ -15,9 +15,9 @@ function App() {
           <div className="subsubtitle">
             <span className="author">by Adam Aaronson</span>
             <span className="accent"> • </span>
-            <a href="https://aaronson.org" className="link-border">Aaronson.org</a>
+            <a href="https://aaronson.org" rel="noreferrer noopener" target="_blank" className="link-border">Aaronson.org</a>
             <span className="accent"> • </span>
-            <a href="https://twitter.com/aaaronson"><i className="fab fa-twitter"></i></a>
+            <a href="https://twitter.com/aaaronson" rel="noreferrer noopener" target="_blank"><i className="fab fa-twitter"></i></a>
           </div>
         </header>
         {/* <div className="sub-header">
@@ -28,9 +28,14 @@ function App() {
 
       <SearchArea />
 
-      {/* <footer className="footer">
-        © {new Date().getFullYear()} Adam Aaronson • <a href="https://aaronson.org">Aaronson.org</a>
-      </footer> */}
+      <footer className="footer-wrapper">
+        <p className="copyright-line">
+          © {new Date().getFullYear()} Adam Aaronson • <a href="https://aaronson.org" rel="noreferrer noopener" target="_blank">Aaronson.org</a>
+        </p>
+        <p>
+          Feedback or suggestions? Feel free to <a href="mailto:adamaaronson@gmail.com" className="link-border">email</a> or <a href="https://twitter.com/aaaronson" rel="noreferrer noopener" target="_blank" className="link-border">message</a> me!
+        </p>
+      </footer>
       
     </div>
   );

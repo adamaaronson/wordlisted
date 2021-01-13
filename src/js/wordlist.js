@@ -10,7 +10,7 @@ export default class Wordlist {
     }
 
     // returns only the letters in the word
-    cleanWord(word) {
+    static cleanWord(word) {
         return word.toUpperCase().replaceAll(/[^\p{L}]/gu, '')
     }
 
@@ -22,7 +22,7 @@ export default class Wordlist {
     // sans blank entries
     clean() {
         this.list = this.list.map(word =>
-            this.cleanWord(word) // changes to all caps and removes non-alphabetic characters
+            Wordlist.cleanWord(word) // changes to all caps and removes non-alphabetic characters
         );
         
         this.list = this.list.filter(x => x.length > 0) // remove blank entries
@@ -235,14 +235,14 @@ export default class Wordlist {
         if (word1 === word2) {
             return false;
         }
-        word1 = this.cleanWord(word1) // remove non-alpha characters
+        word1 = Wordlist.cleanWord(word1) // remove non-alpha characters
         var regex = "^.*" + word1.split('').join('.*') + ".*$"
         return (new RegExp(regex)).test(word2)
     }
 
     // returns whether word can be made using only the limited alphabet
     static usesLettersFrom(word, alphabet) {
-        alphabet = this.cleanWord(alphabet) // remove non-alpha characters
+        alphabet = Wordlist.cleanWord(alphabet) // remove non-alpha characters
         var regex = "^[" + alphabet + "]*$"
         return (new RegExp(regex)).test(word)
     }
