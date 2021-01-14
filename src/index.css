@@ -594,7 +594,7 @@ select:hover {
 .results-list {
   text-align: left;
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: auto 1fr auto;
 }
 
 .results-list > * {
@@ -620,6 +620,19 @@ select:hover {
   overflow: hidden;
   overflow-wrap: break-word;
   word-wrap: break-word;
+}
+
+.results-item-length {
+  color: var(--blue);
+  font-weight: normal;
+  display: inline-block;
+  transform: scale(0.8);
+  text-align: right;
+}
+
+.results-length {
+  text-align: right;
+  padding-right: 5px;
 }
 
 .results-number {

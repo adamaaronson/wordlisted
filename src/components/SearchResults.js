@@ -118,15 +118,22 @@ export default class SearchResults extends Component {
                                 <div className="results-item" key={index}>
                                     <div className="results-item-text">
                                         {x.length === 1 ?
-                                            <span>
-                                                {x[0]}
-                                            </span>
+                                            <div className="results-item-inner-text">
+                                                <span>{x[0]} </span>
+                                                {/* <span className="results-item-length">({x[0].length})</span> */}
+                                            </div>
                                         :
-                                            <span>
-                                                {x[0]} <span className="pair-divider">{'\u2192'}</span> {x[1]}
-                                            </span>
+                                            <div className="results-item-inner-text">
+                                                <span>{x[0]} <span className="pair-divider">{'\u2192'}</span> {x[1]}</span>
+                                                {/* <span className="results-item-length">({x[1].length})</span> */}
+                                            </div>
                                         }
                                     </div>
+                                </div>
+                                <div className="results-length" key={index + "len"}>
+                                    <span className="results-item-length">
+                                        ({x.map(word => word.length).join('/')})
+                                    </span>
                                 </div>
                             </React.Fragment>
                         )}

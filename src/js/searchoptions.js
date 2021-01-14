@@ -34,20 +34,20 @@ const SEARCH_OPTIONS = [
         func: word => (x => Wordlist.containsAnagram(x, word))
     },
     {
+        id: "subanagram",
+        name: "Subanagram",
+        desc: "Words that can be made from the letters in the given word; e.g. PARENTING yields PREGNANT.",
+        fields: ["Word"],
+        isPairs: false,
+        func: tiles => (x => Wordlist.isScrabbleWord(x, tiles))
+    },
+    {
         id: "letter-bank",
         name: "Letter bank",
         desc: "Words with the same set of letters as the given word, ignoring repeated letters; e.g. TIME MACHINE yields MATHEMATICIAN.",
         fields: ["Word"],
         isPairs: false,
         func: word => (x => Wordlist.isLetterBank(x, word))
-    },
-    {
-        id: "scrabble",
-        name: "Scrabble",
-        desc: "Words that can be written using only the given Scrabble tiles; e.g. YZISEYK yields YIKES.",
-        fields: ["Tiles"],
-        isPairs: false,
-        func: tiles => (x => Wordlist.isScrabbleWord(x, tiles))
     },
     {
         id: "required-letters",
