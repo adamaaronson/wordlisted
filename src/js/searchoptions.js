@@ -138,6 +138,14 @@ const SEARCH_OPTIONS = [
         func: () => (x => Wordlist.getSemordnilap(x))
     },
     {
+        id: "isograms",
+        name: "Isograms",
+        desc: "Words containing no repeating letters; e.g. UNCOPYRIGHTABLE.",
+        fields: [],
+        isPairs: false,
+        func: () => (x => Wordlist.isIsogram(x))
+    },
+    {
         id: "supervocalics",
         name: "Supervocalics",
         desc: "Words containing all five vowels exactly once; e.g. EDUCATION.",
