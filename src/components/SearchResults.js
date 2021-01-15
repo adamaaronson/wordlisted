@@ -50,7 +50,7 @@ export default class SearchResults extends Component {
         );
 
         element.href = URL.createObjectURL(file);
-        element.download = this.props.optionId + "-wordlisted.txt";
+        element.download = "wordlisted-results.txt";
         document.body.appendChild(element);
         element.click();
     }
