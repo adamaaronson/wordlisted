@@ -4,4 +4,4 @@ Looking for anagrams of zebra? How about words you can write using only the lett
 
 Wordlisted was created by Adam Aaronson using JavaScript, React, and CSS.
 
-&copy;2021 Adam Aaronson
+&copy; 2021 Adam Aaronson
