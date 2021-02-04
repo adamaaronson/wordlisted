@@ -1,11 +1,18 @@
 export default class Wordlist { 
     constructor(list) {
         this.list = list;
+        this.scores = {};
         this.clean();
     }
 
     loadList(list) {
         this.list = list;
+        this.clean();
+    }
+
+    // appends all the words in the other list
+    addWords(otherList) {
+        this.list = this.list.concat(otherList);
         this.clean();
     }
 

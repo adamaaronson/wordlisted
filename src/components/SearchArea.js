@@ -11,6 +11,8 @@ import Wordlist from '../js/wordlist.js';
 import { enable1 } from '../json/enable1.json';
 import SEARCH_OPTIONS from '../js/searchoptions.js';
 
+const DICTIONARY_NAME = "English dictionary";
+
 export default class SearchArea extends Component {
     constructor(props) {
         super(props);
@@ -21,8 +23,8 @@ export default class SearchArea extends Component {
             gotResults: false,
             wordlist: new Wordlist(enable1),
             selectingWordlist: true,
-            usingDictionary: true,
-            filename: 'English dictionary',
+            addingWordlist: false,
+            filenames: [DICTIONARY_NAME],
             sortOrder: 'abc',
             submitError: false,
             showingModal: false
@@ -32,6 +34,8 @@ export default class SearchArea extends Component {
         this.handleFileChange = this.handleFileChange.bind(this);
         this.handleDictionaryClick = this.handleDictionaryClick.bind(this);
         this.handleWordlistChange = this.handleWordlistChange.bind(this);
+        this.handleNewWordlist = this.handleNewWordlist.bind(this);
+        this.handleWordlistAdd = this.handleWordlistAdd.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleSortChange = this.handleSortChange.bind(this);
         this.openModal = this.openModal.bind(this);
@@ -112,18 +116,21 @@ export default class SearchArea extends Component {
             let reader = new FileReader();
             reader.readAsText(file);
             
-            this.setState({
-                filename: file.name,
-                usingDictionary: false
-            })
+            // let newFilenames = this.state.filenames;
+            // if (this.state.addingWordlist) {
+            //     newFilenames.push(file.name);
+            // } else {
+            //     newFilenames = [file.name];
+            // }
+
+            // this.setState({
+            //     filenames: newFilenames
+            // })
             
             reader.onload = function() {
                 // change the acting wordlist
-                let newWordlist = new Wordlist(reader.result.split('\n'))
-                this.setState({
-                    wordlist: newWordlist,
-                    selectingWordlist: false
-                })
+                let newWords = reader.result.split('\n');
+                this.handleNewWordlist(newWords, file.name);
             }.bind(this)
 
             reader.onerror = function() {
@@ -141,17 +148,47 @@ export default class SearchArea extends Component {
     }
 
     handleDictionaryClick() {
+        this.handleNewWordlist(enable1, DICTIONARY_NAME);
+    }
+
+    handleNewWordlist(newWords, fileName) {
+        let newFilenames = this.state.filenames;
+        if (this.state.addingWordlist) {
+            if (!newFilenames.includes(fileName)) {
+                newFilenames.push(fileName);
+            }
+        } else {
+            newFilenames = [fileName];
+        }
         this.setState({
-            filename: 'English dictionary',
-            wordlist: new Wordlist(enable1),
-            usingDictionary: true,
-            selectingWordlist: false
+            filenames: newFilenames
+        })
+
+        if (this.state.addingWordlist) {
+            this.state.wordlist.addWords(newWords);
+        } else {
+            let newWordlist = new Wordlist(newWords);
+            this.setState({
+                wordlist: newWordlist
+            })
+        }
+        this.setState({
+            selectingWordlist: false,
+            addingWordlist: false
         })
     }
 
     handleWordlistChange() {
         this.setState({
-            selectingWordlist: true
+            selectingWordlist: true,
+            addingWordlist: false
+        })
+    }
+
+    handleWordlistAdd() {
+        this.setState({
+            selectingWordlist: true,
+            addingWordlist: true
         })
     }
 
@@ -216,13 +253,19 @@ export default class SearchArea extends Component {
 
                     :   <div className="wordlist-name-box content-box">
                             <div className="wordlist-name-label">
-                                Current wordlist:
+                                Current wordlist{this.state.filenames.length > 1 ? "s" : ""}:
                             </div>
-                            <div className={"wordlist-name" + (this.state.usingDictionary ? " dictionary-name" : "")}>
-                                {this.state.filename}
-                            </div>
+                            {this.state.filenames.map(filename => 
+                                <div key={filename} className={"wordlist-name" + ((filename === DICTIONARY_NAME) ? " dictionary-name" : "")}>
+                                    {filename}
+                                </div>
+                            )}
+                            
                             (<button className="change-wordlist-button linky-button link-border" onClick={this.handleWordlistChange}>
-                                change
+                                reset
+                            </button>)
+                            (<button className="add-wordlist-button linky-button link-border" onClick={this.handleWordlistAdd}>
+                                add a list
                             </button>)
                         </div>
                     }
