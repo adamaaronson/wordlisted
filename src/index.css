@@ -425,7 +425,7 @@ header:after, footer:after {
   padding: calc(2 * var(--spacing-unit));
   background: var(--lightblack);
   display: inline-block;
-  width: min(500px, 100vw);
+  width: min(550px, 100vw);
   margin-bottom: calc(2 * var(--spacing-unit));
 }
 
@@ -594,7 +594,7 @@ select:hover {
 .results-list {
   text-align: left;
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: auto 1fr auto auto;
 }
 
 .results-list > * {
@@ -633,6 +633,21 @@ select:hover {
 .results-length {
   text-align: right;
   padding-right: 5px;
+}
+
+.results-item-score {
+  display: inline-block;
+  transform: scale(0.8);
+  
+}
+
+.results-score {
+  background: var(--blue);
+  color: var(--darkblack);
+  padding-left: 2px;
+  padding-right: 2px;
+  margin-left: 2px;
+  text-align: center;
 }
 
 .results-number {

@@ -202,12 +202,27 @@ export default class SearchArea extends Component {
     sortResults(sortOrder) {
         if (sortOrder === 'abc') {
             this.setState(oldState => {
+                // sort by abc
                 oldState.results.sort((a, b) => a[0].localeCompare(b[0]))
                 return oldState;
             })
         } else if (sortOrder === 'length') {
             this.setState(oldState => {
+                // sort by length
                 oldState.results.sort((a, b) => (b[0].length - a[0].length))
+                return oldState;
+            })
+        } else if (sortOrder === 'score') {
+            console.log("Sorting");
+            this.setState(oldState => {
+                // sort by sum of scores in result
+                oldState.results.sort((a, b) => 
+                    b.reduce((c, d) => (
+                        c + (this.state.wordlist.scores[d] === undefined ? 0 : this.state.wordlist.scores[d])
+                    ), 0) - a.reduce((c, d) => (
+                        c + (this.state.wordlist.scores[d] === undefined ? 0 : this.state.wordlist.scores[d])
+                    ), 0)
+                )
                 return oldState;
             })
         }
@@ -261,12 +276,13 @@ export default class SearchArea extends Component {
                                 </div>
                             )}
                             
-                            (<button className="change-wordlist-button linky-button link-border" onClick={this.handleWordlistChange}>
-                                reset
-                            </button>)
                             (<button className="add-wordlist-button linky-button link-border" onClick={this.handleWordlistAdd}>
                                 add a list
                             </button>)
+                            (<button className="change-wordlist-button linky-button link-border" onClick={this.handleWordlistChange}>
+                                reset
+                            </button>)
+                            
                         </div>
                     }
                 </div>
@@ -298,6 +314,7 @@ export default class SearchArea extends Component {
                                 results={this.state.results}
                                 sortOrder={this.state.sortOrder}
                                 optionId={this.state.option.id}
+                                wordlist={this.state.wordlist}
                             /> 
                         }
                     </div>

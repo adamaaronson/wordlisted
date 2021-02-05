@@ -21,15 +21,39 @@ export default class Wordlist {
         return word.toUpperCase().replaceAll(/[^\p{L}]/gu, '')
     }
 
-    // returns new wordlist that is:
+    // cleans word and assigns word a score if needed
+    processWord(word) {
+        word = word.replaceAll(/\s/g, '');
+        let cleanedWord = Wordlist.cleanWord(word);
+
+        // matches semicolon followed by at least one number followed by end
+        let scoreMatches = word.match(/;[0-9]+$/);
+        let score = -1;
+        if (scoreMatches !== null) {
+            score = parseInt(scoreMatches[0].slice(1));
+        }
+
+        // if there was a score and the word is good to go
+        if (score !== -1 && cleanedWord.length > 0) {
+            // set score if it's a new max score
+            if (this.scores[cleanedWord] === undefined || this.scores[cleanedWord] < score) {
+                this.scores[cleanedWord] = score;
+            }
+        }
+
+        return cleanedWord;
+    }
+
+    // makes the wordlist:
     // sorted
+    // scored
     // all caps (RIP MF DOOM)
     // sans dupes
     // sans non-alphabetical characters
     // sans blank entries
     clean() {
         this.list = this.list.map(word =>
-            Wordlist.cleanWord(word) // changes to all caps and removes non-alphabetic characters
+            this.processWord(word) // changes to all caps, removes non-alphabetic characters, and assigns score
         );
         
         this.list = this.list.filter(x => x.length > 0) // remove blank entries

@@ -12,6 +12,7 @@ export default class SearchResults extends Component {
         this.showPrevResults = this.showPrevResults.bind(this)
         this.showNextResults = this.showNextResults.bind(this)
         this.downloadAsTxt = this.downloadAsTxt.bind(this)
+        this.getBackgroundColorStyle = this.getBackgroundColorStyle.bind(this)
     }
 
     shouldComponentUpdate(nextProps, nextState){
@@ -45,7 +46,8 @@ export default class SearchResults extends Component {
     downloadAsTxt() {
         const element = document.createElement("a");
         const file = new Blob(
-            [this.props.results.map(x => x.join(', ')).join('\n')],
+            [this.props.results.map(x => x.join(', ')
+            ).join('\n')],
             {type: 'text/plain'}
         );
 
@@ -55,7 +57,26 @@ export default class SearchResults extends Component {
         element.click();
     }
 
+    getBackgroundColorStyle(resultItem) {
+        let average = 0;
+        for (const word of resultItem) {
+            if (this.props.wordlist.scores[word] !== undefined) {
+                average += this.props.wordlist.scores[word];
+            }
+        }
+        average /= resultItem.length;
+
+        return {
+            backgroundColor: `hsl(${(38 + average - 50) % 256}, 77%, 51%)`
+        }
+    }
+
     render() {
+        let showScores = !this.props.results.every(result => result.every(word => this.props.wordlist.scores[word] === undefined))
+        let resultsStyle = {
+            gridTemplateColumns: (showScores ? "auto 1fr auto auto" : "auto 1fr auto")
+        }
+
         return (
             <div className="search-results">
                 <div className="results-count-label">Results:</div>
@@ -109,7 +130,7 @@ export default class SearchResults extends Component {
                 }
 
                 { this.props.results.length > 0 &&
-                    <div className="results-list">
+                    <div className="results-list" style={resultsStyle}>
                         {this.props.results.slice(this.state.firstIndex, this.state.firstIndex + MAX_RESULTS).map((x, index) =>
                             <React.Fragment key={index}>
                                 <div className="results-number" key={index + "num"}>
@@ -135,6 +156,13 @@ export default class SearchResults extends Component {
                                         ({x.map(word => word.length).join('/')})
                                     </span>
                                 </div>
+                                { showScores &&
+                                    <div className="results-score" key={index + "score"} style={this.getBackgroundColorStyle(x)}>
+                                        <span className="results-item-score">
+                                            {x.map(word => (this.props.wordlist.scores[word] === undefined ? "—" : this.props.wordlist.scores[word])).join('/')}
+                                        </span>
+                                    </div>
+                                }
                             </React.Fragment>
                         )}
                     </div>

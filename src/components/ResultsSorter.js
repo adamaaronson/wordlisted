@@ -8,6 +8,10 @@ const SORTS = [
     {
         value: "length",
         name: "Length"
+    },
+    {
+        value: "score",
+        name: "Score"
     }
 ];
 
