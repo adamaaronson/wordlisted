@@ -160,6 +160,14 @@ const SEARCH_OPTIONS = [
         fields: ["Center letter", "Outer letters"],
         isPairs: false,
         func: (center, outer) => (x => Wordlist.spellingBee(x, center, outer))
+    },
+    {
+        id: "everything",
+        name: "Everything",
+        desc: "Literally all the words. Helpful for sorting or combining lists.",
+        fields: [],
+        isPairs: false,
+        func: () => (x => true)
     }
 ]
 

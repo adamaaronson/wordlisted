@@ -200,16 +200,14 @@ header:after, footer:after {
 }
 
 .sub-header {
-  /* background: var(--lightlightblack); */
+  background: var(--lightlightblack);
   background-image: radial-gradient(circle at center, var(--lightlightblack), var(--lightblack));
   color: var(--white);
-  padding: calc(0.3 * var(--spacing-unit));
-  font-size: 1em;
+  padding: calc(0.5 * var(--spacing-unit)) calc(var(--spacing-unit));
 }
 
 .announcement-icon {
-  padding: calc(0.2 * var(--spacing-unit));
-  padding-right: calc(0.3 * var(--spacing-unit));
+  padding-right: calc(0.5 * var(--spacing-unit));
   color: var(--blue);
 }
 
@@ -366,15 +364,19 @@ header:after, footer:after {
   background: var(--lightblack);
   z-index: 1001;
   padding: calc(1.5 * var(--spacing-unit));
-  width: min(450px, 100vw);
+  width: min(500px, 100vw);
   box-shadow: 0 0 50px 0px var(--darkdarkblack);
 }
 
 .modal-text {
   text-align: left;
   font-size: 0.9em;
-  font-weight: 500;
+  font-weight: normal;
   line-height: 1.6em;
+}
+
+.modal-text .accent {
+  font-weight: 500;
 }
 
 .modal-header {
@@ -768,6 +770,7 @@ select:hover {
   .sub-header {
     background-image: none;
     background: var(--lightlightblack);
+    display: block;
   }
 
   .title {

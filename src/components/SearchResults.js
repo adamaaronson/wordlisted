@@ -46,7 +46,11 @@ export default class SearchResults extends Component {
     downloadAsTxt() {
         const element = document.createElement("a");
         const file = new Blob(
-            [this.props.results.map(x => x.join(', ')
+            [this.props.results.map(result => 
+                result.map( word =>
+                    // word optionally followed by semicolon and score
+                    word + (this.props.wordlist.scores[word] !== undefined ? ';' + (this.props.wordlist.scores[word]) : '')
+                ).join(', ')
             ).join('\n')],
             {type: 'text/plain'}
         );
@@ -66,8 +70,13 @@ export default class SearchResults extends Component {
         }
         average /= resultItem.length;
 
+        if (average === 0 && resultItem.every(x => this.props.wordlist.scores[x] === undefined)) {
+            return {
+                backgroundColor: "hsla(0, 100%, 100%, 0.3)"
+            }
+        }
         return {
-            backgroundColor: `hsl(${(38 + average - 50) % 256}, 77%, 51%)`
+            backgroundColor: `hsl(${((196 + (50 - average)) % 256 + 256) % 256}, 77%, ${Math.max(51, 51 - 0.2 * (average - 50))}%)` //
         }
     }
 

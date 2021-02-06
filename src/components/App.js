@@ -20,10 +20,11 @@ function App() {
             <a href="https://twitter.com/aaaronson" rel="noreferrer noopener" target="_blank"><i className="fab fa-twitter"></i></a>
           </div>
         </header>
-        {/* <div className="sub-header">
-          <i className="fas fa-fire-alt announcement-icon"></i>
-          <span className="announcement">New stuff!</span>
-        </div> */}
+        <br/>
+        <div className="sub-header">
+            <i className="fas fa-fire-alt announcement-icon"></i>
+            <span className="announcement">Now with word scores and multiple lists!</span>
+        </div>
       </div>
 
       <SearchArea />

@@ -22,6 +22,10 @@ export default class InfoModal extends Component {
                                 Any spaces, numbers, or punctuation will be filtered out automatically, so there's no need to remove them yourself.
                             </p>
                             <p>
+                                Wordlists can now be <span className="accent">scored</span>! If a word in a list is followed by a semicolon and a number, it will be assigned that score; e.g. <code>AWESOME;100</code> will be scored at 100.
+                                If a word has different scores in multiple lists, the maximum score will apply.
+                            </p>
+                            <p>
                                 This app uses the JavaScript File API and doesn't save your wordlist anywhere, so rest assured that no one can steal your words!
                             </p>
                         </div>
