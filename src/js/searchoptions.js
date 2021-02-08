@@ -82,6 +82,14 @@ const SEARCH_OPTIONS = [
         func: word => (x => Wordlist.isSandwichWord(x, word))
     },
     {
+        id: "consonantcy",
+        name: "Consonantcy",
+        desc: "Words with the same consonants in the same order as the given word; e.g. AMONG US yields MONGOOSE.",
+        fields: ["Word"],
+        isPairs: false,
+        func: word => (x => Wordlist.isConsonantcy(x, word))
+    },
+    {
         id: "letterchanges",
         name: "Letter changes (new!)",
         desc: "Words that result from changing a certain number of letters in the given word; e.g. PERPETRATE with 1 yields PERPETUATE.",
@@ -122,12 +130,20 @@ const SEARCH_OPTIONS = [
         func: str => (x => x + str)
     },
     {
-        id: "consonantcy",
-        name: "Consonantcy",
-        desc: "Words with the same consonants in the same order as the given word; e.g. AMONG US yields MONGOOSE.",
-        fields: ["Word"],
-        isPairs: false,
-        func: word => (x => Wordlist.isConsonantcy(x, word))
+        id: "beheadments",
+        name: "Beheadments (new!)",
+        desc: "Pairs of words formed by removing the first letter; e.g. EQUALITY → QUALITY.",
+        fields: [],
+        isPairs: true,
+        func: () => (x => x.slice(1))
+    },
+    {
+        id: "curtailments",
+        name: "Curtailments (new!)",
+        desc: "Pairs of words formed by removing the last letter, not including removing the S from regular plurals; e.g. MAGNETON → MAGNETO.",
+        fields: [],
+        isPairs: true,
+        func: () => (x => (x.endsWith('S') && !x.endsWith('SS') ? '' : x.slice(0, x.length - 1)))
     },
     {
         id: "palindromes",
