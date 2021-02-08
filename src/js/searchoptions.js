@@ -82,6 +82,14 @@ const SEARCH_OPTIONS = [
         func: word => (x => Wordlist.isSandwichWord(x, word))
     },
     {
+        id: "letterchanges",
+        name: "Letter changes (new!)",
+        desc: "Words that result from changing a certain number of letters in the given word; e.g. PERPETRATE with 1 yields PERPETUATE.",
+        fields: ["Word", "# of changes"],
+        isPairs: false,
+        func: (word, num) => (x => Wordlist.isDistance(x, word, parseInt(num)))
+    },
+    {
         id: "replacement",
         name: "Replacement",
         desc: "Pairs of words formed by replacing one group of letters with another; e.g. replacing S with GR yields SOUP → GROUP.",
@@ -163,7 +171,7 @@ const SEARCH_OPTIONS = [
     },
     {
         id: "everything",
-        name: "Everything",
+        name: "Everything (new!)",
         desc: "Literally all the words. Helpful for sorting or combining lists.",
         fields: [],
         isPairs: false,

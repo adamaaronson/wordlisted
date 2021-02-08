@@ -305,4 +305,28 @@ export default class Wordlist {
     static isIsogram(word) {
         return this.getLetterBank(word).length === word.length
     }
+
+    // returns Hamming distance between two words
+    static getDistance(word1, word2) {
+        if (word1.length !== word2.length) {
+            return -1;
+        }
+
+        let distance = 0
+        for (let i = 0; i < word1.length; i++) {
+            if (word1[i] !== word2[i]) {
+                distance++;
+            }
+        }
+        return distance;
+    }
+
+    // returns whether word1 and word2 are some Hamming distance away
+    static isDistance(word1, word2, distance) {
+        if (isNaN(distance)) {
+            throw new Error();
+        }
+        return this.getDistance(word1, word2) === distance;
+    }
+
 }
