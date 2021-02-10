@@ -17,7 +17,8 @@ export default class SearchResults extends Component {
 
     shouldComponentUpdate(nextProps, nextState){
         if (this.props.results !== nextProps.results ||
-            this.props.sortOrder !== nextProps.sortOrder) {
+            this.props.sortOrder !== nextProps.sortOrder ||
+            this.props.sortReverse !== nextProps.sortReverse) {
                 this.setState({
                     firstIndex: 0
                 })
@@ -26,6 +27,7 @@ export default class SearchResults extends Component {
         return (
             this.props.results !== nextProps.results ||
             this.props.sortOrder !== nextProps.sortOrder ||
+            this.props.sortReverse !== nextProps.sortReverse ||
             this.state.firstIndex !== nextState.firstIndex
         )
     }

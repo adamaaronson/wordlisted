@@ -26,6 +26,7 @@ export default class SearchArea extends Component {
             addingWordlist: false,
             filenames: [DICTIONARY_NAME],
             sortOrder: 'abc',
+            sortReverse: false,
             submitError: false,
             showingModal: false
         }
@@ -102,7 +103,7 @@ export default class SearchArea extends Component {
             results: results,
             gotResults: true
         })
-
+        
         this.sortResults(this.state.sortOrder)
     }
 
@@ -116,17 +117,6 @@ export default class SearchArea extends Component {
         if (file) {
             let reader = new FileReader();
             reader.readAsText(file);
-            
-            // let newFilenames = this.state.filenames;
-            // if (this.state.addingWordlist) {
-            //     newFilenames.push(file.name);
-            // } else {
-            //     newFilenames = [file.name];
-            // }
-
-            // this.setState({
-            //     filenames: newFilenames
-            // })
             
             reader.onload = function() {
                 // change the acting wordlist
@@ -195,17 +185,18 @@ export default class SearchArea extends Component {
 
     handleSortChange(event) {
         this.setState({
-            sortOrder: event.target.value
+            sortOrder: event.target.value,
+            sortReverse: false
         })
         this.sortResults(event.target.value)
     }
 
     handleSortClick(event) {
         let sortClicked = event.target.value
-        if (this.state.sortOrder === sortClicked || this.state.sortOrder === Wordlist.reverse(sortClicked)) {
+        if (this.state.sortOrder === sortClicked) {
             this.setState({
-                results: this.state.results.reverse(),
-                sortOrder: Wordlist.reverse(this.state.sortOrder)
+                sortReverse: !this.state.sortReverse,
+                results: this.state.results.reverse()
             })
         }
     }
@@ -215,12 +206,18 @@ export default class SearchArea extends Component {
             this.setState(oldState => {
                 // sort by abc
                 oldState.results.sort((a, b) => a[0].localeCompare(b[0]))
+                if (oldState.sortReverse) {
+                    oldState.results.reverse();
+                }
                 return oldState;
             })
         } else if (sortOrder === 'length') {
             this.setState(oldState => {
                 // sort by length
                 oldState.results.sort((a, b) => (b[0].length - a[0].length))
+                if (oldState.sortReverse) {
+                    oldState.results.reverse();
+                }
                 return oldState;
             })
         } else if (sortOrder === 'score') {
@@ -233,6 +230,9 @@ export default class SearchArea extends Component {
                         c + (this.state.wordlist.scores[d] === undefined ? 0 : this.state.wordlist.scores[d])
                     ), 0)
                 )
+                if (oldState.sortReverse) {
+                    oldState.results.reverse();
+                }
                 return oldState;
             })
         }
@@ -326,6 +326,7 @@ export default class SearchArea extends Component {
                             <SearchResults
                                 results={this.state.results}
                                 sortOrder={this.state.sortOrder}
+                                sortReverse={this.state.sortReverse}
                                 optionId={this.state.option.id}
                                 wordlist={this.state.wordlist}
                             /> 
