@@ -37,6 +37,7 @@ export default class ResultsSorter extends Component {
                             name="results-sort"
                             defaultChecked={this.state.currentSort.value === sort.value}
                             key={sort.value}
+                            onClick={this.props.onSortClick}
                             onChange={this.props.onSortChange}
                         />
                         <span className="results-sort-button">

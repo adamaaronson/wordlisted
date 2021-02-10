@@ -38,6 +38,7 @@ export default class SearchArea extends Component {
         this.handleWordlistAdd = this.handleWordlistAdd.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleSortChange = this.handleSortChange.bind(this);
+        this.handleSortClick = this.handleSortClick.bind(this);
         this.openModal = this.openModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
     }
@@ -199,6 +200,16 @@ export default class SearchArea extends Component {
         this.sortResults(event.target.value)
     }
 
+    handleSortClick(event) {
+        let sortClicked = event.target.value
+        if (this.state.sortOrder === sortClicked || this.state.sortOrder === Wordlist.reverse(sortClicked)) {
+            this.setState({
+                results: this.state.results.reverse(),
+                sortOrder: Wordlist.reverse(this.state.sortOrder)
+            })
+        }
+    }
+
     sortResults(sortOrder) {
         if (sortOrder === 'abc') {
             this.setState(oldState => {
@@ -213,7 +224,6 @@ export default class SearchArea extends Component {
                 return oldState;
             })
         } else if (sortOrder === 'score') {
-            console.log("Sorting");
             this.setState(oldState => {
                 // sort by sum of scores in result
                 oldState.results.sort((a, b) => 
@@ -307,7 +317,10 @@ export default class SearchArea extends Component {
                     <div className="search-results-box">
                         <div className={"search-curtain" + (this.state.selectingWordlist ? "" : " search-curtain-off")}></div>
 
-                        <ResultsSorter onSortChange={this.handleSortChange}/>
+                        <ResultsSorter
+                            onSortChange={this.handleSortChange}
+                            onSortClick={this.handleSortClick}
+                        />
 
                         { this.state.gotResults &&
                             <SearchResults
