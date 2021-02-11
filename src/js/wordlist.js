@@ -331,6 +331,9 @@ export default class Wordlist {
 
     // returns whether word1 and word2 are n distance away from being anagrams
     static areAlmostAnagrams(word1, word2, n) {
+        if (word1 === word2) {
+            return false
+        }
         if (word1.length !== word2.length) {
             return false;
         }
