@@ -42,6 +42,14 @@ const SEARCH_OPTIONS = [
         func: tiles => (x => Wordlist.isScrabbleWord(x, tiles))
     },
     {
+        id: "almost-anagram",
+        name: "Almost anagram (new!)",
+        desc: "Words that become an anagram of the given word if you change a certain number of letters; e.g. ANAGRAM with 1 yields GRANDMA.",
+        fields: ["Word", "# of changes"],
+        isPairs: false,
+        func: (word, num) => (x => Wordlist.areAlmostAnagrams(x, word, parseInt(num)))
+    },
+    {
         id: "letter-bank",
         name: "Letter bank",
         desc: "Words with the same set of letters as the given word, ignoring repeated letters; e.g. TIME MACHINE yields MATHEMATICIAN.",

@@ -329,4 +329,63 @@ export default class Wordlist {
         return this.getDistance(word1, word2) === distance;
     }
 
+    // returns whether word1 and word2 are n distance away from being anagrams
+    static areAlmostAnagrams(word1, word2, n) {
+        if (word1.length !== word2.length) {
+            return false;
+        }
+        if (isNaN(n)) {
+            throw new Error();
+        }
+
+        let letters = {};
+
+        for (const letter of word1) {
+            if (letters[letter] === undefined) {
+                letters[letter] = 1
+            } else {
+                letters[letter]++;
+            }
+        }
+
+        for (const letter of word2) {
+            if (letters[letter] === undefined) {
+                letters[letter] = -1
+            } else {
+                letters[letter]--;
+            }
+        }
+
+        let distance = 0
+
+        for (const letter in letters) {
+            distance += Math.abs(letters[letter])
+        }
+
+        return distance / 2 === n;
+
+        // word1 = Wordlist.sort(word1);
+        // word2 = Wordlist.sort(word2);
+        // let distance1 = 0;
+        // let distance2 = 0;
+        // let counter1 = 0;
+        // let counter2 = 0;
+
+        // while (counter1 < word1.length && counter2 < word2.length) {
+        //     if (word1[counter1] !== word2[counter2]) {
+        //         if (word1[counter1] < word2[counter2]) {
+        //             counter1++;
+        //             distance1++;
+        //         } else {
+        //             counter2++;
+        //             distance2++;
+        //         }
+        //     } else {
+        //         counter1++;
+        //         counter2++;
+        //     }
+        // }
+
+        // return distance1 === n || distance2 === n;
+    }
 }
