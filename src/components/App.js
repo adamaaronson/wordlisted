@@ -13,11 +13,11 @@ function App() {
           </a>
           <div className="subtitle">Quick wordlist search tool</div>
           <div className="subsubtitle">
-            <span className="author">by Adam Aaronson</span>
-            <span className="accent"> • </span>
-            <a href="https://aaronson.org" rel="noreferrer noopener" target="_blank" className="link-border">Aaronson.org</a>
+            <span className="author">by <a href="https://aaronson.org" rel="noreferrer noopener" target="_blank" className="link-border">Adam Aaronson</a></span>
             <span className="accent"> • </span>
             <a href="https://twitter.com/aaaronson" rel="noreferrer noopener" target="_blank"><i className="fab fa-twitter"></i></a>
+            <span className="accent"> • </span>
+            <a href="https://www.buymeacoffee.com/aaronson" rel="noreferrer noopener" target="_blank" className="link-border">Buy me a coffee!</a>
           </div>
         </header>
         <br/>

@@ -366,29 +366,5 @@ export default class Wordlist {
         }
 
         return distance / 2 === n;
-
-        // word1 = Wordlist.sort(word1);
-        // word2 = Wordlist.sort(word2);
-        // let distance1 = 0;
-        // let distance2 = 0;
-        // let counter1 = 0;
-        // let counter2 = 0;
-
-        // while (counter1 < word1.length && counter2 < word2.length) {
-        //     if (word1[counter1] !== word2[counter2]) {
-        //         if (word1[counter1] < word2[counter2]) {
-        //             counter1++;
-        //             distance1++;
-        //         } else {
-        //             counter2++;
-        //             distance2++;
-        //         }
-        //     } else {
-        //         counter1++;
-        //         counter2++;
-        //     }
-        // }
-
-        // return distance1 === n || distance2 === n;
     }
 }
