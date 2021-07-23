@@ -17,8 +17,7 @@ export default class SearchOptionMenu extends Component {
         return (
             <div className="search-option-wrapper">
                 <div className="instruction select-instruction" >
-                    {/* <span className="circled-number">2</span> */}
-                    Select a <span className="bold-accent">search option:</span>
+                    Select a <span className="bold-accent">search mode:</span>
                 </div>
                 <div className="select-wrapper">
                     <label htmlFor="search-option-menu" className="arrow-wrapper">

@@ -23,7 +23,7 @@ function App() {
         <br/>
         <div className="sub-header">
             <i className="fas fa-fire-alt announcement-icon"></i>
-            <span className="announcement">Now with word scores and multiple lists!</span>
+            <span className="announcement">Loads of search modes!</span>
         </div>
       </div>
 
