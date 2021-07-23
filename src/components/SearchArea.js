@@ -96,7 +96,7 @@ export default class SearchArea extends Component {
             this.setState({
                 submitError: true
             })
-            console.log(err);
+            // console.log(err);
             return;
         }
 
