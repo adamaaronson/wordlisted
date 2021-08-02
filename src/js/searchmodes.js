@@ -117,7 +117,7 @@ const searchModes = [
     {
         id: "replaceone",
         name: "Replace one (new!)",
-        desc: "Pairs of words formed by replacing one occurrence of one group of letters with another; e.g. replacing E with T yields MINISERIES → MINISTRIES.",
+        desc: "Pairs of words formed by replacing one occurrence of one group of letters with another; e.g. replacing S with GR yields SOUNDS → GROUNDS.",
         fields: ["Replace one", "With"],
         type: searchTypes.MULTIPAIRS,
         func: (replace, with_) => (x => Wordplay.replaceOne(x, replace, with_))
@@ -125,7 +125,7 @@ const searchModes = [
     {
         id: "replaceall",
         name: "Replace all",
-        desc: "Pairs of words formed by replacing all occurrences of one group of letters with another; e.g. ",
+        desc: "Pairs of words formed by replacing all occurrences of one group of letters with another; e.g. replacing S with SS yields POSES → POSSESS.",
         fields: ["Replace all", "With"],
         type: searchTypes.PAIRS,
         func: (replace, with_) => (x => x.replaceAll(replace, with_))
@@ -133,7 +133,7 @@ const searchModes = [
     {
         id: "deleteone",
         name: "Delete one (new!)",
-        desc: "Pairs of words formed by removing one instance of a group of letters; e.g. ",
+        desc: "Pairs of words formed by removing one instance of a group of letters; e.g. removing T yields MEDITATE → MEDIATE.",
         fields: ["Delete one"],
         type: searchTypes.MULTIPAIRS,
         func: str => (x => Wordplay.replaceOne(x, str, ""))
@@ -141,7 +141,7 @@ const searchModes = [
     {
         id: "deleteall",
         name: "Delete all",
-        desc: "Pairs of words formed by removing all instances of a group of letters; e.g. ",
+        desc: "Pairs of words formed by removing all instances of a group of letters; e.g. removing ER yields DERRIERES → DRIES.",
         fields: ["Delete all"],
         type: searchTypes.PAIRS,
         func: str => (x => x.replaceAll(str, ''))
