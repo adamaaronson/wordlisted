@@ -235,7 +235,10 @@ export default class SearchArea extends Component {
         } else if (sortOrder === 'length') {
             this.setState(oldState => {
                 // sort by length
-                oldState.results.sort((a, b) => (b[0].length - a[0].length))
+                for (let i = oldState.results[0].length - 1; i >= 0; i--) {
+                    oldState.results.sort((a, b) => (b[i].length - a[i].length))
+                }
+                
                 if (oldState.sortReverse) {
                     oldState.results.reverse();
                 }

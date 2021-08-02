@@ -126,15 +126,23 @@ const searchModes = [
         id: "replaceall",
         name: "Replace all",
         desc: "Pairs of words formed by replacing all occurrences of one group of letters with another; e.g. ",
-        fields: ["Replace one", "With"],
+        fields: ["Replace all", "With"],
         type: searchTypes.PAIRS,
         func: (replace, with_) => (x => x.replaceAll(replace, with_))
     },
     {
-        id: "deletion",
-        name: "Deletion",
-        desc: "Pairs of words formed by removing all instances of a group of letters; e.g. removing DEM yields PANDEMIC → PANIC.",
-        fields: ["Remove"],
+        id: "deleteone",
+        name: "Delete one (new!)",
+        desc: "Pairs of words formed by removing one instance of a group of letters; e.g. ",
+        fields: ["Delete one"],
+        type: searchTypes.MULTIPAIRS,
+        func: str => (x => Wordplay.replaceOne(x, str, ""))
+    },
+    {
+        id: "deleteall",
+        name: "Delete all",
+        desc: "Pairs of words formed by removing all instances of a group of letters; e.g. ",
+        fields: ["Delete all"],
         type: searchTypes.PAIRS,
         func: str => (x => x.replaceAll(str, ''))
     },

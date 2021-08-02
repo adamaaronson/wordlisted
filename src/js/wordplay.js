@@ -267,6 +267,7 @@ export default class Wordplay {
         }
 
         let results = indices.map(i => word.slice(0, i) + to + word.slice(i + from.length))
+        results = [...new Set(results)] // remove duplicates
         return results;
     }
 }
