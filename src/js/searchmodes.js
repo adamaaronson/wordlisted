@@ -100,7 +100,7 @@ const searchModes = [
     },
     {
         id: "vowelcy",
-        name: "Vowelcy (new!)",
+        name: "Vowelcy",
         desc: "Words with the same vowels in the same order as the given word; e.g. SEQUOIA yields EUPHORIA.",
         fields: ["Word"],
         type: searchTypes.SINGLE,
