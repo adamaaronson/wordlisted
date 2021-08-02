@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import SEARCH_OPTIONS from '../js/searchoptions.js'
+import searchModes from '../js/searchmodes.js'
 
-export default class SearchOptionMenu extends Component {
+export default class SearchModeMenu extends Component {
     constructor(props) {
         super(props);
         this.state = {value: ''};
@@ -10,7 +10,7 @@ export default class SearchOptionMenu extends Component {
     }
 
     handleChange(e) {
-        this.props.onOptionChange(e.target.value);
+        this.props.onSearchModeChange(e.target.value);
     }
     
     render() {
@@ -24,14 +24,14 @@ export default class SearchOptionMenu extends Component {
                         <i className="fas fa-angle-down select-arrow"></i>
                     </label>
                     <select name="search-option-menu" id="search-option-menu" onChange={this.handleChange}>
-                        {SEARCH_OPTIONS.map(option =>
+                        {searchModes.map(option =>
                             <option value={option.id} key={"option-" + option.id}>{option.name}</option>
                         )}
                     </select>
                 </div>
 
                 <p className="option-description">
-                    {this.props.option.desc}
+                    {this.props.searchMode.desc}
                 </p>
             </div>
         )

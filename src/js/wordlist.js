@@ -121,4 +121,44 @@ export default class Wordlist {
         
         return resultPairs;
     }
+
+    // returns array of pairs of words (word1, word2) in the wordlist such that the array func(word1) contains word2
+    getMultipairs(func) {
+        // array of {word, func(word)} objects
+        let wordPairs = [];
+        for (let word1 of this.list) {
+            for (let word2 of func(word1)) {
+                wordPairs.push({word1: word1, word2: word2});
+            }
+        }
+        
+        // remove pairs where word1 === word2
+        wordPairs = wordPairs.filter(word => word.word1 !== word.word2);
+
+        // sort by word2
+        wordPairs.sort((x, y) => x.word2.localeCompare(y.word2));
+
+        var resultPairs = [];
+        var pairCounter = 0;
+        var listCounter = 0;
+
+        // iterates through sorted array and wordlist simultaneously to find pairs whose word2 are in the wordlist
+        while (pairCounter < wordPairs.length && listCounter < this.list.length) {
+            var pairCurrent = wordPairs[pairCounter];
+            var listCurrent = this.list[listCounter];
+
+            if (listCurrent > pairCurrent.word2) {
+                pairCounter++;
+            } else if (listCurrent === pairCurrent.word2) {
+                resultPairs.push(pairCurrent);
+                pairCounter++;
+            } else {
+                listCounter++;
+            }
+        }
+
+        resultPairs.sort((x, y) => x.word1.localeCompare(y.word1));
+        
+        return resultPairs;
+    }
 }

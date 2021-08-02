@@ -256,4 +256,17 @@ export default class Wordplay {
 
         return distance / 2 === n;
     }
+
+    // returns array of all possible words formed by replacing one instance of a string with another
+    static replaceOne(word, from, to) {
+        from = this.cleanWord(from); // remove non-alpha characters
+        
+        let regex = new RegExp(from, 'gi'), result, indices = [];
+        while ( (result = regex.exec(word)) ) {
+            indices.push(result.index);
+        }
+
+        let results = indices.map(i => word.slice(0, i) + to + word.slice(i + from.length))
+        return results;
+    }
 }

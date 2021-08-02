@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 import WordlistUploadButton from './WordlistUploadButton.js';
-import SearchOptionMenu from './SearchOptionMenu.js';
+import SearchModeMenu from './SearchModeMenu.js';
 import SearchInputArea from './SearchInputArea.js';
 import SearchResults from './SearchResults.js';
 import ResultsSorter from './ResultsSorter.js';
@@ -9,15 +9,17 @@ import InfoModal from './InfoModal.js';
 
 import Wordlist from '../js/wordlist.js';
 import { enable1 } from '../json/enable1.json';
-import SEARCH_OPTIONS from '../js/searchoptions.js';
+import searchModes from '../js/searchmodes.js';
+import searchTypes from '../js/searchtypes.js';
 
 const DICTIONARY_NAME = "English dictionary";
+const DEBUG = false;
 
 export default class SearchArea extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            option: SEARCH_OPTIONS[0],
+            searchMode: searchModes[0],
             inputValues: {},
             results: [],
             gotResults: false,
@@ -30,7 +32,7 @@ export default class SearchArea extends Component {
             submitError: false,
             showingModal: false
         }
-        this.handleOptionChange = this.handleOptionChange.bind(this);
+        this.handleSearchModeChange = this.handleSearchModeChange.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleFileChange = this.handleFileChange.bind(this);
         this.handleDictionaryClick = this.handleDictionaryClick.bind(this);
@@ -44,11 +46,15 @@ export default class SearchArea extends Component {
         this.closeModal = this.closeModal.bind(this);
     }
 
-    handleOptionChange(optionName) {
-        var searchOption = SEARCH_OPTIONS.find(x => x.id === optionName)
+    handleSearchModeChange(searchModeName) {
+        let newSearchMode = searchModes.find(x => x.id === searchModeName)
+        let newInputValues = {};
+        for (let field of newSearchMode.fields) {
+            newInputValues[field] = "";
+        }
         this.setState({
-            option: searchOption,
-            inputValues: {},
+            searchMode: newSearchMode,
+            inputValues: newInputValues,
             submitError: false
         });
 
@@ -70,13 +76,17 @@ export default class SearchArea extends Component {
         })
 
         var functionInputs = []
-        for (const field of this.state.option.fields) {
+        for (const field of this.state.searchMode.fields) {
             var inputValue = this.state.inputValues[field]
             if (inputValue === '' || inputValue === undefined) {
                 // blank input, raise error!
                 this.setState({
                     submitError: true
                 })
+                if (DEBUG) {
+                    console.log(this.state.searchMode.fields);
+                    console.log(this.state.inputValues);
+                }
                 return;
             }
             inputValue = inputValue.toUpperCase().replaceAll(' ', '');
@@ -86,17 +96,27 @@ export default class SearchArea extends Component {
         var results = []
 
         try {
-            if (this.state.option.isPairs) {
-                results = this.state.wordlist.getPairs(this.state.option.func(...functionInputs)).map(pair => [pair.word1, pair.word2])
-            } else {
-                results = this.state.wordlist.getWords(this.state.option.func(...functionInputs)).map(x => [x])
+            switch (this.state.searchMode.type) {
+                case searchTypes.SINGLE:
+                    results = this.state.wordlist.getWords(this.state.searchMode.func(...functionInputs)).map(x => [x]);
+                    break;
+                case searchTypes.PAIRS:
+                    results = this.state.wordlist.getPairs(this.state.searchMode.func(...functionInputs)).map(pair => [pair.word1, pair.word2]);
+                    break;
+                case searchTypes.MULTIPAIRS:
+                    results = this.state.wordlist.getMultipairs(this.state.searchMode.func(...functionInputs)).map(pair => [pair.word1, pair.word2]);
+                    break;
+                default:
+                    break;
             }
         } catch (err) {
             // erroneous input, raise error!
             this.setState({
                 submitError: true
             })
-            // console.log(err);
+            if (DEBUG) {
+                console.log(err);
+            }
             return;
         }
 
@@ -301,13 +321,14 @@ export default class SearchArea extends Component {
                 <div className="search-body-box content-box">
                     <div className={"search-curtain" + (this.state.selectingWordlist ? "" : " search-curtain-off")}></div>
                     
-                    <SearchOptionMenu
-                        onOptionChange={this.handleOptionChange}
-                        option={this.state.option}
+                    <SearchModeMenu
+                        onSearchModeChange={this.handleSearchModeChange}
+                        searchMode={this.state.searchMode}
                     />
 
                     <SearchInputArea
-                        option={this.state.option}
+                        searchMode={this.state.searchMode}
+                        inputValues={this.state.inputValues}
                         onInputChange={this.handleInputChange}
                         onSubmit={this.handleSubmit}
                         submitError={this.state.submitError}
@@ -328,7 +349,6 @@ export default class SearchArea extends Component {
                                 results={this.state.results}
                                 sortOrder={this.state.sortOrder}
                                 sortReverse={this.state.sortReverse}
-                                optionId={this.state.option.id}
                                 wordlist={this.state.wordlist}
                             /> 
                         }
