@@ -30,7 +30,8 @@ export default class SearchArea extends Component {
             sortOrder: 'abc',
             sortReverse: false,
             submitError: false,
-            showingModal: false
+            showingModal: false,
+            isLoadingResults: false
         }
         this.handleSearchModeChange = this.handleSearchModeChange.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -93,18 +94,26 @@ export default class SearchArea extends Component {
             functionInputs.push(inputValue);
         }
 
-        var results = []
+        this.setState({
+            isLoadingResults: true
+        })
 
+        this.generateResults(functionInputs)
+    }
+
+    generateResults(functionInputs) {
+        var results = []
+        var searchMode = this.state.searchMode
         try {
-            switch (this.state.searchMode.type) {
+            switch (searchMode.type) {
                 case searchTypes.SINGLE:
-                    results = this.state.wordlist.getWords(this.state.searchMode.func(...functionInputs)).map(x => [x]);
+                    results = this.state.wordlist.getWords(searchMode.func(...functionInputs)).map(x => [x]);
                     break;
                 case searchTypes.PAIRS:
-                    results = this.state.wordlist.getPairs(this.state.searchMode.func(...functionInputs)).map(pair => [pair.word1, pair.word2]);
+                    results = this.state.wordlist.getPairs(searchMode.func(...functionInputs)).map(pair => [pair.word1, pair.word2]);
                     break;
                 case searchTypes.MULTIPAIRS:
-                    results = this.state.wordlist.getMultipairs(this.state.searchMode.func(...functionInputs)).map(pair => [pair.word1, pair.word2]);
+                    results = this.state.wordlist.getMultipairs(searchMode.func(...functionInputs)).map(pair => [pair.word1, pair.word2]);
                     break;
                 default:
                     break;
@@ -126,6 +135,10 @@ export default class SearchArea extends Component {
         })
         
         this.sortResults(this.state.sortOrder)
+
+        this.setState({
+            isLoadingResults: false
+        })
     }
 
     handleFileChange(event) {
@@ -235,6 +248,9 @@ export default class SearchArea extends Component {
         } else if (sortOrder === 'length') {
             this.setState(oldState => {
                 // sort by length
+                if (oldState.results.length === 0) {
+                    return oldState;
+                }
                 for (let i = oldState.results[0].length - 1; i >= 0; i--) {
                     oldState.results.sort((a, b) => (b[i].length - a[i].length))
                 }
@@ -347,8 +363,9 @@ export default class SearchArea extends Component {
                             onSortClick={this.handleSortClick}
                         />
 
-                        { this.state.gotResults &&
+                        { (this.state.gotResults || this.state.isLoadingResults) &&
                             <SearchResults
+                                isLoading={this.state.isLoadingResults}
                                 results={this.state.results}
                                 sortOrder={this.state.sortOrder}
                                 sortReverse={this.state.sortReverse}
