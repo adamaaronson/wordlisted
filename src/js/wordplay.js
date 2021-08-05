@@ -270,4 +270,12 @@ export default class Wordplay {
         results = [...new Set(results)] // remove duplicates
         return results;
     }
+
+    // returns whether word contains center in the dead center
+    static isDeadCenter(word, center) {
+        return word.length > center.length
+            && word.includes(word)
+            && word.length % 2 === center.length % 2
+            && word.slice((word.length - center.length) / 2, ).slice(0, center.length) === center;
+    }
 }

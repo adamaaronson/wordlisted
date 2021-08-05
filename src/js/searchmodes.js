@@ -91,6 +91,14 @@ const searchModes = [
         func: word => (x => Wordplay.isSandwichWord(x, word))
     },
     {
+        id: "deadcenter",
+        name: "Dead center (new!)",
+        desc: "Words that contain the given word in the exact center; e.g. ABE yields ALPHABETIZE.",
+        fields: ["Center"],
+        type: searchTypes.SINGLE,
+        func: center => (x => Wordplay.isDeadCenter(x, center))
+    },
+    {
         id: "consonantcy",
         name: "Consonantcy",
         desc: "Words with the same consonants in the same order as the given word; e.g. AMONG US yields MONGOOSE.",
