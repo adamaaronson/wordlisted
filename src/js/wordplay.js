@@ -286,7 +286,8 @@ export default class Wordplay {
         }
 
         let temp = '$'
+        let result = word.replaceAll(swap1, temp).replaceAll(swap2, swap1).replaceAll(temp, swap2)
 
-        return word.replaceAll(swap1, temp).replaceAll(swap2, swap1).replaceAll(temp, swap2)
+        return result > word ? result : ''
     }
 }
