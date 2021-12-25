@@ -92,7 +92,7 @@ const searchModes = [
     },
     {
         id: "deadcenter",
-        name: "Dead center (new!)",
+        name: "Dead center",
         desc: "Words that contain the given word in the exact center; e.g. ABE yields ALPHABETIZE.",
         fields: ["Center"],
         type: searchTypes.SINGLE,
@@ -124,7 +124,7 @@ const searchModes = [
     },
     {
         id: "replaceone",
-        name: "Replace one (new!)",
+        name: "Replace one",
         desc: "Pairs of words formed by replacing one occurrence of one group of letters with another; e.g. replacing S with GR yields SOUNDS → GROUNDS.",
         fields: ["Replace one", "With"],
         type: searchTypes.MULTIPAIRS,
@@ -140,7 +140,7 @@ const searchModes = [
     },
     {
         id: "deleteone",
-        name: "Delete one (new!)",
+        name: "Delete one",
         desc: "Pairs of words formed by removing one instance of a group of letters; e.g. removing T yields MEDITATE → MEDIATE.",
         fields: ["Delete one"],
         type: searchTypes.MULTIPAIRS,
@@ -153,6 +153,14 @@ const searchModes = [
         fields: ["Delete all"],
         type: searchTypes.PAIRS,
         func: str => (x => x.replaceAll(str, ''))
+    },
+    {
+        id: "letterswap",
+        name: "Letter swap (new!)",
+        desc: "Pairs of words formed by replacing all occurrences of one string with another and vice versa, e.g. A and O yields ARGON → ORGAN.",
+        fields: ["Swap", "With"],
+        type: searchTypes.PAIRS,
+        func: (swap, with_) => (x => Wordplay.letterSwap(x, swap, with_))
     },
     {
         id: "prefix",

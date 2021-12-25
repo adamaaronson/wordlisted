@@ -278,4 +278,15 @@ export default class Wordplay {
             && word.length % 2 === center.length % 2
             && word.slice((word.length - center.length) / 2, ).slice(0, center.length) === center;
     }
+
+    // returns word when swap1 and swap2 are swapped
+    static letterSwap(word, swap1, swap2) {
+        if (!word.includes(swap1) || !word.includes(swap2)) {
+            return ''
+        }
+
+        let temp = '$'
+
+        return word.replaceAll(swap1, temp).replaceAll(swap2, swap1).replaceAll(temp, swap2)
+    }
 }
