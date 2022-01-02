@@ -1,0 +1,57 @@
+$white: #DEDEDE;
+$orange: #E4A317;
+$blue: #309BD7;
+$light-gray: #9EA4A7;
+$medium-gray: #3E4243;
+$dark-gray: #2F3233;
+$black: #1B1C1D;
+$clear: #FFFFFF00;
+
+$main-font: 'Spline Sans', sans-serif;
+
+$spacer: 40px;
+$gutter: 15px;
+
+$mobile-width: 400px;
+$medium-width: 740px;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    font-family: $main-font;
+    
+    color: $light-gray;
+}
+
+body {
+    background-color: $black;
+    border-top: 15px solid $orange;
+}
+
+.content {
+    width: min(710px, 100vw - 2 * $gutter);
+    margin: auto;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+    border-bottom: 1px solid $clear;
+
+    &:hover {
+        border-bottom: 1px solid $light-gray;
+        transition: border-bottom 0.3s;
+    }
+}
+
+.hover-fade {
+    opacity: 1;
+
+    &:hover {
+        opacity: 0.3;
+        border-bottom: none !important;
+        transition: opacity 0.3s;
+    }
+}

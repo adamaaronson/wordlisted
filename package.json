@@ -1,5 +1,5 @@
 {
-  "homepage": "https://aaronson.org/wordlisted",
+  "homepage": ".",
   "name": "wordlisted",
   "version": "0.1.0",
   "private": true,
@@ -9,7 +9,8 @@
     "@testing-library/user-event": "^12.6.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "react-scripts": "4.0.1",
+    "react-scripts": "^5.0.0",
+    "sass": "^1.45.2",
     "web-vitals": "^0.2.4"
   },
   "scripts": {

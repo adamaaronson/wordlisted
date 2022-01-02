@@ -1,0 +1,91 @@
+@import "App.scss";
+
+.header {
+    margin-top: $spacer;
+    margin-bottom: $spacer;
+    font-size: 72px;
+    
+    display: flex;
+    flex-flow: row wrap;
+    align-items: flex-end;
+    justify-content: flex-start;
+    width: 100%;
+
+    @media (max-width: $medium-width) {
+        font-size: 60px;
+    }
+
+    @media (max-width: $mobile-width) {
+        font-size: 48px;
+    }
+}
+
+.logo {
+    align-self: flex-start;
+    line-height: 1em;
+
+    .title-logo {
+        height: 0.75em;
+        margin-right: 10px;
+    }
+}
+
+.title {
+    line-height: 1em;
+    text-decoration: none !important;
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    flex-flow: row wrap;
+
+    .title-1 {
+        color: $white;
+        font-weight: bold;
+    }
+    
+    .title-2 {
+        color: $orange;
+        font-weight: bold;
+    }
+
+    .subtitle {
+        margin-top: 6px;
+        margin-bottom: 6px;
+        font-size: 30px;
+        line-height: 1em;
+        margin-left: 6px;
+    }
+
+    @media (max-width: $medium-width) {
+        flex-flow: column wrap;
+    }
+}
+
+.credits {
+    text-align: right;
+    line-height: 1.5em;
+    font-size: 18px;
+    flex: 1;
+
+    align-self: flex-end;
+
+    .social i {
+        color: $white !important;
+        margin-right: 0.5em;
+    }
+
+    @media (max-width: $medium-width) {
+        display: flex;
+        width: 100%;
+        flex-flow: row wrap;
+        margin-left: 6px;
+        // gap: 0.5em;
+        // line-height: 1em;
+
+        align-self: flex-start;
+
+        .author {
+            margin-right: 0.5em;
+        }
+    }
+}
