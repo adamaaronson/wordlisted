@@ -8,10 +8,11 @@ import ResultsSorter from './ResultsSorter.js';
 import InfoModal from './InfoModal.js';
 
 import Wordlist from '../js/wordlist.js';
-import { enable1 } from '../json/enable1.json';
+import * as enable1Json from '../json/enable1.json';
 import searchModes from '../js/searchmodes.js';
 import searchTypes from '../js/searchtypes.js';
 
+const { enable1 } = enable1Json
 const DICTIONARY_NAME = "English dictionary";
 const DEBUG = false;
 
