@@ -1,6 +1,8 @@
 $white: #DEDEDE;
 $orange: #E4A317;
+$light-orange: lighten($orange, 10%);
 $blue: #309BD7;
+$light-blue: lighten($blue, 10%);
 $light-gray: #9EA4A7;
 $medium-gray: #3E4243;
 $dark-gray: #2F3233;
@@ -35,15 +37,25 @@ body {
     margin: auto;
 }
 
-a {
-    color: white;
+a, .linky-button {
     text-decoration: none;
-    border-bottom: 1px solid $clear;
+    color: $white;
+}
+
+.hover-orange, .hover-blue {
+    color: $white;
 
     &:hover {
-        border-bottom: 1px solid $light-gray;
-        transition: border-bottom 0.3s;
+        transition: color 0.3s;
     }
+}
+
+.hover-orange:hover {
+    color: $orange;
+}
+
+.hover-blue:hover {
+    color: $blue;
 }
 
 .hover-fade {
@@ -53,5 +65,45 @@ a {
         opacity: 0.3;
         border-bottom: none !important;
         transition: opacity 0.3s;
+    }
+}
+
+.linky-button {
+    display: inline-block;
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+}
+
+.nice-button {
+    font-family: $main-font;
+    background-color: $orange;
+    color: $black;
+    font-size: 28px;
+    border: none;
+    border-radius: 25px;
+    padding: 25px;
+    cursor: pointer;
+    transition: 0.5s background-color;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+    & > * {
+        color: $black !important;
+    }
+
+    &:hover {
+        background-color: $light-orange;
+    }
+}
+
+.blue-button {
+    background-color: $blue;
+
+    &:hover {
+        background-color: $light-blue;
     }
 }

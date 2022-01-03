@@ -1,0 +1,63 @@
+@import "App.scss";
+
+.wordlist-selector {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: $spacer;
+    padding-bottom: $spacer + 10px;
+
+    @media (max-width: $medium-width) {
+        flex-direction: column;
+        padding-bottom: $spacer;
+    }
+}
+
+#file-upload {
+    display: none;
+}
+
+.wordlist-box {
+    display: flex;
+    border: none;
+    min-width: 260px;
+    min-height: 160px;
+    align-items: center;
+    font-weight: 600;
+    position: relative;
+    gap: 25px;
+}
+
+.wordlist-icon {
+    height: 64px;
+}
+
+.dictionary {
+    text-align: right;
+    justify-content: flex-end;
+}
+
+.or {
+    margin: 25px;
+    font-size: 36px;
+    color: $white;
+    font-weight: bold;
+}
+
+.upload-list-wrapper {
+    position: relative;
+}
+
+.info-icon {
+    color: $orange;
+    margin-right: 6px;
+}
+
+.upload-info-wrapper {
+    position: absolute;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-top: 6px;
+}
+

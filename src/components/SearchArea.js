@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
+import '../css/SearchArea.scss';
 
-import WordlistUploadButton from './WordlistUploadButton.js';
+import WordlistSelector from './WordlistSelector.js';
 import SearchModeMenu from './SearchModeMenu.js';
 import SearchInputArea from './SearchInputArea.js';
 import SearchResults from './SearchResults.js';
@@ -11,6 +12,7 @@ import Wordlist from '../js/wordlist.js';
 import * as enable1Json from '../json/enable1.json';
 import searchModes from '../js/searchmodes.js';
 import searchTypes from '../js/searchtypes.js';
+import WordlistList from './WordlistList';
 
 const { enable1 } = enable1Json
 const DICTIONARY_NAME = "English dictionary";
@@ -307,35 +309,21 @@ export default class SearchArea extends Component {
                             <i className="fas fa-exclamation-triangle error-icon"></i> It seems there was an error uploading your wordlist!
                         </div>
                     }
-
-                    {this.state.selectingWordlist
-                    ?   <div>
-                            <WordlistUploadButton
+                    <div className="content-box">
+                        {this.state.selectingWordlist ?
+                            <WordlistSelector
                                 onFileChange={this.handleFileChange}
                                 onDictionaryClick={this.handleDictionaryClick}
                                 onOpenModal={this.openModal}
                             />
-                        </div>
-
-                    :   <div className="wordlist-name-box content-box">
-                            <div className="wordlist-name-label">
-                                Current wordlist{this.state.filenames.length > 1 ? "s" : ""}:
-                            </div>
-                            {this.state.filenames.map(filename => 
-                                <div key={filename} className={"wordlist-name" + ((filename === DICTIONARY_NAME) ? " dictionary-name" : "")}>
-                                    {filename}
-                                </div>
-                            )}
-                            
-                            (<button className="add-wordlist-button linky-button link-border" onClick={this.handleWordlistAdd}>
-                                add a list
-                            </button>)
-                            (<button className="change-wordlist-button linky-button link-border" onClick={this.handleWordlistChange}>
-                                reset
-                            </button>)
-                            
-                        </div>
-                    }
+                        :
+                            <WordlistList
+                                filenames={this.state.filenames}
+                                onWordlistAdd={this.handleWordlistAdd}
+                                onWordlistChange={this.handleWordlistChange}
+                            />
+                        }
+                    </div>
                 </div>
 
                 <div className="search-body-box content-box">
@@ -355,25 +343,23 @@ export default class SearchArea extends Component {
                     />
                 </div>
                 
-                <div className="search-results-wrapper">
-                    <div className="search-results-box">
-                        <div className={"search-curtain" + (this.state.selectingWordlist ? "" : " search-curtain-off")}></div>
+                <div className="search-results-box content-box">
+                    <div className={"search-curtain" + (this.state.selectingWordlist ? "" : " search-curtain-off")}></div>
 
-                        <ResultsSorter
-                            onSortChange={this.handleSortChange}
-                            onSortClick={this.handleSortClick}
-                        />
+                    <ResultsSorter
+                        onSortChange={this.handleSortChange}
+                        onSortClick={this.handleSortClick}
+                    />
 
-                        { (this.state.gotResults || this.state.isLoadingResults) &&
-                            <SearchResults
-                                isLoading={this.state.isLoadingResults}
-                                results={this.state.results}
-                                sortOrder={this.state.sortOrder}
-                                sortReverse={this.state.sortReverse}
-                                wordlist={this.state.wordlist}
-                            /> 
-                        }
-                    </div>
+                    { (this.state.gotResults || this.state.isLoadingResults) &&
+                        <SearchResults
+                            isLoading={this.state.isLoadingResults}
+                            results={this.state.results}
+                            sortOrder={this.state.sortOrder}
+                            sortReverse={this.state.sortReverse}
+                            wordlist={this.state.wordlist}
+                        /> 
+                    }
                 </div>
             </div>
         )
