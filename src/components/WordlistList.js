@@ -15,10 +15,10 @@ export default class WordlistList extends Component {
                 )}
                 
                 <div className="wordlist-buttons">
-                    <button className="wordlist-button add-wordlist-button nice-button" onClick={this.props.onWordlistAdd}>
+                    <button className="wordlist-button add-wordlist-button nice-button small-button" onClick={this.props.onWordlistAdd}>
                         Add list
                     </button>
-                    <button className="wordlist-button change-wordlist-button nice-button blue-button" onClick={this.props.onWordlistChange}>
+                    <button className="wordlist-button change-wordlist-button nice-button small-button blue-button" onClick={this.props.onWordlistChange}>
                         Reset
                     </button>
                 </div>
