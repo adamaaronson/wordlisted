@@ -7,6 +7,8 @@ $light-gray: #9EA4A7;
 $medium-gray: #3E4243;
 $dark-gray: #2F3233;
 $black: #1B1C1D;
+$light-curtain: rgba($black, 0.7);
+$dark-curtain: rgba($black, 0.9);
 $clear: #FFFFFF00;
 
 $main-font: 'Spline Sans', sans-serif;
@@ -109,4 +111,5 @@ a, .linky-button {
     background-color: $dark-gray;
     border-radius: 10px;
     margin-bottom: $spacer;
+    padding: $spacer 50px;
 }

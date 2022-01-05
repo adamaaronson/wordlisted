@@ -50,8 +50,8 @@ export default class SearchArea extends Component {
         this.closeModal = this.closeModal.bind(this);
     }
 
-    handleSearchModeChange(searchModeName) {
-        let newSearchMode = searchModes.find(x => x.id === searchModeName)
+    handleSearchModeChange(searchMode) {
+        let newSearchMode = searchModes.find(x => x.value === searchMode.value)
         let newInputValues = {};
         for (let field of newSearchMode.fields) {
             newInputValues[field] = "";
