@@ -3,240 +3,240 @@ import searchTypes from './searchtypes.js';
 
 const searchModes = [
     {
-        id: "simple-search",
-        name: "Simple search",
-        desc: "Words matching the given pattern of letters, where ? denotes one wildcard letter and * denotes any number of wildcard letters; e.g. ?WE*E yields AWESOME.",
+        value: "simple-search",
+        label: "Simple search",
+        desc: "Words matching the given pattern of letters, where ? denotes one wildcard letter and * denotes any number of wildcard letters; e.g. A?E*E yields AWESOME.",
         fields: ["Pattern"],
         type: searchTypes.SINGLE,
         func: pattern => (x => Wordplay.matchesPattern(x, pattern))
     },
     {
-        id: "regex",
-        name: "Regex",
+        value: "regex",
+        label: "Regex",
         desc: "Words matching the given regex, or regular expression; e.g. ^S.*[AEIOU]{4} yields SEQUOIA. If you're new to regex, regexone.com has a great tutorial.",
         fields: ["Regex"],
         type: searchTypes.SINGLE,
         func: regex => (x => Wordplay.matchesRegex(x, regex))
     },
     {
-        id: "anagram",
-        name: "Anagram",
+        value: "anagram",
+        label: "Anagram",
         desc: "Words formed by rearranging the letters of the given word; e.g. LINDSEY yields SNIDELY.",
         fields: ["Word"],
         type: searchTypes.SINGLE,
         func: word => (x => Wordplay.areAnagrams(x, word) && x !== word)
     },
     {
-        id: "hidden-anagram",
-        name: "Hidden anagram",
+        value: "hidden-anagram",
+        label: "Hidden anagram",
         desc: "Words containing an anagram of the given word; e.g. HOLLY yields TALLYHO.",
         fields: ["Word"],
         type: searchTypes.SINGLE,
         func: word => (x => Wordplay.containsAnagram(x, word))
     },
     {
-        id: "subanagram",
-        name: "Subanagram",
+        value: "subanagram",
+        label: "Subanagram",
         desc: "Words that can be made from the letters in the given word; e.g. PARENTING yields PREGNANT.",
         fields: ["Word"],
         type: searchTypes.SINGLE,
         func: tiles => (x => Wordplay.isScrabbleWord(x, tiles))
     },
     {
-        id: "almost-anagram",
-        name: "Almost anagram",
+        value: "almost-anagram",
+        label: "Almost anagram",
         desc: "Words that become an anagram of the given word if you change a certain number of letters; e.g. ANAGRAM with 1 yields GRANDMA.",
         fields: ["Word", "# of changes"],
         type: searchTypes.SINGLE,
         func: (word, num) => (x => Wordplay.areAlmostAnagrams(x, word, parseInt(num)))
     },
     {
-        id: "letter-bank",
-        name: "Letter bank",
+        value: "letter-bank",
+        label: "Letter bank",
         desc: "Words with the same set of letters as the given word, ignoring repeated letters; e.g. TIME MACHINE yields MATHEMATICIAN.",
         fields: ["Word"],
         type: searchTypes.SINGLE,
         func: word => (x => Wordplay.isLetterBank(x, word))
     },
     {
-        id: "required-letters",
-        name: "Required letters",
+        value: "required-letters",
+        label: "Required letters",
         desc: "Words that contain all of the given letters, regardless of order; e.g. RSTUVW yields LIVERWURST.",
         fields: ["Letters"],
         type: searchTypes.SINGLE,
         func: letters => (x => Wordplay.isScrabbleWord(letters, x))
     },
     {
-        id: "limited-alphabet",
-        name: "Limited alphabet",
+        value: "limited-alphabet",
+        label: "Limited alphabet",
         desc: "Words that can be written using only the given letters, any number of times; e.g. ABCDEFG yields CABBAGE.",
         fields: ["Letters"],
         type: searchTypes.SINGLE,
         func: alphabet => (x => Wordplay.usesLettersFrom(x, alphabet))
     },
     {
-        id: "spread",
-        name: "Spread letters",
+        value: "spread",
+        label: "Spread letters",
         desc: "Words that contain the given letters in order, but not necessarily consecutively; e.g. RAUCOUS yields RAMBUNCTIOUS.",
         fields: ["Letters"],
         type: searchTypes.SINGLE,
         func: word => (x => Wordplay.isSpread(word, x))
     },
     {
-        id: "sandwich",
-        name: "Sandwich word",
+        value: "sandwich",
+        label: "Sandwich word",
         desc: "Words formed by slicing the given word in two and adding letters inside; e.g. CRUST yields CRUMBLIEST.",
         fields: ["Bread"],
         type: searchTypes.SINGLE,
         func: word => (x => Wordplay.isSandwichWord(x, word))
     },
     {
-        id: "deadcenter",
-        name: "Dead center",
+        value: "deadcenter",
+        label: "Dead center",
         desc: "Words that contain the given word in the exact center; e.g. ABE yields ALPHABETIZE.",
         fields: ["Center"],
         type: searchTypes.SINGLE,
         func: center => (x => Wordplay.isDeadCenter(x, center))
     },
     {
-        id: "consonantcy",
-        name: "Consonantcy",
+        value: "consonantcy",
+        label: "Consonantcy",
         desc: "Words with the same consonants in the same order as the given word; e.g. AMONG US yields MONGOOSE.",
         fields: ["Word"],
         type: searchTypes.SINGLE,
         func: word => (x => Wordplay.isConsonantcy(x, word))
     },
     {
-        id: "vowelcy",
-        name: "Vowelcy",
+        value: "vowelcy",
+        label: "Vowelcy",
         desc: "Words with the same vowels in the same order as the given word; e.g. SEQUOIA yields EUPHORIA.",
         fields: ["Word"],
         type: searchTypes.SINGLE,
         func: word => (x => Wordplay.isVowelcy(x, word))
     },
     {
-        id: "letterchanges",
-        name: "Letter changes",
+        value: "letterchanges",
+        label: "Letter changes",
         desc: "Words that result from changing a certain number of letters in the given word; e.g. PERPETRATE with 1 yields PERPETUATE.",
         fields: ["Word", "# of changes"],
         type: searchTypes.SINGLE,
         func: (word, num) => (x => Wordplay.isDistance(x, word, parseInt(num)))
     },
     {
-        id: "replaceone",
-        name: "Replace one",
+        value: "replaceone",
+        label: "Replace one",
         desc: "Pairs of words formed by replacing one occurrence of one group of letters with another; e.g. replacing S with GR yields SOUNDS → GROUNDS.",
         fields: ["Replace one", "With"],
         type: searchTypes.MULTIPAIRS,
         func: (replace, with_) => (x => Wordplay.replaceOne(x, replace, with_))
     },
     {
-        id: "replaceall",
-        name: "Replace all",
+        value: "replaceall",
+        label: "Replace all",
         desc: "Pairs of words formed by replacing all occurrences of one group of letters with another; e.g. replacing S with SS yields POSES → POSSESS.",
         fields: ["Replace all", "With"],
         type: searchTypes.PAIRS,
         func: (replace, with_) => (x => x.replaceAll(replace, with_))
     },
     {
-        id: "deleteone",
-        name: "Delete one",
+        value: "deleteone",
+        label: "Delete one",
         desc: "Pairs of words formed by removing one instance of a group of letters; e.g. removing T yields MEDITATE → MEDIATE.",
         fields: ["Delete one"],
         type: searchTypes.MULTIPAIRS,
         func: str => (x => Wordplay.replaceOne(x, str, ""))
     },
     {
-        id: "deleteall",
-        name: "Delete all",
+        value: "deleteall",
+        label: "Delete all",
         desc: "Pairs of words formed by removing all instances of a group of letters; e.g. removing ER yields DERRIERES → DRIES.",
         fields: ["Delete all"],
         type: searchTypes.PAIRS,
         func: str => (x => x.replaceAll(str, ''))
     },
     {
-        id: "letterswap",
-        name: "Letter swap (new!)",
+        value: "letterswap",
+        label: "Letter swap",
         desc: "Pairs of words formed by replacing all occurrences of one string with another and vice versa, e.g. A and O yields ARGON → ORGAN.",
         fields: ["Swap", "With"],
         type: searchTypes.PAIRS,
         func: (swap, with_) => (x => Wordplay.letterSwap(x, swap, with_))
     },
     {
-        id: "prefix",
-        name: "Prefix",
+        value: "prefix",
+        label: "Prefix",
         desc: "Pairs of words formed by inserting a group of letters at the beginning; e.g. ADAM yields ANT → ADAMANT.",
         fields: ["Prefix"],
         type: searchTypes.PAIRS,
         func: str => (x => str + x)
     },
     {
-        id: "suffix",
-        name: "Suffix",
+        value: "suffix",
+        label: "Suffix",
         desc: "Pairs of words formed by inserting a group of letters at the end; e.g. NUT yields DOUGH → DOUGHNUT.",
         fields: ["Suffix"],
         type: searchTypes.PAIRS,
         func: str => (x => x + str)
     },
     {
-        id: "beheadments",
-        name: "Beheadments",
+        value: "beheadments",
+        label: "Beheadments",
         desc: "Pairs of words formed by removing the first letter; e.g. EQUALITY → QUALITY.",
         fields: [],
         type: searchTypes.PAIRS,
         func: () => (x => x.slice(1))
     },
     {
-        id: "curtailments",
-        name: "Curtailments",
+        value: "curtailments",
+        label: "Curtailments",
         desc: "Pairs of words formed by removing the last letter, not including removing the S from regular plurals; e.g. MAGNETON → MAGNETO.",
         fields: [],
         type: searchTypes.PAIRS,
         func: () => (x => (x.endsWith('S') && !x.endsWith('SS') ? '' : x.slice(0, x.length - 1)))
     },
     {
-        id: "palindromes",
-        name: "Palindromes",
+        value: "palindromes",
+        label: "Palindromes",
         desc: "Words spelled the same forward and backward; e.g. RACECAR.",
         fields: [],
         type: searchTypes.SINGLE,
         func: () => (x => Wordplay.isPalindrome(x))
     },
     {
-        id: "semordnilaps",
-        name: "Semordnilaps",
+        value: "semordnilaps",
+        label: "Semordnilaps",
         desc: "Pairs of words that reverse to each other; e.g. DESSERTS → STRESSED.",
         fields: [],
         type: searchTypes.PAIRS,
         func: () => (x => Wordplay.getSemordnilap(x))
     },
     {
-        id: "isograms",
-        name: "Isograms",
+        value: "isograms",
+        label: "Isograms",
         desc: "Words containing no repeating letters; e.g. UNCOPYRIGHTABLE.",
         fields: [],
         type: searchTypes.SINGLE,
         func: () => (x => Wordplay.isIsogram(x))
     },
     {
-        id: "supervocalics",
-        name: "Supervocalics",
+        value: "supervocalics",
+        label: "Supervocalics",
         desc: "Words containing all five vowels exactly once; e.g. EDUCATION.",
         fields: [],
         type: searchTypes.SINGLE,
         func: () => (x => Wordplay.isSupervocalic(x))
     },
     {
-        id: "spellingbee",
-        name: "Spelling Bee solver",
+        value: "spellingbee",
+        label: "Spelling Bee solver",
         desc: "Words that can be spelled in the New York Times Spelling Bee game, i.e. must contain the center letter, must use only the given letters, and must be at least four letters.",
         fields: ["Center letter", "Outer letters"],
         type: searchTypes.SINGLE,
         func: (center, outer) => (x => Wordplay.spellingBee(x, center, outer))
     },
     {
-        id: "everything",
-        name: "Everything",
+        value: "everything",
+        label: "Everything",
         desc: "Literally all the words. Helpful for sorting or combining lists.",
         fields: [],
         type: searchTypes.SINGLE,

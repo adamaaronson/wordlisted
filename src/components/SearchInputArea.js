@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import '../css/SearchInputArea.scss';
 
 export default class SearchInputArea extends Component {
     constructor(props) {

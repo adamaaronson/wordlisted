@@ -3,13 +3,12 @@
 .wordlist-selector {
     display: flex;
     align-items: center;
-    justify-content: center;
-    padding-top: $spacer;
-    padding-bottom: $spacer + 10px;
+    justify-content: space-between;
+    padding-bottom: 10px;
 
     @media (max-width: $medium-width) {
         flex-direction: column;
-        padding-bottom: $spacer;
+        padding-bottom: 0px;
     }
 }
 
@@ -37,10 +36,14 @@
 }
 
 .or {
-    margin: 25px;
     font-size: 36px;
     color: $white;
     font-weight: bold;
+
+    @media (max-width: $medium-width) {
+        margin: 25px;
+        margin-top: calc(25px + 1rem);
+    }
 }
 
 .upload-list-wrapper {
