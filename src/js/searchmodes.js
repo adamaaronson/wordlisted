@@ -5,7 +5,7 @@ const searchModes = [
     {
         value: "simple-search",
         label: "Simple search",
-        desc: "Words matching the given pattern of letters, where ? denotes one wildcard letter and * denotes any number of wildcard letters; e.g. A?E*E yields AWESOME.",
+        desc: "Words matching the given letter pattern, where ? is one wildcard letter and * is any number of wildcard letters; e.g. A?E*E yields AWESOME.",
         fields: ["Pattern"],
         type: searchTypes.SINGLE,
         func: pattern => (x => Wordplay.matchesPattern(x, pattern))

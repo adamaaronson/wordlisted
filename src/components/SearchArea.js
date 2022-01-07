@@ -36,6 +36,7 @@ export default class SearchArea extends Component {
             showingModal: false,
             isLoadingResults: false
         }
+        this.hasAnyInputs = this.hasAnyInputs.bind(this);
         this.handleSearchModeChange = this.handleSearchModeChange.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleFileChange = this.handleFileChange.bind(this);
@@ -48,6 +49,11 @@ export default class SearchArea extends Component {
         this.handleSortClick = this.handleSortClick.bind(this);
         this.openModal = this.openModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
+    }
+
+    hasAnyInputs() {
+        let inputValues = Object.values(this.state.inputValues);
+        return inputValues.some(x => x !== null && x !== '') && inputValues.every(x => x !== null && x !== '')
     }
 
     handleSearchModeChange(searchMode) {
@@ -340,6 +346,7 @@ export default class SearchArea extends Component {
                         onInputChange={this.handleInputChange}
                         onSubmit={this.handleSubmit}
                         submitError={this.state.submitError}
+                        hasAnyInputs={this.hasAnyInputs()}
                     />
                 </div>
                 
