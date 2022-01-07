@@ -19,38 +19,41 @@ export default class SearchInputArea extends Component {
     }
 
     render() {
+        console.log(this.props.hasAnyInputs)
         return (
-            <div>
-                <form onSubmit={this.props.onSubmit} id="input-form">
-                    <div className="input-area">
-                        {this.props.searchMode.fields.map(field =>
-                            <div className="input-row" key={"row-" + field}>
-                                <label className="field-label" htmlFor={"search-inputs-" + this.props.searchMode.id + "-" + field} key={"label-" + field}>
-                                    {field}:
-                                </label>
-                                <input 
-                                    name={field}
-                                    id={"search-inputs-" + this.props.searchMode.id + "-" + field}
-                                    type="text"
-                                    className="search-input-field"
-                                    key={"input-" + this.props.searchMode.id + "-" + field}
-                                    onChange={this.handleInputChange}
-                                ></input>
-                                <br/>
-                            </div>
-                        )}
-                    </div>
+            <form onSubmit={this.props.onSubmit} id="input-form">
+                <div className="search-input-area">
+                    {this.props.searchMode.fields.map(field =>
+                        <label className="search-input-row" htmlFor={"search-inputs-" + this.props.searchMode.id + "-" + field} key={"row-" + field}>
+                            <label className="search-field-label" htmlFor={"search-inputs-" + this.props.searchMode.id + "-" + field} key={"label-" + field}>
+                                {field}:
+                            </label>
+                            <input 
+                                name={field}
+                                id={"search-inputs-" + this.props.searchMode.id + "-" + field}
+                                type="text"
+                                className="search-input-field"
+                                key={"input-" + this.props.searchMode.id + "-" + field}
+                                onChange={this.handleInputChange}
+                            ></input>
+                        </label>
+                    )}
+
                     {this.props.submitError &&
                         <div className="error-message">
-                            <i className="fas fa-exclamation-triangle error-icon"></i> It seems there was an error in your input!
+                            <i className="fas fa-exclamation-triangle error-icon"></i>
+                            <span>It seems there was an error in your input!</span>
                         </div>
                     }
-                    <button className="search-button" type="submit">
-                        Search<i className="fas fa-search search-icon"></i>
-                    </button>
-                    
-                </form>
-            </div>
+                </div>
+                
+                <button className="search-button nice-button" disabled={!this.props.hasAnyInputs} type="submit">
+                    <span className="search-button-text">
+                        Search
+                    </span>
+                    <i className="fas fa-search search-icon"></i>
+                </button>
+            </form>
         )
     }
 }

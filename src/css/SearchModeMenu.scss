@@ -8,8 +8,6 @@
 }
 
 .react-select {
-    margin-bottom: $spacer;
-
     .react-select__control {
         background-color: $orange;
         border: none;
@@ -31,7 +29,8 @@
 
     .search-mode-description {
         color: $black;
-        font-size: 14px;
+        opacity: 0.8;
+        font-size: 16px;
         font-weight: normal;
         line-height: 1.5em;
     }
@@ -69,10 +68,6 @@
         font-size: 20px;
         font-weight: bold;
         cursor: pointer;
-
-        // &:nth-child(odd) {
-        //     background-color: $medium-gray;
-        // }
     }
 
     .react-select__option--is-selected {

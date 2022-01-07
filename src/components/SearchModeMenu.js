@@ -21,7 +21,6 @@ export default class SearchModeMenu extends Component {
     }
 
     handleChange(option) {
-        console.log(option)
         this.props.onSearchModeChange(option);
     }
 
