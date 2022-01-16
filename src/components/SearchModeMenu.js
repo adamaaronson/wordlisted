@@ -7,7 +7,7 @@ const SingleValue = (props) => {
     return (
         <div className="search-single-value">
             <div className="search-mode-name">{props.data.label}</div>
-            <div className="search-mode-description">{props.data.desc}</div>
+            <div className="search-mode-description" dangerouslySetInnerHTML={{__html: props.data.desc}}></div>
         </div>
     )
 }
@@ -36,22 +36,6 @@ export default class SearchModeMenu extends Component {
                     isSearchable={false}
                     components={{SingleValue}}
                 />
-                {/* <label className="select-wrapper nice-button" htmlFor="search-option-menu">
-                    <select name="search-option-menu" id="search-option-menu" onChange={this.handleChange}>
-                        {searchModes.map(option =>
-                            <option value={option.value} key={"option-" + option.value}>{option.label}</option>
-                        )}
-                    </select>
-                    <div className="arrow-wrapper">
-                        <i className="fas fa-angle-down select-arrow"></i>
-                    </div>
-                    
-                    <div className="option-description">
-                        <p className="option-description">
-                            {this.props.searchMode.desc}
-                        </p>
-                    </div>
-                </label> */}
             </div>
         )
     }

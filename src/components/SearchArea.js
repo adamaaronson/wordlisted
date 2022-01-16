@@ -5,13 +5,13 @@ import WordlistSelector from './WordlistSelector.js';
 import SearchModeMenu from './SearchModeMenu.js';
 import SearchInputArea from './SearchInputArea.js';
 import SearchResults from './SearchResults.js';
-import ResultsSorter from './ResultsSorter.js';
 import InfoModal from './InfoModal.js';
 
 import Wordlist from '../js/wordlist.js';
 import * as enable1Json from '../json/enable1.json';
 import searchModes from '../js/searchmodes.js';
 import searchTypes from '../js/searchtypes.js';
+import sorts from '../js/resultsorts.js';
 import WordlistList from './WordlistList';
 
 const { enable1 } = enable1Json
@@ -30,7 +30,7 @@ export default class SearchArea extends Component {
             selectingWordlist: true,
             addingWordlist: false,
             filenames: [DICTIONARY_NAME],
-            sortOrder: 'abc',
+            sortOrder: sorts.ABC,
             sortReverse: false,
             submitError: false,
             showingModal: false,
@@ -45,13 +45,15 @@ export default class SearchArea extends Component {
         this.handleNewWordlist = this.handleNewWordlist.bind(this);
         this.handleWordlistAdd = this.handleWordlistAdd.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleSortChange = this.handleSortChange.bind(this);
-        this.handleSortClick = this.handleSortClick.bind(this);
+        this.sortResults = this.sortResults.bind(this);
         this.openModal = this.openModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
     }
 
     hasAnyInputs() {
+        if (this.state.searchMode.fields.length === 0) {
+            return true;
+        }
         let inputValues = Object.values(this.state.inputValues);
         return inputValues.some(x => x !== null && x !== '') && inputValues.every(x => x !== null && x !== '')
     }
@@ -226,65 +228,40 @@ export default class SearchArea extends Component {
         })
     }
 
-    handleSortChange(event) {
-        this.setState({
-            sortOrder: event.target.value,
-            sortReverse: false
-        })
-        this.sortResults(event.target.value)
-    }
-
-    handleSortClick(event) {
-        let sortClicked = event.target.value
-        if (this.state.sortOrder === sortClicked) {
-            this.setState({
-                sortReverse: !this.state.sortReverse,
-                results: this.state.results.reverse()
-            })
-        }
-    }
-
     sortResults(sortOrder) {
-        if (sortOrder === 'abc') {
-            this.setState(oldState => {
-                // sort by abc
-                oldState.results.sort((a, b) => a[0].localeCompare(b[0]))
-                if (oldState.sortReverse) {
-                    oldState.results.reverse();
-                }
-                return oldState;
-            })
-        } else if (sortOrder === 'length') {
-            this.setState(oldState => {
-                // sort by length
-                if (oldState.results.length === 0) {
-                    return oldState;
-                }
-                for (let i = oldState.results[0].length - 1; i >= 0; i--) {
-                    oldState.results.sort((a, b) => (b[i].length - a[i].length))
-                }
-                
-                if (oldState.sortReverse) {
-                    oldState.results.reverse();
-                }
-                return oldState;
-            })
-        } else if (sortOrder === 'score') {
-            this.setState(oldState => {
-                // sort by sum of scores in result
-                oldState.results.sort((a, b) => 
-                    b.reduce((c, d) => (
-                        c + (this.state.wordlist.scores[d] === undefined ? 0 : this.state.wordlist.scores[d])
-                    ), 0) - a.reduce((c, d) => (
-                        c + (this.state.wordlist.scores[d] === undefined ? 0 : this.state.wordlist.scores[d])
-                    ), 0)
-                )
-                if (oldState.sortReverse) {
-                    oldState.results.reverse();
-                }
-                return oldState;
-            })
+        console.log(sortOrder);
+        if (this.state.results.length === 0) {
+            return;
         }
+
+        let newResults = [...this.state.results];
+        let newSortReverse = false;
+
+        if (sortOrder === sorts.REVERSE) {
+            newResults = newResults.reverse();
+            newSortReverse = !this.state.sortReverse;
+            sortOrder = this.state.sortOrder;
+        } else if (sortOrder === sorts.ABC) {
+            newResults.sort((a, b) => a[0].localeCompare(b[0]));
+        } else if (sortOrder === sorts.LENGTH) {
+            for (let i = newResults[0].length - 1; i >= 0; i--) {
+                newResults.sort((a, b) => (b[i].length - a[i].length))
+            }
+        } else if (sortOrder === sorts.SCORE) {
+            newResults.sort((a, b) => 
+                b.reduce((c, d) => (
+                    c + (this.state.wordlist.scores[d] === undefined ? 0 : this.state.wordlist.scores[d])
+                ), 0) - a.reduce((c, d) => (
+                    c + (this.state.wordlist.scores[d] === undefined ? 0 : this.state.wordlist.scores[d])
+                ), 0)
+            )
+        }
+
+        this.setState({
+            results: newResults,
+            sortOrder: sortOrder,
+            sortReverse: newSortReverse
+        })
     }
 
     openModal() {
@@ -350,24 +327,20 @@ export default class SearchArea extends Component {
                     />
                 </div>
                 
-                <div className="search-results-box content-box">
-                    <div className={"search-curtain" + (this.state.selectingWordlist ? "" : " search-curtain-off")}></div>
+                { (this.state.gotResults || this.state.isLoadingResults) &&
+                    <div className="search-results-box content-box">
+                        <div className={"search-curtain" + (this.state.selectingWordlist ? "" : " search-curtain-off")}></div>
 
-                    <ResultsSorter
-                        onSortChange={this.handleSortChange}
-                        onSortClick={this.handleSortClick}
-                    />
-
-                    { (this.state.gotResults || this.state.isLoadingResults) &&
                         <SearchResults
                             isLoading={this.state.isLoadingResults}
                             results={this.state.results}
+                            wordlist={this.state.wordlist}
                             sortOrder={this.state.sortOrder}
                             sortReverse={this.state.sortReverse}
-                            wordlist={this.state.wordlist}
-                        /> 
-                    }
-                </div>
+                            setSortOrder={this.sortResults}
+                        />
+                    </div>
+                }
             </div>
         )
     }
