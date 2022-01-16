@@ -1,0 +1,67 @@
+@import "App.scss";
+
+.search-results-box {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    padding-bottom: 15px !important;
+}
+
+.results-counter {
+    text-align: center;
+
+    .results-count-label {
+        font-size: 24px;
+    }
+
+    .results-count-number {
+        font-size: 48px;
+        color: $white;
+        font-weight: bold;
+    }
+
+    .results-count-navigator {
+        // margin-top: 10px;
+        font-weight: bold;
+        font-size: 24px;
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .results-count-specifier {
+        color: $white;
+    }
+
+    .more-results-button {
+        width: 28px;
+        height: 28px;
+        padding: 0;
+        font-size: 20px;
+        vertical-align: baseline;
+        
+        &:disabled {
+            opacity: 0;
+        }
+    }
+
+    .prev-results-button {
+        padding-right: 2px;
+    }
+
+    .next-results-button {
+        padding-left: 2px;
+    }
+}
+
+.download-results-button-wrapper {
+    text-align: right;
+}
+
+.download-results-button {
+    // display: inline-block;
+    display: none !important;
+    margin-top: 10px;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+

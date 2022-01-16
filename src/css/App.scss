@@ -5,6 +5,7 @@ $blue: #309BD7;
 $light-blue: lighten($blue, 10%);
 $light-gray: #9EA4A7;
 $medium-gray: #3E4243;
+$decent-gray: lighten($medium-gray, 10%);
 $dark-gray: #2F3233;
 $black: #1B1C1D;
 $error-color: #f86762;
@@ -18,20 +19,18 @@ $mono-font: 'Cousine', monospace;
 $spacer: 40px;
 $gutter: 15px;
 
-$mobile-width: 400px;
+$mobile-width: 440px;
 $medium-width: 740px;
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-
-    font-family: $main-font;
-    
-    color: $light-gray;
 }
 
 body {
+    font-family: $main-font;
+    color: $light-gray;
     background-color: $black;
     border-top: 15px solid $orange;
 }
@@ -65,7 +64,6 @@ a, .linky-button {
 .linky-button {
     display: inline-block;
     background: none;
-    color: inherit;
     border: none;
     padding: 0;
     font: inherit;
@@ -90,7 +88,7 @@ a, .linky-button {
         color: $black !important;
     }
 
-    &:enabled:hover {
+    &:not(:disabled):hover {
         background-color: $light-orange;
     }
 
@@ -108,7 +106,7 @@ a, .linky-button {
 .blue-button {
     background-color: $blue;
 
-    &:enabled:hover {
+    &:not(:disabled):hover {
         background-color: $light-blue;
     }
 }
@@ -118,4 +116,8 @@ a, .linky-button {
     border-radius: 10px;
     margin-bottom: $spacer;
     padding: $spacer 50px;
+
+    @media (max-width: $mobile-width) {
+        padding: $spacer $spacer;
+    }
 }

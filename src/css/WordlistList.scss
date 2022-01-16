@@ -13,6 +13,10 @@
     font-size: 48px;
     font-weight: bold;
     color: $white;
+
+    @media (max-width: $mobile-width) {
+        font-size: 36px;
+    }
 }
 
 .wordlist-buttons {

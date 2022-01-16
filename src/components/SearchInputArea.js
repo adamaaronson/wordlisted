@@ -19,7 +19,6 @@ export default class SearchInputArea extends Component {
     }
 
     render() {
-        console.log(this.props.hasAnyInputs)
         return (
             <form onSubmit={this.props.onSubmit} id="input-form">
                 <div className="search-input-area">

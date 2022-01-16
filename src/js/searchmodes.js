@@ -5,7 +5,7 @@ const searchModes = [
     {
         value: "simple-search",
         label: "Simple search",
-        desc: "Words matching the given letter pattern, where ? is one wildcard letter and * is any number of wildcard letters; e.g. A?E*E yields AWESOME.",
+        desc: "Words matching the given letter pattern, where ? is one wildcard letter and * is any number of wildcard letters; e.g. <code>A?E*E</code> yields AWESOME.",
         fields: ["Pattern"],
         type: searchTypes.SINGLE,
         func: pattern => (x => Wordplay.matchesPattern(x, pattern))
@@ -13,7 +13,7 @@ const searchModes = [
     {
         value: "regex",
         label: "Regex",
-        desc: "Words matching the given regex, or regular expression; e.g. ^S.*[AEIOU]{4} yields SEQUOIA. If you're new to regex, regexone.com has a great tutorial.",
+        desc: "Words matching the given regex pattern; e.g. <code>^S.*[AEIOU]{4}</code> yields SEQUOIA. If you're new to regex, regexone.com has a great tutorial.",
         fields: ["Regex"],
         type: searchTypes.SINGLE,
         func: regex => (x => Wordplay.matchesRegex(x, regex))

@@ -18,6 +18,12 @@
         input {
             height: 0px !important;
         }
+
+        transition: 0.5s background-color;
+
+        &:hover {
+            background-color: $light-orange;
+        }
     }
 
     .search-mode-name {
@@ -25,6 +31,10 @@
         font-size: 28px;
         margin-bottom: 10px;
         font-weight: bold;
+
+        @media (max-width: $mobile-width) {
+            font-size: 20px;
+        }
     }
 
     .search-mode-description {
@@ -33,6 +43,11 @@
         font-size: 16px;
         font-weight: normal;
         line-height: 1.5em;
+
+        code {
+            font-weight: bold;
+            font-family: $mono-font;
+        }
     }
 
     .react-select__value-container {
@@ -55,12 +70,19 @@
         }
 
         align-self: flex-start;
-        transform: scale(2.5) translateY(-1px);
+        justify-self: center;
+        transform: scale(2.5) translateY(2px);
+        padding-top: 0;
+        padding-bottom: 0;
+
+        @media (max-width: $mobile-width) {
+            transform: scale(2);
+        }
     }
 
     .react-select__menu, .react-select__menu-list {
         border-radius: 10px;
-        background-color: $dark-gray;
+        background-color: $medium-gray;
     }
 
     .react-select__option {
@@ -76,7 +98,7 @@
     }
 
     .react-select__option--is-focused {
-        background-color: $medium-gray !important;
+        background-color: $decent-gray !important;
     }
 }
 
