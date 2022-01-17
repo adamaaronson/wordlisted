@@ -18,50 +18,25 @@
         color: $white;
         font-weight: bold;
     }
-
-    .results-count-navigator {
-        // margin-top: 10px;
-        font-weight: bold;
-        font-size: 24px;
-        display: flex;
-        justify-content: center;
-        gap: 10px;
-    }
-
-    .results-count-specifier {
-        color: $white;
-    }
-
-    .more-results-button {
-        width: 28px;
-        height: 28px;
-        padding: 0;
-        font-size: 20px;
-        vertical-align: baseline;
-        
-        &:disabled {
-            opacity: 0;
-        }
-    }
-
-    .prev-results-button {
-        padding-right: 2px;
-    }
-
-    .next-results-button {
-        padding-left: 2px;
-    }
 }
 
 .download-results-button-wrapper {
-    text-align: right;
+    text-align: center;
 }
 
 .download-results-button {
-    // display: inline-block;
-    display: none !important;
     margin-top: 10px;
-    font-size: 18px;
     margin-bottom: 10px;
 }
 
+.no-results-message {
+    color: $white;
+    font-weight: bold;
+    font-size: 28px;
+}
+
+.no-results-icon {
+    color: $blue;
+    font-size: 72px;
+    // margin-top: 
+}

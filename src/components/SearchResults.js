@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import '../css/SearchResults.scss'
 import SearchResultsList from './SearchResultsList';
-import sorts from '../js/searchmodes.js'
+import SearchResultsNavigator from './SearchResultsNavigator';
 
 const MAX_RESULTS = 1000;
 
@@ -15,7 +15,6 @@ export default class SearchResults extends Component {
         this.showPrevResults = this.showPrevResults.bind(this)
         this.showNextResults = this.showNextResults.bind(this)
         this.downloadAsTxt = this.downloadAsTxt.bind(this)
-        this.getBackgroundColorStyle = this.getBackgroundColorStyle.bind(this)
     }
 
     shouldComponentUpdate(nextProps, nextState){
@@ -36,16 +35,28 @@ export default class SearchResults extends Component {
         )
     }
 
-    showPrevResults() {
+    jumpToTop() {
+        document.getElementById("search-results-box").scrollIntoView();
+    }
+
+    showPrevResults(shouldJump) {
         this.setState({
             firstIndex: this.state.firstIndex - MAX_RESULTS
         })
+
+        if (shouldJump) {
+            this.jumpToTop();
+        }
     }
 
-    showNextResults() {
+    showNextResults(shouldJump) {
         this.setState({
             firstIndex: this.state.firstIndex + MAX_RESULTS
         })
+
+        if (shouldJump) {
+            this.jumpToTop();
+        }
     }
 
     // derived from https://stackoverflow.com/questions/44656610/download-a-string-as-txt-file-in-react/44661948
@@ -67,25 +78,6 @@ export default class SearchResults extends Component {
         element.click();
     }
 
-    getBackgroundColorStyle(resultItem) {
-        let average = 0;
-        for (const word of resultItem) {
-            if (this.props.wordlist.scores[word] !== undefined) {
-                average += this.props.wordlist.scores[word];
-            }
-        }
-        average /= resultItem.length;
-
-        if (average === 0 && resultItem.every(x => this.props.wordlist.scores[x] === undefined)) {
-            return {
-                backgroundColor: "hsla(0, 100%, 100%, 0.3)"
-            }
-        }
-        return {
-            backgroundColor: `hsl(${((196 + (50 - average)) % 256 + 256) % 256}, 77%, ${Math.max(51, 51 - 0.2 * (average - 50))}%)` //
-        }
-    }
-
     render() {
         return (
             <div className="search-results">
@@ -101,41 +93,27 @@ export default class SearchResults extends Component {
                                 <div className="results-count">
                                     <div className="results-count-number">{this.props.results.length}</div>
                                     {this.props.results.length > MAX_RESULTS && 
-                                        <div className="results-count-navigator">
-                                            <button
-                                                disabled={!(this.props.results.length > MAX_RESULTS && this.state.firstIndex >= MAX_RESULTS)}
-                                                className="more-results-button prev-results-button nice-button blue-button"
-                                                onClick={this.showPrevResults}>
-                                                <i className="fas fa-chevron-left"></i>
-                                            </button>
-
-                                            {this.props.results.length > MAX_RESULTS && 
-                                                <span className="results-count-specifier">
-                                                    {this.state.firstIndex + 1}–{Math.min(this.state.firstIndex + MAX_RESULTS, this.props.results.length)}
-                                                </span>
-                                            }
-
-                                            <button
-                                                disabled={!(this.props.results.length > MAX_RESULTS && this.state.firstIndex < this.props.results.length - MAX_RESULTS)}
-                                                className="more-results-button next-results-button nice-button blue-button"
-                                                onClick={this.showNextResults}>
-                                                <i className="fas fa-chevron-right"></i>
-                                            </button>
-                                        </div>
+                                        <SearchResultsNavigator
+                                            numResults={this.props.results.length}
+                                            maxResults={MAX_RESULTS}
+                                            firstIndex={this.state.firstIndex}
+                                            showPrevResults={this.showPrevResults}
+                                            showNextResults={this.showNextResults}
+                                            jumpToTop={false}
+                                        />
                                     }
                                     <div className="download-results-button-wrapper">
                                         <button
-                                            // className="nice-button small-button blue-button download-results-button"
-                                            className="download-results-button linky-button hover-blue"
+                                            className="nice-button small-button blue-button download-results-button"
                                             onClick={this.downloadAsTxt}>
-                                            Download list
+                                            Download
                                         </button>
                                     </div>
                                 </div>
                             :
                                 <div className="results-count no-results">
                                     <div className="no-results-message">I have no words...</div>
-                                    <i className="far fa-sad-cry no-results-icon"></i>
+                                    <div className="no-results-icon">😭</div>
                                 </div>
                             }
                         </div>
@@ -151,6 +129,19 @@ export default class SearchResults extends Component {
                                 wordlist={this.props.wordlist}
                             />
                         }
+
+                        <div className="below-results">
+                            {this.props.results.length > MAX_RESULTS && 
+                                <SearchResultsNavigator
+                                    numResults={this.props.results.length}
+                                    maxResults={MAX_RESULTS}
+                                    firstIndex={this.state.firstIndex}
+                                    showPrevResults={this.showPrevResults}
+                                    showNextResults={this.showNextResults}
+                                    jumpToTop={true}
+                                />
+                            }
+                        </div>
                     </>
                 }
                    

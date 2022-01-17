@@ -22,7 +22,7 @@ export default class SearchArea extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            searchMode: searchModes[0],
+            searchMode: searchModes[0].options[0],
             inputValues: {},
             results: [],
             gotResults: false,
@@ -59,13 +59,12 @@ export default class SearchArea extends Component {
     }
 
     handleSearchModeChange(searchMode) {
-        let newSearchMode = searchModes.find(x => x.value === searchMode.value)
         let newInputValues = {};
-        for (let field of newSearchMode.fields) {
+        for (let field of searchMode.fields) {
             newInputValues[field] = "";
         }
         this.setState({
-            searchMode: newSearchMode,
+            searchMode: searchMode,
             inputValues: newInputValues,
             submitError: false
         });
@@ -229,38 +228,38 @@ export default class SearchArea extends Component {
     }
 
     sortResults(sortOrder) {
-        console.log(sortOrder);
-        if (this.state.results.length === 0) {
-            return;
-        }
-
-        let newResults = [...this.state.results];
-        let newSortReverse = false;
-
-        if (sortOrder === sorts.REVERSE) {
-            newResults = newResults.reverse();
-            newSortReverse = !this.state.sortReverse;
-            sortOrder = this.state.sortOrder;
-        } else if (sortOrder === sorts.ABC) {
-            newResults.sort((a, b) => a[0].localeCompare(b[0]));
-        } else if (sortOrder === sorts.LENGTH) {
-            for (let i = newResults[0].length - 1; i >= 0; i--) {
-                newResults.sort((a, b) => (b[i].length - a[i].length))
+        this.setState(oldState => {
+            if (oldState.results.length === 0) {
+                return oldState;
             }
-        } else if (sortOrder === sorts.SCORE) {
-            newResults.sort((a, b) => 
-                b.reduce((c, d) => (
-                    c + (this.state.wordlist.scores[d] === undefined ? 0 : this.state.wordlist.scores[d])
-                ), 0) - a.reduce((c, d) => (
-                    c + (this.state.wordlist.scores[d] === undefined ? 0 : this.state.wordlist.scores[d])
-                ), 0)
-            )
-        }
+            let newResults = [...oldState.results];
+            let newSortReverse = false;
 
-        this.setState({
-            results: newResults,
-            sortOrder: sortOrder,
-            sortReverse: newSortReverse
+            if (sortOrder === sorts.REVERSE) {
+                newResults = newResults.reverse();
+                newSortReverse = !oldState.sortReverse;
+                sortOrder = oldState.sortOrder;
+            } else if (sortOrder === sorts.ABC) {
+                newResults.sort((a, b) => a[0].localeCompare(b[0]));
+            } else if (sortOrder === sorts.LENGTH) {
+                for (let i = newResults[0].length - 1; i >= 0; i--) {
+                    newResults.sort((a, b) => (b[i].length - a[i].length))
+                }
+            } else if (sortOrder === sorts.SCORE) {
+                newResults.sort((a, b) => 
+                    b.reduce((c, d) => (
+                        c + (oldState.wordlist.scores[d] === undefined ? 0 : oldState.wordlist.scores[d])
+                    ), 0) - a.reduce((c, d) => (
+                        c + (oldState.wordlist.scores[d] === undefined ? 0 : oldState.wordlist.scores[d])
+                    ), 0)
+                )
+            }
+
+            return {
+                results: newResults,
+                sortOrder: sortOrder,
+                sortReverse: newSortReverse
+            }
         })
     }
 
@@ -328,7 +327,7 @@ export default class SearchArea extends Component {
                 </div>
                 
                 { (this.state.gotResults || this.state.isLoadingResults) &&
-                    <div className="search-results-box content-box">
+                    <div className="search-results-box content-box" id="search-results-box">
                         <div className={"search-curtain" + (this.state.selectingWordlist ? "" : " search-curtain-off")}></div>
 
                         <SearchResults

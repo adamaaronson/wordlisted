@@ -8,7 +8,9 @@ export default class SearchResultsList extends Component {
         
         this.getSortArrowClasses = this.getSortArrowClasses.bind(this);
         this.updateSort = this.updateSort.bind(this);
-        this.getBackgroundColorStyle = this.getBackgroundColorStyle.bind(this);
+        this.interpolateColors = this.interpolateColors.bind(this);
+        this.getScoreBackground = this.getScoreBackground.bind(this);
+        this.getLengthBackground = this.getLengthBackground.bind(this);
     }
 
     getSortArrowClasses(sortOrder) {
@@ -31,7 +33,17 @@ export default class SearchResultsList extends Component {
         this.props.setSortOrder((this.props.sortOrder === sortOrder) ? sorts.REVERSE : sortOrder)
     }
 
-    getBackgroundColorStyle(resultItem) {
+    interpolateColors(n, low, high, lowR, lowG, lowB, highR, highG, highB) {
+        let highness = (n - low) / (high - low)
+
+        let newR = lowR + highness * (highR - lowR)
+        let newG = lowG + highness * (highG - lowG)
+        let newB = lowB + highness * (highB - lowB)
+
+        return {r: newR, g: newG, b: newB}
+    }
+
+    getScoreBackground(resultItem) {
         let average = 0;
         for (const word of resultItem) {
             if (this.props.wordlist.scores[word] !== undefined) {
@@ -45,8 +57,22 @@ export default class SearchResultsList extends Component {
                 backgroundColor: "hsla(0, 100%, 100%, 0.3)"
             }
         }
+
+        let color = this.interpolateColors(average, 0, 100, 48, 155, 215, 237, 248, 177)
+
         return {
-            backgroundColor: `hsl(${((196 + (50 - average)) % 256 + 256) % 256}, 77%, ${Math.max(51, 51 - 0.2 * (average - 50))}%)` //
+            backgroundColor: `rgb(${color.r}, ${color.g}, ${color.b})` //
+        }
+    }
+
+    getLengthBackground(resultItem) {
+        let lengths = resultItem.map(word => word.length);
+        let average = lengths.reduce((a, b) => a + b) / lengths.length;
+        
+        let color = this.interpolateColors(average, 3, 21, 48, 155, 215, 237, 248, 177)
+
+        return {
+            backgroundColor: `rgb(${color.r}, ${color.g}, ${color.b})` //
         }
     }
 
@@ -105,15 +131,15 @@ export default class SearchResultsList extends Component {
                         </div>
 
                         <div className={"results-length" + (index % 2 ? " even-result" : "") + (!showScores ? " last-results-column" : "")} key={index + "len"}>
-                            <span className="results-length-text">
-                                ({x.map(word => word.length).join('/')})
+                            <span className="results-length-text" style={this.getLengthBackground(x)}>
+                                {x.map(word => word.length).join(' / ')}
                             </span>
                         </div>
 
                         { showScores &&
                             <div className={"results-score" + (index % 2 ? " even-result" : "") + (showScores ? " last-results-column" : "")} key={index + "score"}>
-                                <div className="results-score-text" style={this.getBackgroundColorStyle(x)}>
-                                    {x.map(word => (this.props.wordlist.scores[word] === undefined ? "—" : this.props.wordlist.scores[word])).join('/')}
+                                <div className="results-score-text" style={this.getScoreBackground(x)}>
+                                    {x.map(word => (this.props.wordlist.scores[word] === undefined ? "—" : this.props.wordlist.scores[word])).join(' / ')}
                                 </div>
                             </div>
                         }

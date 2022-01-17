@@ -6,7 +6,7 @@
 
 .sort-results-button:hover > * {
     transition: color 0.3s;
-    color: $blue;
+    color: $blue !important;
 }
 
 .sort-results-arrow {
@@ -41,28 +41,26 @@ $table-padding: 8px;
         word-wrap: break-word;
     }
 
-    .results-length {
-        text-align: left;
-        color: $white;
+    .pair-divider {
+        color: $light-gray;
     }
 
     .results-length, .results-length-header, .results-score, .results-score-header {
-        padding-right: $table-padding;
+        padding-left: $table-padding * 2;
+        text-align: center;
     }
 
-    .results-score {
-        // text-align: center;
-        height: 100%;
+    .results-length, .results-score {
+        text-align: center;
     }
 
-    .results-score-text {
+    .results-length-text, .results-score-text {
+        background-color: $light-gray;
         display: inline-block;
         color: $black;
-        margin-right: $table-padding;
         border-radius: 999px;
         font-weight: bold;
         font-size: 16px;
-        height: 100%;
         padding: 0 10px;
     }
 
@@ -83,12 +81,11 @@ $table-padding: 8px;
     }
 
     .even-result {
-        background-color: rgba($light-gray, 5%);
+        background-color: rgba($light-gray, 8%);
     }
 
     .inactive-sort {
-        opacity: 0;
-        // visibility: hidden;
+        color: rgba($light-gray, 50%);
     }
 
     .reverse-sort {
