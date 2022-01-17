@@ -29,7 +29,7 @@ export default class SearchModeMenu extends Component {
             <div className="search-mode-wrapper">
                 <Select
                     options={searchModes}
-                    defaultValue={searchModes[0]}
+                    defaultValue={searchModes[0].options[0]}
                     className="react-select"
                     classNamePrefix="react-select"
                     onChange={this.handleChange}

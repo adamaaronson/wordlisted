@@ -1,7 +1,7 @@
-$white: #DEDEDE;
-$orange: #E4A317;
+$white: rgb(222, 222, 222);
+$orange: rgb(228, 163, 23);
 $light-orange: lighten($orange, 10%);
-$blue: #309BD7;
+$blue: rgb(48, 155, 215);
 $light-blue: lighten($blue, 10%);
 $light-gray: #9EA4A7;
 $medium-gray: #3E4243;
@@ -114,7 +114,7 @@ a, .linky-button {
 .content-box {
     background-color: $dark-gray;
     border-radius: 10px;
-    margin-bottom: $spacer;
+    margin-top: $spacer;
     padding: $spacer 50px;
 
     @media (max-width: $mobile-width) {

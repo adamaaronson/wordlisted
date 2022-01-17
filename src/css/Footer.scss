@@ -1,0 +1,13 @@
+@import 'App.scss';
+
+footer {
+    margin: 15px auto;
+    font-size: 14px;
+    // width: 100%;
+    // background: red;
+    display: flex;
+    flex-flow: row wrap;
+    // flex-direction: column;
+    justify-content: space-between;
+    gap: 5px;
+}
