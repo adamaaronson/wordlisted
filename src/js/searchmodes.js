@@ -88,7 +88,7 @@ const searchModes = [
         label: "Letter patterns",
         options: [
             {
-                value: "camouflage",
+                value: "camouflage-word",
                 label: "Camouflage word",
                 desc: "Words that contain the letters of the given word in order, but not necessarily consecutively; e.g. RAUCOUS yields RAMBUNCTIOUS.",
                 fields: ["Word"],
@@ -96,7 +96,7 @@ const searchModes = [
                 func: word => (x => Wordplay.isSpread(word, x))
             },
             {
-                value: "sandwich",
+                value: "sandwich-word",
                 label: "Sandwich word",
                 desc: "Words formed by slicing the given word in two and adding letters inside; e.g. CRUST yields CRUMBLIEST.",
                 fields: ["Word"],
@@ -104,7 +104,7 @@ const searchModes = [
                 func: word => (x => Wordplay.isSandwichWord(x, word))
             },
             {
-                value: "deadcenter",
+                value: "dead-center",
                 label: "Dead center",
                 desc: "Words that contain the given word in the exact center; e.g. ABE yields ALPHABETIZE.",
                 fields: ["Center"],
@@ -112,7 +112,7 @@ const searchModes = [
                 func: center => (x => Wordplay.isDeadCenter(x, center))
             },
             {
-                value: "letterchanges",
+                value: "letter-changes",
                 label: "Letter changes",
                 desc: "Words that result from changing a certain number of letters in the given word; e.g. PERPETRATE with 1 yields PERPETUATE.",
                 fields: ["Word", "Number of changes"],
@@ -141,7 +141,7 @@ const searchModes = [
         label: "Pairs",
         options: [
             {
-                value: "replaceone",
+                value: "replace-one",
                 label: "Replace one",
                 desc: "Pairs of words formed by replacing one occurrence of one group of letters with another; e.g. replacing S with GR yields SOUNDS → GROUNDS.",
                 fields: ["Replace one", "With"],
@@ -149,7 +149,7 @@ const searchModes = [
                 func: (replace, with_) => (x => Wordplay.replaceOne(x, replace, with_))
             },
             {
-                value: "replaceall",
+                value: "replace-all",
                 label: "Replace all",
                 desc: "Pairs of words formed by replacing all occurrences of one group of letters with another; e.g. replacing S with SS yields POSES → POSSESS.",
                 fields: ["Replace all", "With"],
@@ -157,7 +157,7 @@ const searchModes = [
                 func: (replace, with_) => (x => x.replaceAll(replace, with_))
             },
             {
-                value: "deleteone",
+                value: "delete-one",
                 label: "Delete one",
                 desc: "Pairs of words formed by removing one instance of a group of letters; e.g. removing T yields MEDITATE → MEDIATE.",
                 fields: ["Delete one"],
@@ -165,7 +165,7 @@ const searchModes = [
                 func: str => (x => Wordplay.replaceOne(x, str, ""))
             },
             {
-                value: "deleteall",
+                value: "delete-all",
                 label: "Delete all",
                 desc: "Pairs of words formed by removing all instances of a group of letters; e.g. removing ER yields DERRIERES → DRIES.",
                 fields: ["Delete all"],
@@ -205,7 +205,7 @@ const searchModes = [
                 func: () => (x => (x.endsWith('S') && !x.endsWith('SS') ? '' : x.slice(0, x.length - 1)))
             },
             {
-                value: "letterswap",
+                value: "letter-swap",
                 label: "Letter swap",
                 desc: "Pairs of words formed by replacing all occurrences of one string with another and vice versa, e.g. A and O yields ARGON → ORGAN.",
                 fields: ["Swap", "With"],
@@ -255,7 +255,7 @@ const searchModes = [
         label: "Miscellaneous",
         options: [
             {
-                value: "spellingbee",
+                value: "spelling-bee",
                 label: "Spelling Bee solver",
                 desc: "Words that can be spelled in the New York Times Spelling Bee game, i.e. must contain the center letter, must use only the given letters, and must be at least four letters.",
                 fields: ["Center letter", "Outer letters"],

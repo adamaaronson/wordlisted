@@ -1,5 +1,7 @@
 $white: rgb(222, 222, 222);
 $orange: rgb(228, 163, 23);
+$magenta: rgb(235, 84, 189);
+$green: rgb(57, 175, 10);
 $light-orange: lighten($orange, 10%);
 $blue: rgb(48, 155, 215);
 $light-blue: lighten($blue, 10%);
@@ -28,6 +30,10 @@ $medium-width: 740px;
     box-sizing: border-box;
 }
 
+html, body, #root, .content {
+    height: 100%;
+}
+
 body {
     font-family: $main-font;
     color: $light-gray;
@@ -38,6 +44,17 @@ body {
 .content {
     width: min(710px, 100vw - 2 * $gutter);
     margin: auto;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.search-area {
+    flex: 1 0 auto;
+}
+
+footer {
+    flex-shrink: 0;
 }
 
 a, .linky-button {
@@ -120,4 +137,8 @@ a, .linky-button {
     @media (max-width: $mobile-width) {
         padding: $spacer $spacer;
     }
+}
+
+.top-box {
+    margin-top: 0 !important;
 }

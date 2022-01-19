@@ -73,7 +73,7 @@ export default class SearchResults extends Component {
         );
 
         element.href = URL.createObjectURL(file);
-        element.download = "wordlisted-results.txt";
+        element.download = `${this.props.searchMode.value}-results.txt`;
         document.body.appendChild(element);
         element.click();
     }
