@@ -128,12 +128,12 @@ export default class Wordplay {
 
     // returns whether word1 and word2 are a consonantcy
     static isConsonantcy(word1, word2) {
-        return this.removeVowels(word1) === this.removeVowels(word2)
+        return word1 !== word2 && this.removeVowels(word1) === this.removeVowels(word2)
     }
 
     // returns whether word1 and word2 are a vowelcy
     static isVowelcy(word1, word2) {
-        return this.removeConsonants(word1) === this.removeConsonants(word2)
+        return word1 !== word2 && this.removeConsonants(word1) === this.removeConsonants(word2)
     }
 
     // returns whether word is flanked by the bread word

@@ -23,6 +23,7 @@ export default class SearchArea extends Component {
         super(props);
         this.state = {
             searchMode: searchModes[0].options[0],
+            resultsSearchMode: searchModes[0].options[0],
             inputValues: {},
             results: [],
             gotResults: false,
@@ -141,6 +142,7 @@ export default class SearchArea extends Component {
 
         this.setState({
             results: results,
+            resultsSearchMode: this.state.searchMode,
             gotResults: true
         })
         
@@ -279,7 +281,7 @@ export default class SearchArea extends Component {
 
     render() {
         return (
-            <div>
+            <div className="search-area">
                 <div className="search-head">
                     <InfoModal
                         visible={this.state.showingModal}
@@ -291,7 +293,7 @@ export default class SearchArea extends Component {
                             <i className="fas fa-exclamation-triangle error-icon"></i> It seems there was an error uploading your wordlist!
                         </div>
                     }
-                    <div className="content-box">
+                    <div className="content-box top-box">
                         {this.state.selectingWordlist ?
                             <WordlistSelector
                                 onFileChange={this.handleFileChange}
@@ -337,6 +339,7 @@ export default class SearchArea extends Component {
                             sortOrder={this.state.sortOrder}
                             sortReverse={this.state.sortReverse}
                             setSortOrder={this.sortResults}
+                            searchMode={this.state.resultsSearchMode}
                         />
                     </div>
                 }

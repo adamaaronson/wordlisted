@@ -1,13 +1,12 @@
 @import 'App.scss';
 
 footer {
-    margin: 15px auto;
+    padding-top: 15px;
+    padding-bottom: 15px;
     font-size: 14px;
-    // width: 100%;
-    // background: red;
     display: flex;
     flex-flow: row wrap;
-    // flex-direction: column;
+    width: 100%;
     justify-content: space-between;
     gap: 5px;
 }

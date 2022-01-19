@@ -2,6 +2,10 @@ import React, { Component } from 'react'
 import '../css/SearchResultsList.scss'
 import sorts from '../js/resultsorts.js';
 
+const rgb = function(r, g, b) {
+    return {r: r, g: g, b: b}
+}
+
 export default class SearchResultsList extends Component {
     constructor(props) {
         super(props);
@@ -33,15 +37,39 @@ export default class SearchResultsList extends Component {
         this.props.setSortOrder((this.props.sortOrder === sortOrder) ? sorts.REVERSE : sortOrder)
     }
 
-    interpolateColors(n, low, high, lowR, lowG, lowB, highR, highG, highB) {
-        let highness = (n - low) / (high - low)
+    interpolateTwoColors(n, low, high, lowColor, highColor) {
+        let highness = (n - low) / (high - low);
 
-        let newR = lowR + highness * (highR - lowR)
-        let newG = lowG + highness * (highG - lowG)
-        let newB = lowB + highness * (highB - lowB)
+        let newR = lowColor.r + highness * (highColor.r - lowColor.r);
+        let newG = lowColor.g + highness * (highColor.g - lowColor.g);
+        let newB = lowColor.b + highness * (highColor.b - lowColor.b);
 
-        return {r: newR, g: newG, b: newB}
+        return {r: newR, g: newG, b: newB};
     }
+
+    interpolateColors(n, low, high, lowColor, highColor, ...midColors) {
+        let allColors = [lowColor, ...midColors, highColor];
+        let numColors = allColors.length;
+        let colorDistance = (high - low) / (numColors - 1);
+        let lowIndex = Math.floor((n - low) / (high - low) * (numColors - 1));
+
+        if (lowIndex >= numColors - 1) {
+            lowIndex = numColors - 2;
+        } else if (lowIndex < 0) {
+            lowIndex = 0;
+        }
+
+        let lowValue = low + lowIndex * colorDistance;
+        let highValue = lowValue + colorDistance;
+
+        if (!allColors[lowIndex]) {
+            console.log(n, low, high, lowColor, highColor, midColors)
+        }
+
+        return this.interpolateTwoColors(n, lowValue, highValue, allColors[lowIndex], allColors[lowIndex + 1])
+    }
+
+    
 
     getScoreBackground(resultItem) {
         let average = 0;
@@ -53,12 +81,10 @@ export default class SearchResultsList extends Component {
         average /= resultItem.length;
 
         if (average === 0 && resultItem.every(x => this.props.wordlist.scores[x] === undefined)) {
-            return {
-                backgroundColor: "hsla(0, 100%, 100%, 0.3)"
-            }
+            return {}
         }
 
-        let color = this.interpolateColors(average, 0, 100, 48, 155, 215, 237, 248, 177)
+        let color = this.interpolateColors(average, 1, 100, rgb(235, 84, 189), rgb(57, 175, 10), rgb(48, 155, 215));
 
         return {
             backgroundColor: `rgb(${color.r}, ${color.g}, ${color.b})` //
@@ -69,7 +95,7 @@ export default class SearchResultsList extends Component {
         let lengths = resultItem.map(word => word.length);
         let average = lengths.reduce((a, b) => a + b) / lengths.length;
         
-        let color = this.interpolateColors(average, 3, 21, 48, 155, 215, 237, 248, 177)
+        let color = this.interpolateColors(average, 3, 21, rgb(48, 155, 215), rgb(228, 163, 23), rgb(235, 84, 189));
 
         return {
             backgroundColor: `rgb(${color.r}, ${color.g}, ${color.b})` //
@@ -93,7 +119,7 @@ export default class SearchResultsList extends Component {
                     <button
                         className="sort-results-button sort-by-word linky-button"
                         onClick={() => this.updateSort(sorts.ABC)}>
-                        <span>Word</span>
+                        <span className="sort-results-text">Word</span>
                         <i className={"fas fa-caret-down sort-results-arrow " + this.getSortArrowClasses(sorts.ABC)}></i>
                     </button>
                 </div>
@@ -102,8 +128,8 @@ export default class SearchResultsList extends Component {
                     <button
                         className="sort-results-button sort-by-length linky-button"
                         onClick={() => this.updateSort(sorts.LENGTH)}>
-                        <span>Length</span>
-                        <i className={"fas fa-caret-down sort-results-arrow " + this.getSortArrowClasses(sorts.LENGTH)}></i>
+                        <i className={"fas fa-caret-down sort-results-arrow left-arrow " + this.getSortArrowClasses(sorts.LENGTH)}></i>
+                        <span className="sort-results-text">Length</span>
                     </button>
                 </div>
 
@@ -111,8 +137,8 @@ export default class SearchResultsList extends Component {
                     <button 
                         className="sort-results-button sort-by-score linky-button"
                         onClick={() => this.updateSort(sorts.SCORE)}>
-                        <span>Score</span>
-                        <i className={"fas fa-caret-down sort-results-arrow " + this.getSortArrowClasses(sorts.SCORE)}></i>
+                        <i className={"fas fa-caret-down sort-results-arrow left-arrow " + this.getSortArrowClasses(sorts.SCORE)}></i>
+                        <span className="sort-results-text">Score</span>
                     </button>
                 </div> }
 
@@ -131,8 +157,8 @@ export default class SearchResultsList extends Component {
                         </div>
 
                         <div className={"results-length" + (index % 2 ? " even-result" : "") + (!showScores ? " last-results-column" : "")} key={index + "len"}>
-                            <span className="results-length-text" style={this.getLengthBackground(x)}>
-                                {x.map(word => word.length).join(' / ')}
+                            <span className="results-length-text">
+                                ({x.map(word => word.length).join(' / ')})
                             </span>
                         </div>
 
