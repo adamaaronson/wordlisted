@@ -8,13 +8,12 @@ import SearchResults from './SearchResults.js';
 import InfoModal from './InfoModal.js';
 
 import Wordlist from '../js/wordlist.js';
-import * as enable1Json from '../json/enable1.json';
+import englishDictionary from '../json/enable1.json';
 import searchModes from '../js/searchmodes.js';
 import searchTypes from '../js/searchtypes.js';
 import sorts from '../js/resultsorts.js';
 import WordlistList from './WordlistList';
 
-const { enable1 } = enable1Json
 const DICTIONARY_NAME = "English dictionary";
 const DEBUG = false;
 
@@ -27,7 +26,7 @@ export default class SearchArea extends Component {
             inputValues: {},
             results: [],
             gotResults: false,
-            wordlist: new Wordlist(enable1),
+            wordlist: new Wordlist(englishDictionary),
             selectingWordlist: true,
             addingWordlist: false,
             filenames: [DICTIONARY_NAME],
@@ -189,7 +188,7 @@ export default class SearchArea extends Component {
     }
 
     handleDictionaryClick() {
-        this.handleNewWordlist(enable1, DICTIONARY_NAME);
+        this.handleNewWordlist(englishDictionary, DICTIONARY_NAME);
     }
 
     handleNewWordlist(newWords, fileName) {
