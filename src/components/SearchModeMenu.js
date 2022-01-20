@@ -35,6 +35,16 @@ export default class SearchModeMenu extends Component {
                     onChange={this.handleChange}
                     isSearchable={false}
                     components={{SingleValue}}
+                    theme={(theme) => ({
+                        ...theme,
+                        colors: {
+                        ...theme.colors,
+                          primary: '#585c5d',
+                          primary25: '#585c5d',
+                          primary50: '#585c5d',
+                          primary75: '#585c5d'
+                        },
+                    })}
                 />
             </div>
         )
