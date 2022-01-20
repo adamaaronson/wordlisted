@@ -146,7 +146,11 @@ export default class SearchArea extends Component {
             gotResults: true
         })
         
-        this.sortResults(this.state.sortOrder)
+        this.sortResults(this.state.sortOrder);
+
+        if (this.state.sortReverse) {
+            this.sortResults(sorts.REVERSE);
+        }
 
         this.setState({
             isLoadingResults: false
