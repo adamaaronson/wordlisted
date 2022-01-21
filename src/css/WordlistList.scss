@@ -3,6 +3,9 @@
 .wordlist-list {
     text-align: center;
     margin: -15px;
+    overflow: wrap;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
 }
 
 .wordlist-list-label {
