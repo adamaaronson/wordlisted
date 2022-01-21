@@ -9,7 +9,7 @@ export default class WordlistSelector extends Component {
             <div className="wordlist-selector">
                 <div className="upload-list-wrapper">
                     <label htmlFor="file-upload" className="nice-button wordlist-box upload-list">
-                        <img src={iconUpload} alt="Upload your own wordlist" className="wordlist-icon"></img>
+                        <img src={iconUpload} alt="file" className="wordlist-icon"></img>
                         <div className="wordlist-label wordlist-label-upload">Upload<br/>your own<br/>wordlist</div>
                     </label>
                     <input
@@ -29,7 +29,7 @@ export default class WordlistSelector extends Component {
                 <span className="or">or</span>
                 <button className="nice-button blue-button wordlist-box dictionary" onClick={this.props.onDictionaryClick}>
                     <div className="wordlist-label wordlist-label-dictionary">Use the<br/>English<br/>dictionary</div>
-                    <img src={iconDictionary} alt="Use the English dictionary" className="wordlist-icon"></img>
+                    <img src={iconDictionary} alt="file" className="wordlist-icon"></img>
                 </button>
             </div>
             
