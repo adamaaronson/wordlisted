@@ -25,6 +25,10 @@ $table-padding: 8px;
     }
 }
 
+.results-number, .results-word, .results-length {
+    font-size: 18px;
+}
+
 .results-number {
     text-align: right;
     padding-right: $table-padding;
@@ -60,14 +64,14 @@ $table-padding: 8px;
     font-weight: bold;
 }
 
-.results-score-text {
+.results-score-bubble {
     background-color: $light-gray;
     display: inline-block;
     color: $black;
     border-radius: 999px;
     font-weight: bold;
     font-size: 16px;
-    padding: 0 8px;
+    padding: 1px 8px;
 }
 
 .last-results-column {

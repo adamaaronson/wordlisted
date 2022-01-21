@@ -164,8 +164,8 @@ export default class SearchResultsList extends Component {
 
                         { showScores &&
                             <div className={"results-score" + (index % 2 ? " even-result" : "") + (showScores ? " last-results-column" : "")} key={index + "score"}>
-                                <div className="results-score-text" style={this.getScoreBackground(x)}>
-                                    {x.map(word => (this.props.wordlist.scores[word] === undefined ? "—" : this.props.wordlist.scores[word])).join(' / ')}
+                                <div className="results-score-bubble" style={this.getScoreBackground(x)}>
+                                    <span className="results-score-text">{x.map(word => (this.props.wordlist.scores[word] === undefined ? "—" : this.props.wordlist.scores[word])).join(' / ')}</span>
                                 </div>
                             </div>
                         }
