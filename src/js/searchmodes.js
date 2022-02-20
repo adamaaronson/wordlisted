@@ -205,6 +205,14 @@ const searchModes = [
                 func: () => (x => (x.endsWith('S') && !x.endsWith('SS') ? '' : x.slice(0, x.length - 1)))
             },
             {
+                value: "sidesplitting",
+                label: "Side splitting",
+                desc: "Pairs of words formed by removing the first and last letter; e.g. SLOBBIEST → LOBBIES.",
+                fields: [],
+                type: searchTypes.PAIRS,
+                func: () => (x => x.slice(1, x.length - 1))
+            },
+            {
                 value: "letter-swap",
                 label: "Letter swap",
                 desc: "Pairs of words formed by replacing all occurrences of one string with another and vice versa, e.g. A and O yields ARGON → ORGAN.",
