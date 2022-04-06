@@ -220,6 +220,14 @@ const searchModes = [
                 type: searchTypes.PAIRS,
                 func: (swap, with_) => (x => Wordplay.letterSwap(x, swap, with_))
             },
+            {
+                value: "regex-replacement",
+                label: "Regex replacement",
+                desc: "Pairs of words formed by performing a regex-based replacement, e.g. <code>^..(.*)$</code> and <code>$1</code> yields HEADDRESS → ADDRESS.",
+                fields: ["Replace", "With"],
+                type: searchTypes.PAIRS,
+                func: (replace, with_) => (x => x.replace(new RegExp(replace), with_))
+            },
         ]
     },
     {
