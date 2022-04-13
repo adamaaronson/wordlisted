@@ -272,6 +272,14 @@ const searchModes = [
                 fields: [],
                 type: searchTypes.SINGLE,
                 func: () => (x => Wordplay.isSupervocalic(x))
+            },
+            {
+                value: "monovocs",
+                label: "Monovocs",
+                desc: "Words containing only one type of vowel; e.g. RELENTLESSNESS.",
+                fields: [],
+                type: searchTypes.SINGLE,
+                func: () => (x => Wordplay.isMonovoc(x))
             }
         ]
     },

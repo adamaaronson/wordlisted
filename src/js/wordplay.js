@@ -116,6 +116,17 @@ export default class Wordplay {
         )
     }
 
+    // returns whether word is monovoc
+    static isMonovoc(word) {
+        let vowels = 0
+        for (let vowel of ['A', 'E', 'I', 'O', 'U', 'Y']) {
+            if (word.includes(vowel)) {
+                vowels++;
+            }
+        }
+        return vowels === 1;
+    }
+
     // strips word of its vowels
     static removeVowels(word) {
         return word.replaceAll(/[AEIOUY]/ig, '')
