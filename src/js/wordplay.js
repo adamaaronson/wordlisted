@@ -155,9 +155,18 @@ export default class Wordplay {
         if (word1 === word2) {
             return false;
         }
-        word1 = this.cleanWord(word1) // remove non-alpha characters
-        var regex = "^.*" + word1.split('').join('.*') + ".*$"
-        return (new RegExp(regex)).test(word2)
+        
+        let i1 = 0
+        let i2 = 0
+        while (i1 < word1.length && i2 < word2.length) {
+            if (word1[i1] === word2[i2]) {
+                i1++;
+                i2++;
+            } else {
+                i2++;
+            }
+        }
+        return i1 == word1.length;
     }
 
     // returns whether word can be made using only the limited alphabet

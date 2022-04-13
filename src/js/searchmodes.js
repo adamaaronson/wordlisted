@@ -88,12 +88,20 @@ const searchModes = [
         label: "Letter patterns",
         options: [
             {
-                value: "camouflage-word",
-                label: "Camouflage word",
+                value: "kangaroo-word",
+                label: "Kangaroo word",
                 desc: "Words that contain the letters of the given word in order, but not necessarily consecutively; e.g. RAUCOUS yields RAMBUNCTIOUS.",
                 fields: ["Word"],
                 type: searchTypes.SINGLE,
                 func: word => (x => Wordplay.isSpread(word, x))
+            },
+            {
+                value: "joey-word",
+                label: "Joey word",
+                desc: "Words contained in the letters of the given word in order, but not necessarily consecutively; e.g. MASCULINE yields MALE.",
+                fields: ["Word"],
+                type: searchTypes.SINGLE,
+                func: word => (x => Wordplay.isSpread(x, word))
             },
             {
                 value: "sandwich-word",
