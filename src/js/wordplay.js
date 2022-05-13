@@ -35,6 +35,9 @@ export default class Wordplay {
 
     // returns whether word1 contains an anagram of word2
     static containsAnagram(word1, word2) {
+        if (word1.includes(word2)) {
+            return false;
+        }
         var sortedWord2 = this.sort(word2)
         for (var i = 0; i < word1.length - word2.length + 1; i++) {
             var word1Substring = word1.substring(i, i + word2.length);
