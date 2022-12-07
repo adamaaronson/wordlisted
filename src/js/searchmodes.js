@@ -280,6 +280,22 @@ const searchModes = [
                 fields: [],
                 type: searchTypes.SINGLE,
                 func: () => (x => Wordplay.isMonovoc(x))
+            },
+            {
+                value: "repeaters",
+                label: "Repeaters",
+                desc: "Words whose left and right halves are identical; e.g. HOTSHOTS.",
+                fields: [],
+                type: searchTypes.SINGLE,
+                func: () => (x => Wordplay.isRepeater(x))
+            },
+            {
+                value: "neckouts",
+                label: "Neckouts",
+                desc: "Words whose left and right halves are anagrams; e.g. INTESTINES.",
+                fields: [],
+                type: searchTypes.SINGLE,
+                func: () => (x => Wordplay.isNeckout(x))
             }
         ]
     },

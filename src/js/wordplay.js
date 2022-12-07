@@ -180,7 +180,7 @@ export default class Wordplay {
                 i2++;
             }
         }
-        return i1 == word1.length;
+        return i1 === word1.length;
     }
 
     // returns whether word can be made using only the limited alphabet
@@ -312,5 +312,17 @@ export default class Wordplay {
         let result = word.replaceAll(swap1, temp).replaceAll(swap2, swap1).replaceAll(temp, swap2)
 
         return result > word ? result : ''
+    }
+
+    // returns whether word is repeater
+    static isRepeater(word) {
+        return word.length % 2 === 0 && word.slice(0, word.length / 2) === word.slice(word.length / 2);
+    }
+
+    // returns whether word is neckout
+    static isNeckout(word) {
+        return !this.isRepeater(word)
+            && word.length % 2 === 0
+            && this.areAnagrams(word.slice(0, word.length / 2), word.slice(word.length / 2));
     }
 }
