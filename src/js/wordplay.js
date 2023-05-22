@@ -283,6 +283,9 @@ export default class Wordplay {
     // returns array of all possible words formed by replacing one instance of a string with another
     static replaceOne(word, from, to) {
         from = this.cleanWord(from); // remove non-alpha characters
+        if (!from) {
+            return [];
+        }
         
         let regex = new RegExp(from, 'gi'), result, indices = [];
         while ( (result = regex.exec(word)) ) {
