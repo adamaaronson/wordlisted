@@ -297,6 +297,21 @@ export default class Wordplay {
         return results;
     }
 
+    // returns array of all possible words formed by replacing any letters in string with another
+    static replaceAny(word, letters) {
+        if (letters.length >= word.length) {
+            return [];
+        }
+        
+        let results = [];
+
+        for (let i = 0; i < word.length - letters.length + 1; i++) {
+            results.push(word.slice(0, i) + letters + word.slice(i + letters.length))
+        }
+
+        return results;
+    }
+
     // returns whether word contains center in the dead center
     static isDeadCenter(word, center) {
         return word.length > center.length

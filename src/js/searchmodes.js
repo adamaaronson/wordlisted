@@ -165,6 +165,14 @@ const searchModes = [
                 func: (replace, with_) => (x => x.replaceAll(replace, with_))
             },
             {
+                value: "replace-any",
+                label: "Replace anything",
+                desc: "Pairs of words formed by replacing any equal-length string of letters with the given letters; e.g. THE yields ANTIBIOTIC → ANTITHETIC",
+                fields: ["Letters"],
+                type: searchTypes.MULTIPAIRS,
+                func: (letters) => (x => Wordplay.replaceAny(x, letters))
+            },
+            {
                 value: "delete-one",
                 label: "Delete one",
                 desc: "Pairs of words formed by removing one instance of a group of letters; e.g. removing T yields MEDITATE → MEDIATE.",
