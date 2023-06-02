@@ -343,4 +343,40 @@ export default class Wordplay {
             && word.length % 2 === 0
             && this.areAnagrams(word.slice(0, word.length / 2), word.slice(word.length / 2));
     }
+
+    // returns cryptogram representation of word
+    static getCryptogramForm(word) {
+        let cryptogramForm = []
+        let letters = new Map()
+
+        for (let i = 0; i < word.length; i++) {
+            const letter = word.charAt(i)
+            if (letters.has(letter)) {
+                cryptogramForm.push(letters.get(letter))
+            } else {
+                letters.set(letter, i)
+                cryptogramForm.push(i)
+            }
+        }
+
+        return cryptogramForm
+    }
+
+    // returns whether words have same cryptogram pattern
+    static areCryptograms(word1, word2) {
+        if (word1.length !== word2.length) {
+            return false
+        }
+
+        const cryptogram1 = this.getCryptogramForm(word1)
+        const cryptogram2 = this.getCryptogramForm(word2)
+
+        for (let i = 0; i < cryptogram1.length; i++) {
+            if (cryptogram1[i] !== cryptogram2[i]) {
+                return false
+            }
+        }
+
+        return true
+    }
 }

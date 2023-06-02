@@ -142,6 +142,14 @@ const searchModes = [
                 fields: ["Word"],
                 type: searchTypes.SINGLE,
                 func: word => (x => Wordplay.isVowelcy(x, word))
+            },
+            {
+                value: "cryptogram",
+                label: "Cryptogram",
+                desc: "Words with the same cryptogram pattern as the given word; e.g. ALFALFA yields ENTENTE.",
+                fields: ["Word"],
+                type: searchTypes.SINGLE,
+                func: word => (x => Wordplay.areCryptograms(x, word))
             }
         ]
     },

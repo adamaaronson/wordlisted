@@ -104,10 +104,6 @@ export default class SearchArea extends Component {
             functionInputs.push(inputValue);
         }
 
-        this.setState({
-            isLoadingResults: true
-        })
-
         this.generateResults(functionInputs)
     }
 
@@ -150,10 +146,6 @@ export default class SearchArea extends Component {
         if (this.state.sortReverse) {
             this.sortResults(sorts.REVERSE);
         }
-
-        this.setState({
-            isLoadingResults: false
-        })
     }
 
     handleFileChange(event) {

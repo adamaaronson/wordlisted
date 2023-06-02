@@ -81,54 +81,56 @@ export default class SearchResults extends Component {
     render() {
         return (
             <div className="search-results">
-                { this.props.isLoading ?
-                    <div className="loading-icon">
-                        Loading!
-                    </div>
-                :
-                    <>
-                        <div className="results-counter">
-                            <div className="results-count-label">Results</div>
-                            { this.props.results.length > 0 ?
-                                <div className="results-count">
-                                    <div className="results-count-number">{this.props.results.length}</div>
-                                    {this.props.results.length > MAX_RESULTS && 
-                                        <SearchResultsNavigator
-                                            numResults={this.props.results.length}
-                                            maxResults={MAX_RESULTS}
-                                            firstIndex={this.state.firstIndex}
-                                            showPrevResults={this.showPrevResults}
-                                            showNextResults={this.showNextResults}
-                                            jumpToTop={false}
-                                        />
-                                    }
-                                    <div className="download-results-button-wrapper">
-                                        <button
-                                            className="nice-button small-button blue-button download-results-button"
-                                            onClick={this.downloadAsTxt}>
-                                            Download
-                                        </button>
-                                    </div>
-                                </div>
-                            :
-                                <div className="results-count no-results">
-                                    <div className="no-results-message">I have no words...</div>
-                                    <div className="no-results-icon">😭</div>
-                                </div>
+                <div className="results-counter">
+                    <div className="results-count-label">Results</div>
+                    { (this.props.results.length > 0 && !this.props.isLoading) ? (
+                        <div className="results-count">
+                            <div className="results-count-number">{this.props.results.length}</div>
+                            {this.props.results.length > MAX_RESULTS && 
+                                <SearchResultsNavigator
+                                    numResults={this.props.results.length}
+                                    maxResults={MAX_RESULTS}
+                                    firstIndex={this.state.firstIndex}
+                                    showPrevResults={this.showPrevResults}
+                                    showNextResults={this.showNextResults}
+                                    jumpToTop={false}
+                                />
                             }
+                            <div className="download-results-button-wrapper">
+                                <button
+                                    className="nice-button small-button blue-button download-results-button"
+                                    onClick={this.downloadAsTxt}>
+                                    Download
+                                </button>
+                            </div>
                         </div>
+                    ) : (
+                        this.props.isLoading ? (
+                            <div className="results-count no-results">
+                                <div className="loading-icon">
+                                    <i className="fas fa-circle-notch fa-spin"></i>
+                                </div>
+                            </div>
+                        ) : (
+                            <div className="results-count no-results">
+                                <div className="no-results-message">I have no words...</div>
+                                <div className="no-results-icon">😭</div>
+                            </div>
+                        )
+                    )}
+                </div>
 
-                        { this.props.results.length > 0 &&
-                            <SearchResultsList
-                                sortOrder={this.props.sortOrder}
-                                sortReverse={this.props.sortReverse}
-                                setSortOrder={this.props.setSortOrder}
-                                results={this.props.results}
-                                firstIndex={this.state.firstIndex}
-                                maxResults={MAX_RESULTS}
-                                wordlist={this.props.wordlist}
-                            />
-                        }
+                { this.props.results.length > 0 &&
+                    <>
+                        <SearchResultsList
+                            sortOrder={this.props.sortOrder}
+                            sortReverse={this.props.sortReverse}
+                            setSortOrder={this.props.setSortOrder}
+                            results={this.props.results}
+                            firstIndex={this.state.firstIndex}
+                            maxResults={MAX_RESULTS}
+                            wordlist={this.props.wordlist}
+                        />
 
                         <div className="below-results">
                             {this.props.results.length > MAX_RESULTS && 
@@ -144,7 +146,6 @@ export default class SearchResults extends Component {
                         </div>
                     </>
                 }
-                   
             </div>
         )
     }
