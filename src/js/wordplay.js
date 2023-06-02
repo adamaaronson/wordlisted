@@ -368,6 +368,10 @@ export default class Wordplay {
             return false
         }
 
+        if (word1 === word2) {
+            return false
+        }
+
         const cryptogram1 = this.getCryptogramForm(word1)
         const cryptogram2 = this.getCryptogramForm(word2)
 
