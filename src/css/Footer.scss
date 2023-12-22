@@ -9,4 +9,9 @@ footer {
   width: 100%;
   justify-content: space-between;
   gap: 5px;
+
+  @media (max-width: 800px) {
+    flex-flow: column;
+    align-items: center;
+  }
 }
