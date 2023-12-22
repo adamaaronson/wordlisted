@@ -214,6 +214,15 @@ const searchModes = [
         func: (str) => (x) => x + str,
       },
       {
+        value: 'anagramwith',
+        label: 'Anagram with',
+        desc: 'Pairs of words formed by anagramming one word along with the given word; e.g. FOUR yields TEN → FORTUNE.',
+        fields: ['Word'],
+        type: searchTypes.MAPPAIRS,
+        func: (word) => (x) => x + word,
+        mapFunc: (x) => Wordplay.sort(x),
+      },
+      {
         value: 'beheadments',
         label: 'Beheadments',
         desc: 'Pairs of words formed by removing the first letter; e.g. EQUALITY → QUALITY.',

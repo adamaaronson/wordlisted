@@ -125,7 +125,8 @@ export default class Wordlist {
     return resultPairs;
   }
 
-  // returns array of pairs of words (word1, word2) in the wordlist such that the array func(word1) contains word2
+  // returns array of pairs of words (word1, word2) in the wordlist such that
+  // the array func(word1) contains word2
   getMultipairs(func) {
     // array of {word, func(word)} objects
     let wordPairs = [];
@@ -145,7 +146,8 @@ export default class Wordlist {
     var pairCounter = 0;
     var listCounter = 0;
 
-    // iterates through sorted array and wordlist simultaneously to find pairs whose word2 are in the wordlist
+    // iterates through sorted array and wordlist simultaneously
+    // to find pairs whose word2 are in the wordlist
     while (pairCounter < wordPairs.length && listCounter < this.list.length) {
       var pairCurrent = wordPairs[pairCounter];
       var listCurrent = this.list[listCounter];
@@ -161,6 +163,35 @@ export default class Wordlist {
     }
 
     resultPairs.sort((x, y) => x.word1.localeCompare(y.word1));
+
+    return resultPairs;
+  }
+
+  // returns array of pairs of words (word1, word2) in the wordlist such that
+  // mapFunc(func(word1)) == mapFunc(word2)
+  getMappairs(func, mapFunc) {
+    const map = new Map();
+    for (const word1 of this.list) {
+      const mapWord1 = mapFunc(func(word1));
+      if (map.has(mapWord1)) {
+        map.get(mapWord1).push(word1);
+      } else {
+        map.set(mapWord1, [word1]);
+      }
+    }
+
+    const resultPairs = [];
+    for (const word2 of this.list) {
+      const mapWord2 = mapFunc(word2);
+      if (map.has(mapWord2)) {
+        for (const word1 of map.get(mapWord2)) {
+          if (word1 === word2) {
+            continue;
+          }
+          resultPairs.push({ word1: word1, word2: word2 });
+        }
+      }
+    }
 
     return resultPairs;
   }

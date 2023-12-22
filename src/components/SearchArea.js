@@ -15,7 +15,7 @@ import sorts from '../js/resultsorts.js';
 import WordlistList from './WordlistList';
 
 const DICTIONARY_NAME = 'English dictionary';
-const DEBUG = false;
+const DEBUG = true;
 
 export default class SearchArea extends Component {
   constructor(props) {
@@ -128,6 +128,11 @@ export default class SearchArea extends Component {
         case searchTypes.MULTIPAIRS:
           results = this.state.wordlist
             .getMultipairs(searchMode.func(...functionInputs))
+            .map((pair) => [pair.word1, pair.word2]);
+          break;
+        case searchTypes.MAPPAIRS:
+          results = this.state.wordlist
+            .getMappairs(searchMode.func(...functionInputs), searchMode.mapFunc)
             .map((pair) => [pair.word1, pair.word2]);
           break;
         default:
