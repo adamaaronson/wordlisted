@@ -1,107 +1,113 @@
 @import "App.scss";
 
 .sort-results-button > :last-child {
-    margin-left: 4px;
+  margin-left: 4px;
 }
 
 .sort-results-button > * {
-    color: $light-gray;
+  color: $light-gray;
 }
 
 .sort-results-button:hover > * {
-    transition: color 0.3s;
-    color: $blue !important;
+  transition: color 0.3s;
+  color: $blue !important;
 }
 
 $table-padding: 8px;
 
 .results-list {
-    text-align: left;
-    display: grid;
-    
-    & > * {
-        padding-top: 4px;
-        padding-bottom: 4px;
-    }
+  text-align: left;
+  display: grid;
+
+  & > * {
+    padding-top: 4px;
+    padding-bottom: 4px;
+  }
 }
 
-.results-number, .results-word, .results-length {
-    font-size: 18px;
+.results-number,
+.results-word,
+.results-length {
+  font-size: 18px;
 }
 
 .results-number {
-    text-align: right;
-    padding-right: $table-padding;
-    padding-left: $table-padding;
+  text-align: right;
+  padding-right: $table-padding;
+  padding-left: $table-padding;
 }
 
 .results-word {
-    color: $white;
-    font-weight: bold;
-    letter-spacing: 0.8px;        
-    max-width: 100%;
-    display: inline;
-    overflow: hidden;
-    overflow-wrap: break-word;
-    word-wrap: break-word;
+  color: $white;
+  font-weight: bold;
+  letter-spacing: 0.8px;
+  max-width: 100%;
+  display: inline;
+  overflow: hidden;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 }
 
 .pair-divider {
-    color: $light-gray;
+  color: $light-gray;
 }
 
-.results-length, .results-length-header, .results-score, .results-score-header {
-    padding-left: $table-padding * 2;
-    text-align: right;
+.results-length,
+.results-length-header,
+.results-score,
+.results-score-header {
+  padding-left: $table-padding * 2;
+  text-align: right;
 }
 
-.results-length, .results-score {
-    text-align: right;
+.results-length,
+.results-score {
+  text-align: right;
 }
 
 .results-length-text {
-    color: $white;
-    font-weight: bold;
+  color: $white;
+  font-weight: bold;
 }
 
 .results-score-bubble {
-    background-color: $light-gray;
-    display: inline-block;
-    color: $black;
-    border-radius: 999px;
-    font-weight: bold;
-    font-size: 16px;
-    padding: 1px 8px;
+  background-color: $light-gray;
+  display: inline-block;
+  color: $black;
+  border-radius: 999px;
+  font-weight: bold;
+  font-size: 16px;
+  padding: 1px 8px;
 }
 
 .last-results-column {
-    padding-right: 50px;
+  padding-right: 50px;
 
-    @media (max-width: $mobile-width) {
-        padding-right: $spacer;
-    }
+  @media (max-width: $mobile-width) {
+    padding-right: $spacer;
+  }
 }
 
 .results-number {
-    min-width: 50px;
+  min-width: 50px;
 
-    @media (max-width: $mobile-width) {
-        min-width: $spacer;
-    }
+  @media (max-width: $mobile-width) {
+    min-width: $spacer;
+  }
 }
 
 .even-result {
-    background-color: rgba($light-gray, 8%);
+  background-color: rgba($light-gray, 8%);
 }
 
 .inactive-sort.left-arrow {
-    transform: rotate(-90deg);
+  transform: rotate(-90deg);
 }
 
 .inactive-sort:not(.left-arrow) {
-    transform: rotate(90deg);
+  transform: rotate(90deg);
 }
 
 .reverse-sort {
-    transform: rotate(180deg);
+  transform: rotate(180deg);
 }

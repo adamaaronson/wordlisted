@@ -1,93 +1,93 @@
 @import "App.scss";
 
 .header {
-    margin-top: $spacer * 0.75;
-    margin-bottom: $spacer * 0.75;
-    font-size: 72px;
-    
-    display: flex;
-    flex-flow: row wrap;
-    align-items: flex-end;
-    justify-content: flex-start;
-    width: 100%;
+  margin-top: $spacer * 0.75;
+  margin-bottom: $spacer * 0.75;
+  font-size: 72px;
 
-    @media (max-width: $medium-width) {
-        font-size: 60px;
-    }
+  display: flex;
+  flex-flow: row wrap;
+  align-items: flex-end;
+  justify-content: flex-start;
+  width: 100%;
 
-    @media (max-width: $mobile-width) {
-        font-size: 48px;
-    }
+  @media (max-width: $medium-width) {
+    font-size: 60px;
+  }
+
+  @media (max-width: $mobile-width) {
+    font-size: 48px;
+  }
 }
 
 .logo {
-    align-self: flex-start;
-    line-height: 1em;
+  align-self: flex-start;
+  line-height: 1em;
 
-    .title-logo {
-        height: 0.75em;
-        margin-right: 10px;
-    }
+  .title-logo {
+    height: 0.75em;
+    margin-right: 10px;
+  }
 }
 
 .title {
+  line-height: 1em;
+  text-decoration: none !important;
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  flex-flow: row wrap;
+
+  .title-1 {
+    color: $white;
+    font-weight: bold;
+  }
+
+  .title-2 {
+    color: $orange;
+    font-weight: bold;
+    transition: 0.3s color;
+  }
+
+  .subtitle {
+    margin-top: 6px;
+    margin-bottom: 6px;
+    font-size: 30px;
     line-height: 1em;
-    text-decoration: none !important;
-    flex: 1;
-    display: flex;
-    justify-content: space-between;
-    flex-flow: row wrap;
+    margin-left: 6px;
+  }
 
-    .title-1 {
-        color: $white;
-        font-weight: bold;
-    }
-    
-    .title-2 {
-        color: $orange;
-        font-weight: bold;
-        transition: 0.3s color;
-    }
-
-    .subtitle {
-        margin-top: 6px;
-        margin-bottom: 6px;
-        font-size: 30px;
-        line-height: 1em;
-        margin-left: 6px;
-    }
-
-    @media (max-width: $medium-width) {
-        flex-flow: column wrap;
-    }
+  @media (max-width: $medium-width) {
+    flex-flow: column wrap;
+  }
 }
 
 .title-text:hover .title-2 {
-    color: $light-orange;
+  color: $light-orange;
 }
 
 .credits {
-    text-align: right;
-    line-height: 1.5em;
-    font-size: 18px;
-    flex: 1;
+  text-align: right;
+  line-height: 1.5em;
+  font-size: 18px;
+  flex: 1;
 
-    align-self: flex-end;
+  align-self: flex-end;
 
-    .social i {
-        margin-right: 0.5em;
+  .social i {
+    margin-right: 0.5em;
+  }
+
+  @media (max-width: $medium-width) {
+    display: flex;
+    width: 100%;
+    flex-flow: row wrap;
+    margin-left: 6px;
+
+    align-self: flex-start;
+
+    .author {
+      margin-right: 0.5em;
     }
-
-    @media (max-width: $medium-width) {
-        display: flex;
-        width: 100%;
-        flex-flow: row wrap;
-        margin-left: 6px;
-
-        align-self: flex-start;
-
-        .author {
-            margin-right: 0.5em;
-        }
-    }
+  }
 }

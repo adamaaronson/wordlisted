@@ -1,31 +1,31 @@
 @import "App.scss";
 
 .wordlist-list {
-    text-align: center;
-    margin: -15px;
-    overflow: wrap;
-    overflow-wrap: break-word;
-    word-wrap: break-word;
+  text-align: center;
+  margin: -15px;
+  overflow: wrap;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 }
 
 .wordlist-list-label {
-    font-size: 24px;
+  font-size: 24px;
 }
 
 .wordlist-name {
-    font-size: 48px;
-    font-weight: bold;
-    color: $white;
+  font-size: 48px;
+  font-weight: bold;
+  color: $white;
 
-    @media (max-width: $mobile-width) {
-        font-size: 36px;
-    }
+  @media (max-width: $mobile-width) {
+    font-size: 36px;
+  }
 }
 
 .wordlist-buttons {
-    margin-top: 10px;
+  margin-top: 10px;
 }
 
 .change-wordlist-button {
-    margin-left: 16px;
+  margin-left: 16px;
 }

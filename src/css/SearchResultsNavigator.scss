@@ -1,40 +1,38 @@
-@import 'App.scss';
-
-
+@import "App.scss";
 
 .results-count-navigator {
-    font-weight: bold;
-    font-size: 24px;
-    display: flex;
-    justify-content: center;
-    gap: 10px;
+  font-weight: bold;
+  font-size: 24px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
 }
 
 .below-results .results-count-navigator {
-    margin-top: 15px;
+  margin-top: 15px;
 }
 
 .results-count-specifier {
-    color: $white;
+  color: $white;
 }
 
 .more-results-button {
-    width: 28px !important;
-    height: 28px !important;
-    padding: 0 !important;
-    font-size: 20px !important;
-    // display: inline-block;
-    vertical-align: baseline;
-    
-    &:disabled {
-        opacity: 0 !important;
-    }
+  width: 28px !important;
+  height: 28px !important;
+  padding: 0 !important;
+  font-size: 20px !important;
+  // display: inline-block;
+  vertical-align: baseline;
+
+  &:disabled {
+    opacity: 0 !important;
+  }
 }
 
 .prev-results-button {
-    padding-right: 2px !important;
+  padding-right: 2px !important;
 }
 
 .next-results-button {
-    padding-left: 2px !important;
+  padding-left: 2px !important;
 }

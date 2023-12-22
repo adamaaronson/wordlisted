@@ -1,48 +1,48 @@
 @import "App.scss";
 
 .search-results-box {
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-    padding-bottom: 15px !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  padding-bottom: 15px !important;
 }
 
 .results-counter {
-    text-align: center;
+  text-align: center;
 
-    .results-count-label {
-        font-size: 24px;
-    }
+  .results-count-label {
+    font-size: 24px;
+  }
 
-    .results-count-number {
-        font-size: 48px;
-        color: $white;
-        font-weight: bold;
-    }
+  .results-count-number {
+    font-size: 48px;
+    color: $white;
+    font-weight: bold;
+  }
 }
 
 .download-results-button-wrapper {
-    text-align: center;
+  text-align: center;
 }
 
 .download-results-button {
-    margin-top: 10px;
-    margin-bottom: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .no-results-message {
-    color: $white;
-    font-weight: bold;
-    font-size: 28px;
+  color: $white;
+  font-weight: bold;
+  font-size: 28px;
 }
 
 .no-results-icon {
-    color: $blue;
-    font-size: 72px;
+  color: $blue;
+  font-size: 72px;
 }
 
 .loading-icon {
-    font-size: 72px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    color: $white;
+  font-size: 72px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  color: $white;
 }

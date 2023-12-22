@@ -1,104 +1,105 @@
 @import "App.scss";
 
 .option-description {
-    color: $dark-gray;
-    font-weight: normal;
-    font-size: 16px;
-    margin-top: 28px;
+  color: $dark-gray;
+  font-weight: normal;
+  font-size: 16px;
+  margin-top: 28px;
 }
 
 .react-select {
-    .react-select__control {
-        background-color: $orange;
-        border: none;
-        cursor: pointer;
-        padding: 25px;
-        border-radius: 25px;
-        
-        input {
-            height: 0px !important;
-        }
+  .react-select__control {
+    background-color: $orange;
+    border: none;
+    cursor: pointer;
+    padding: 25px;
+    border-radius: 25px;
 
-        transition: 0.5s background-color;
-
-        &:hover {
-            background-color: $light-orange;
-        }
+    input {
+      height: 0px !important;
     }
 
-    .search-mode-name {
-        color: $black;
-        font-size: 28px;
-        margin-bottom: 10px;
-        font-weight: bold;
+    transition: 0.5s background-color;
 
-        @media (max-width: $mobile-width) {
-            font-size: 20px;
-        }
+    &:hover {
+      background-color: $light-orange;
+    }
+  }
+
+  .search-mode-name {
+    color: $black;
+    font-size: 28px;
+    margin-bottom: 10px;
+    font-weight: bold;
+
+    @media (max-width: $mobile-width) {
+      font-size: 20px;
+    }
+  }
+
+  .search-mode-description {
+    color: $black;
+    opacity: 0.8;
+    font-size: 16px;
+    font-weight: normal;
+    line-height: 1.5em;
+
+    code {
+      font-weight: bold;
+      font-family: $mono-font;
+    }
+  }
+
+  .react-select__value-container {
+    min-height: 0 !important;
+    padding: 0 !important;
+    display: flex;
+  }
+
+  .react-select__input-container {
+    color: $black;
+  }
+
+  .react-select__indicator-separator {
+    display: none;
+  }
+
+  .react-select__dropdown-indicator {
+    path,
+    svg {
+      color: $black !important;
     }
 
-    .search-mode-description {
-        color: $black;
-        opacity: 0.8;
-        font-size: 16px;
-        font-weight: normal;
-        line-height: 1.5em;
+    align-self: flex-start;
+    justify-self: center;
+    transform: scale(2.5) translateY(2px);
+    padding-top: 0;
+    padding-bottom: 0;
 
-        code {
-            font-weight: bold;
-            font-family: $mono-font;
-        }
+    @media (max-width: $mobile-width) {
+      transform: scale(2);
     }
+  }
 
-    .react-select__value-container {
-        min-height: 0 !important;
-        padding: 0 !important;
-        display: flex;
-    }
+  .react-select__menu,
+  .react-select__menu-list {
+    border-radius: 10px;
+    background-color: $medium-gray;
+  }
 
-    .react-select__input-container {
-        color: $black;
-    }
+  .react-select__option {
+    color: $white;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+  }
 
-    .react-select__indicator-separator {
-        display: none;
-    }
+  .react-select__option--is-selected {
+    background-color: inherit;
+    color: $white;
+  }
 
-    .react-select__dropdown-indicator {
-        path, svg {
-            color: $black !important;
-        }
-
-        align-self: flex-start;
-        justify-self: center;
-        transform: scale(2.5) translateY(2px);
-        padding-top: 0;
-        padding-bottom: 0;
-
-        @media (max-width: $mobile-width) {
-            transform: scale(2);
-        }
-    }
-
-    .react-select__menu, .react-select__menu-list {
-        border-radius: 10px;
-        background-color: $medium-gray;
-    }
-
-    .react-select__option {
-        color: $white;
-        font-size: 20px;
-        font-weight: bold;
-        cursor: pointer;
-    }
-
-    .react-select__option--is-selected {
-        background-color: inherit;
-        color: $white;
-    }
-
-    .react-select__option--is-focused {
-        background-color: $decent-gray !important;
-    }
+  .react-select__option--is-focused {
+    background-color: $decent-gray !important;
+  }
 }
-

@@ -5,18 +5,18 @@ $green: rgb(57, 175, 10);
 $light-orange: lighten($orange, 10%);
 $blue: rgb(48, 155, 215);
 $light-blue: lighten($blue, 10%);
-$light-gray: #9EA4A7;
-$medium-gray: #3E4243;
+$light-gray: #9ea4a7;
+$medium-gray: #3e4243;
 $decent-gray: #585c5d;
-$dark-gray: #2F3233;
-$black: #1B1C1D;
+$dark-gray: #2f3233;
+$black: #1b1c1d;
 $error-color: #f86762;
 $light-curtain: rgba($black, 0.7);
 $dark-curtain: rgba($black, 0.9);
-$clear: #FFFFFF00;
+$clear: #ffffff00;
 
-$main-font: 'Spline Sans', sans-serif;
-$mono-font: 'Cousine', monospace;
+$main-font: "Spline Sans", sans-serif;
+$mono-font: "Cousine", monospace;
 
 $spacer: 40px;
 $gutter: 15px;
@@ -25,120 +25,125 @@ $mobile-width: 440px;
 $medium-width: 740px;
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-html, body, #root, .content {
-    height: 100%;
+html,
+body,
+#root,
+.content {
+  height: 100%;
 }
 
 body {
-    font-family: $main-font;
-    color: $light-gray;
-    background-color: $black;
-    border-top: 15px solid $orange;
+  font-family: $main-font;
+  color: $light-gray;
+  background-color: $black;
+  border-top: 15px solid $orange;
 }
 
 .content {
-    width: min(710px, 100vw - 2 * $gutter);
-    margin: auto;
+  width: min(710px, 100vw - 2 * $gutter);
+  margin: auto;
 
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .search-area {
-    flex: 1 0 auto;
+  flex: 1 0 auto;
 }
 
 footer {
-    flex-shrink: 0;
+  flex-shrink: 0;
 }
 
-a, .linky-button {
-    text-decoration: none;
-    color: $white;
+a,
+.linky-button {
+  text-decoration: none;
+  color: $white;
 }
 
-.hover-orange, .hover-blue {
-    color: $white;
+.hover-orange,
+.hover-blue {
+  color: $white;
 
-    &:hover {
-        transition: color 0.3s;
-    }
+  &:hover {
+    transition: color 0.3s;
+  }
 }
 
 .hover-orange:hover {
-    color: $orange;
+  color: $orange;
 }
 
 .hover-blue:hover {
-    color: $blue;
+  color: $blue;
 }
 
 .linky-button {
-    display: inline-block;
-    background: none;
-    border: none;
-    padding: 0;
-    font: inherit;
-    cursor: pointer;
-    outline: inherit;
+  display: inline-block;
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
 }
 
 .nice-button {
-    font-family: $main-font;
-    font-weight: bold;
-    background-color: $orange;
-    color: $black;
-    font-size: 28px;
-    border: none;
-    border-radius: 25px;
-    padding: 25px;
-    cursor: pointer;
-    transition: 0.5s background-color;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  font-family: $main-font;
+  font-weight: bold;
+  background-color: $orange;
+  color: $black;
+  font-size: 28px;
+  border: none;
+  border-radius: 25px;
+  padding: 25px;
+  cursor: pointer;
+  transition: 0.5s background-color;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
-    & > * {
-        color: $black !important;
-    }
+  & > * {
+    color: $black !important;
+  }
 
-    &:not(:disabled):hover {
-        background-color: $light-orange;
-    }
+  &:not(:disabled):hover {
+    background-color: $light-orange;
+  }
 
-    &:disabled {
-        opacity: 0.5;
-        cursor: default;
-    }
+  &:disabled {
+    opacity: 0.5;
+    cursor: default;
+  }
 }
 
 .small-button {
-    font-size: 18px;
-    padding: 6px 18px;
+  font-size: 18px;
+  padding: 6px 18px;
 }
 
 .blue-button {
-    background-color: $blue;
+  background-color: $blue;
 
-    &:not(:disabled):hover {
-        background-color: $light-blue;
-    }
+  &:not(:disabled):hover {
+    background-color: $light-blue;
+  }
 }
 
 .content-box {
-    background-color: $dark-gray;
-    border-radius: 10px;
-    margin-top: $spacer;
-    padding: $spacer 50px;
+  background-color: $dark-gray;
+  border-radius: 10px;
+  margin-top: $spacer;
+  padding: $spacer 50px;
 
-    @media (max-width: $mobile-width) {
-        padding: $spacer $spacer;
-    }
+  @media (max-width: $mobile-width) {
+    padding: $spacer $spacer;
+  }
 }
 
 .top-box {
-    margin-top: 0 !important;
+  margin-top: 0 !important;
 }

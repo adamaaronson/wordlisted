@@ -1,64 +1,64 @@
 @import "App.scss";
 
 .search-input-area {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    margin-top: $spacer * 0.75;
-    margin-bottom: $spacer * 0.75;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: $spacer * 0.75;
+  margin-bottom: $spacer * 0.75;
 }
 
 .search-input-row {
-    border-radius: 999px;
-    background: $white;
-    display: flex;
-    gap: 10px;
-    padding: 11px 20px;
-    padding-top: 13px;
-    cursor: text;
+  border-radius: 999px;
+  background: $white;
+  display: flex;
+  gap: 10px;
+  padding: 11px 20px;
+  padding-top: 13px;
+  cursor: text;
 }
 
 .search-field-label {
-    color: $medium-gray;
-    font-size: 18px;
-    line-height: 1em;
+  color: $medium-gray;
+  font-size: 18px;
+  line-height: 1em;
 }
 
 .search-input-field {
-    flex: 1;
-    min-width: 0;
-    font-size: 18px;
-    padding: 0;
-    appearance: none;
-    border: none;
-    background: none;
-    color: $black;
-    font-family: $mono-font;
-    font-weight: bold;
-    line-height: 1em;
-    text-transform: uppercase;
+  flex: 1;
+  min-width: 0;
+  font-size: 18px;
+  padding: 0;
+  appearance: none;
+  border: none;
+  background: none;
+  color: $black;
+  font-family: $mono-font;
+  font-weight: bold;
+  line-height: 1em;
+  text-transform: uppercase;
 
-    &:focus {
-        outline: none;
-    }
+  &:focus {
+    outline: none;
+  }
 }
 
 .error-message {
-    & > * {
-        color: $error-color;
-        text-align: center;
-    }
-    
-    display: flex;
-    justify-content: center;
-    gap: 0.5em;
+  & > * {
+    color: $error-color;
+    text-align: center;
+  }
+
+  display: flex;
+  justify-content: center;
+  gap: 0.5em;
 }
 
 .search-button {
-    padding: 13px 26px !important;
-    border-radius: 999px !important;
-    margin: auto !important;
-    display: flex;
-    align-items: center;
-    gap: 15px;
+  padding: 13px 26px !important;
+  border-radius: 999px !important;
+  margin: auto !important;
+  display: flex;
+  align-items: center;
+  gap: 15px;
 }

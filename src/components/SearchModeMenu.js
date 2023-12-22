@@ -1,52 +1,55 @@
-import React, { Component } from 'react'
-import searchModes from '../js/searchmodes.js'
-import Select from 'react-select'
-import '../css/SearchModeMenu.scss'
+import React, { Component } from 'react';
+import searchModes from '../js/searchmodes.js';
+import Select from 'react-select';
+import '../css/SearchModeMenu.scss';
 
 const SingleValue = (props) => {
-    return (
-        <div className="search-single-value">
-            <div className="search-mode-name">{props.data.label}</div>
-            <div className="search-mode-description" dangerouslySetInnerHTML={{__html: props.data.desc}}></div>
-        </div>
-    )
-}
+  return (
+    <div className="search-single-value">
+      <div className="search-mode-name">{props.data.label}</div>
+      <div
+        className="search-mode-description"
+        dangerouslySetInnerHTML={{ __html: props.data.desc }}
+      ></div>
+    </div>
+  );
+};
 
 export default class SearchModeMenu extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {value: ''};
-        
-        this.handleChange = this.handleChange.bind(this);
-    }
+  constructor(props) {
+    super(props);
+    this.state = { value: '' };
 
-    handleChange(option) {
-        this.props.onSearchModeChange(option);
-    }
+    this.handleChange = this.handleChange.bind(this);
+  }
 
-    render() {
-        return (
-            <div className="search-mode-wrapper">
-                <Select
-                    options={searchModes}
-                    defaultValue={searchModes[0].options[0]}
-                    className="react-select"
-                    classNamePrefix="react-select"
-                    onChange={this.handleChange}
-                    isSearchable={false}
-                    components={{SingleValue}}
-                    theme={(theme) => ({
-                        ...theme,
-                        colors: {
-                        ...theme.colors,
-                          primary: '#585c5d',
-                          primary25: '#585c5d',
-                          primary50: '#585c5d',
-                          primary75: '#585c5d'
-                        },
-                    })}
-                />
-            </div>
-        )
-    }
+  handleChange(option) {
+    this.props.onSearchModeChange(option);
+  }
+
+  render() {
+    return (
+      <div className="search-mode-wrapper">
+        <Select
+          options={searchModes}
+          defaultValue={searchModes[0].options[0]}
+          className="react-select"
+          classNamePrefix="react-select"
+          onChange={this.handleChange}
+          isSearchable={false}
+          components={{ SingleValue }}
+          theme={(theme) => ({
+            ...theme,
+            colors: {
+              ...theme.colors,
+              primary: '#585c5d',
+              primary25: '#585c5d',
+              primary50: '#585c5d',
+              primary75: '#585c5d',
+            },
+          })}
+        />
+      </div>
+    );
+  }
 }
