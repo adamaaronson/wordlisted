@@ -4,4 +4,4 @@ Looking for anagrams of zebra? How about words you can write using only the lett
 
 Wordlisted is a React-based web app created by Adam Aaronson.
 
-&copy; 2022 Adam Aaronson
+&copy; 2023 Adam Aaronson
