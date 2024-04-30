@@ -324,6 +324,14 @@ const searchModes = [
         type: searchTypes.SINGLE,
         func: () => (x) => Wordplay.isNeckout(x),
       },
+      {
+        value: 'alphabetical',
+        label: 'Alphabetical',
+        desc: 'Words whose letters are in alphabetical order; e.g. FORTY.',
+        fields: [],
+        type: searchTypes.SINGLE,
+        func: () => (x) => Wordplay.isAlphabetical(x),
+      },
     ],
   },
   {

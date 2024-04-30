@@ -415,4 +415,9 @@ export default class Wordplay {
 
     return true;
   }
+
+  // returns whether word's letters are in alphabetical order
+  static isAlphabetical(word) {
+    return word === this.sort(word);
+  }
 }
