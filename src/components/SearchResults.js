@@ -121,9 +121,7 @@ export default class SearchResults extends Component {
             </div>
           ) : this.props.isLoading ? (
             <div className="results-count no-results">
-              <div className="loading-icon">
-                <i className="fas fa-circle-notch fa-spin"></i>
-              </div>
+              <div className="loading-icon">Loading...</div>
             </div>
           ) : (
             <div className="results-count no-results">

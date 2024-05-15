@@ -1,6 +1,8 @@
 import React from 'react';
 import '../css/Header.scss';
 import logo from '../images/icon-logo.png';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGithub, faTwitter } from '@fortawesome/free-brands-svg-icons';
 
 export default function Header() {
   return (
@@ -36,14 +38,20 @@ export default function Header() {
               rel="noreferrer noopener"
               target="_blank"
             >
-              <i className="fab fa-twitter hover-blue"></i>
+              <FontAwesomeIcon
+                icon={faTwitter}
+                className="social-icon hover-blue"
+              />
             </a>
             <a
               href="https://github.com/adamaaronson/wordlisted"
               rel="noreferrer noopener"
               target="_blank"
             >
-              <i className="fab fa-github hover-blue"></i>
+              <FontAwesomeIcon
+                icon={faGithub}
+                className="social-icon hover-blue"
+              />
             </a>
             <span className="coffee">
               Buy me a{' '}

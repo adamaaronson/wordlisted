@@ -1,4 +1,4 @@
-@import "App.scss";
+@import 'App.scss';
 
 .header {
   margin-top: $spacer * 0.75;
@@ -74,7 +74,7 @@
 
   align-self: flex-end;
 
-  .social i {
+  .social-icon {
     margin-right: 0.5em;
   }
 

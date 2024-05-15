@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import '../css/SearchResultsList.scss';
 import sorts from '../js/resultsorts.js';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 
 const rgb = function (r, g, b) {
   return { r: r, g: g, b: b };
@@ -146,12 +148,12 @@ export default class SearchResultsList extends Component {
             onClick={() => this.updateSort(sorts.ABC)}
           >
             <span className="sort-results-text">Word</span>
-            <i
+            <FontAwesomeIcon
+              icon={faCaretDown}
               className={
-                'fas fa-caret-down sort-results-arrow ' +
-                this.getSortArrowClasses(sorts.ABC)
+                'sort-results-arrow ' + this.getSortArrowClasses(sorts.ABC)
               }
-            ></i>
+            />
           </button>
         </div>
 
@@ -165,12 +167,13 @@ export default class SearchResultsList extends Component {
             className="sort-results-button sort-by-length linky-button"
             onClick={() => this.updateSort(sorts.LENGTH)}
           >
-            <i
+            <FontAwesomeIcon
+              icon={faCaretDown}
               className={
-                'fas fa-caret-down sort-results-arrow left-arrow ' +
+                'sort-results-arrow left-arrow ' +
                 this.getSortArrowClasses(sorts.LENGTH)
               }
-            ></i>
+            />
             <span className="sort-results-text">Length</span>
           </button>
         </div>
@@ -186,12 +189,13 @@ export default class SearchResultsList extends Component {
               className="sort-results-button sort-by-score linky-button"
               onClick={() => this.updateSort(sorts.SCORE)}
             >
-              <i
+              <FontAwesomeIcon
+                icon={faCaretDown}
                 className={
-                  'fas fa-caret-down sort-results-arrow left-arrow ' +
+                  'sort-results-arrow left-arrow ' +
                   this.getSortArrowClasses(sorts.SCORE)
                 }
-              ></i>
+              />
               <span className="sort-results-text">Score</span>
             </button>
           </div>

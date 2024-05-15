@@ -13,6 +13,8 @@ import searchModes from '../js/searchmodes.js';
 import searchTypes from '../js/searchtypes.js';
 import sorts from '../js/resultsorts.js';
 import WordlistList from './WordlistList';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 
 const DICTIONARY_NAME = 'English dictionary';
 const DEBUG = true;
@@ -311,8 +313,11 @@ export default class SearchArea extends Component {
 
           {this.state.wordlistError && (
             <div class="error-message">
-              <i className="fas fa-exclamation-triangle error-icon"></i> It
-              seems there was an error uploading your wordlist!
+              <FontAwesomeIcon
+                icon={faExclamationTriangle}
+                className="error-icon"
+              />{' '}
+              It seems there was an error uploading your wordlist!
             </div>
           )}
           <div className="content-box top-box">

@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import '../css/WordlistSelector.scss';
 import iconUpload from '../images/icon-upload.png';
 import iconDictionary from '../images/icon-dictionary.png';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 
 export default class WordlistSelector extends Component {
   render() {
@@ -35,7 +37,8 @@ export default class WordlistSelector extends Component {
               onClick={this.props.onOpenModal}
             >
               <span className="hover-orange">
-                <i className="fas fa-info-circle info-icon"></i>About uploading
+                <FontAwesomeIcon icon={faInfoCircle} className="info-icon" />
+                About uploading
               </span>
             </button>
           </div>

@@ -1,4 +1,4 @@
-@import "App.scss";
+@import 'App.scss';
 
 .results-count-navigator {
   font-weight: bold;
@@ -27,12 +27,4 @@
   &:disabled {
     opacity: 0 !important;
   }
-}
-
-.prev-results-button {
-  padding-right: 2px !important;
-}
-
-.next-results-button {
-  padding-left: 2px !important;
 }

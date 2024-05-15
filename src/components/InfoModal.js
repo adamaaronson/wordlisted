@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import '../css/InfoModal.scss';
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default class InfoModal extends Component {
   constructor(props) {
@@ -20,7 +22,8 @@ export default class InfoModal extends Component {
         <div className="modal content-box">
           <div className="modal-text">
             <h1 className="modal-header">
-              <i className="fas fa-info-circle info-icon"></i> About uploading
+              <FontAwesomeIcon icon={faInfoCircle} className="info-icon" />{' '}
+              About uploading
             </h1>
             <p>
               A wordlist is simply a <strong>.txt</strong> or{' '}

@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
 import '../css/SearchInputArea.scss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faExclamationTriangle,
+  faSearch,
+} from '@fortawesome/free-solid-svg-icons';
 
 export default class SearchInputArea extends Component {
   constructor(props) {
@@ -52,7 +57,10 @@ export default class SearchInputArea extends Component {
 
           {this.props.submitError && (
             <div className="error-message">
-              <i className="fas fa-exclamation-triangle error-icon"></i>
+              <FontAwesomeIcon
+                icon={faExclamationTriangle}
+                className="error-icon"
+              />
               <span>It seems there was an error in your input!</span>
             </div>
           )}
@@ -64,7 +72,7 @@ export default class SearchInputArea extends Component {
           type="submit"
         >
           <span className="search-button-text">Search</span>
-          <i className="fas fa-search search-icon"></i>
+          <FontAwesomeIcon icon={faSearch} className="search-icon" />
         </button>
       </form>
     );
