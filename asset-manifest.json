@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "./static/css/main.178bad87.css",
-    "main.js": "./static/js/main.0b9d4941.js",
+    "main.css": "./static/css/main.7c94d774.css",
+    "main.js": "./static/js/main.a698120b.js",
     "static/media/icon-dictionary.png": "./static/media/icon-dictionary.02de8bbcfb2b673bbf25.png",
     "index.html": "./index.html",
-    "main.178bad87.css.map": "./static/css/main.178bad87.css.map",
-    "main.0b9d4941.js.map": "./static/js/main.0b9d4941.js.map"
+    "main.7c94d774.css.map": "./static/css/main.7c94d774.css.map",
+    "main.a698120b.js.map": "./static/js/main.a698120b.js.map"
   },
   "entrypoints": [
-    "static/css/main.178bad87.css",
-    "static/js/main.0b9d4941.js"
+    "static/css/main.7c94d774.css",
+    "static/js/main.a698120b.js"
   ]
 }
