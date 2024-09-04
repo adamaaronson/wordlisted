@@ -6,6 +6,7 @@ import SearchModeMenu from './SearchModeMenu.js';
 import SearchInputArea from './SearchInputArea.js';
 import SearchResults from './SearchResults.js';
 import InfoModal from './InfoModal.js';
+import db from './db.js';
 
 import Wordlist from '../js/wordlist.js';
 import englishDictionary from '../json/enable1.json';
@@ -50,6 +51,22 @@ export default class SearchArea extends Component {
     this.sortResults = this.sortResults.bind(this);
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
+  }
+
+  async componentDidMount() {
+    const wordlists = await db.wordlists.toArray();
+    console.log(wordlists);
+    if (wordlists.length > 0) {
+      this.setState({
+        filenames: wordlists.map((wordlist) => wordlist.name),
+      });
+      const firstList = wordlists[0];
+      this.handleNewWordlist(firstList.contents, firstList.name, false, false);
+      for (const wordlist of wordlists.slice(1)) {
+        this.handleNewWordlist(wordlist.contents, wordlist.name, false, true);
+      }
+    }
+    console.log(this.state.filenames);
   }
 
   hasAnyInputs() {
@@ -178,7 +195,7 @@ export default class SearchArea extends Component {
       reader.onload = function () {
         // change the acting wordlist
         let newWords = reader.result.split('\n');
-        this.handleNewWordlist(newWords, file.name);
+        this.handleNewWordlist(newWords, file.name, true);
       }.bind(this);
 
       reader.onerror = function () {
@@ -196,12 +213,24 @@ export default class SearchArea extends Component {
   }
 
   handleDictionaryClick() {
-    this.handleNewWordlist(englishDictionary, DICTIONARY_NAME);
+    this.handleNewWordlist(englishDictionary, DICTIONARY_NAME, true);
   }
 
-  handleNewWordlist(newWords, fileName) {
+  async handleNewWordlist(
+    newWords,
+    fileName,
+    shouldUpdateDB,
+    isAdditional = this.state.addingWordlist
+  ) {
+    if (shouldUpdateDB) {
+      await db.wordlists.add({
+        name: fileName,
+        contents: newWords,
+      });
+    }
+
     let newFilenames = this.state.filenames;
-    if (this.state.addingWordlist) {
+    if (isAdditional) {
       if (!newFilenames.includes(fileName)) {
         newFilenames.push(fileName);
       }
@@ -212,7 +241,7 @@ export default class SearchArea extends Component {
       filenames: newFilenames,
     });
 
-    if (this.state.addingWordlist) {
+    if (isAdditional) {
       this.state.wordlist.addWords(newWords);
     } else {
       let newWordlist = new Wordlist(newWords);
@@ -227,6 +256,7 @@ export default class SearchArea extends Component {
   }
 
   handleWordlistChange() {
+    db.wordlists.clear();
     this.setState({
       selectingWordlist: true,
       addingWordlist: false,
