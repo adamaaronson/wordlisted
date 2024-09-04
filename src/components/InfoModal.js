@@ -39,8 +39,8 @@ export default class InfoModal extends Component {
             </p>
             <p>
               This app uses the JavaScript File API and doesn't save your
-              wordlist anywhere, so rest assured that no one can steal your
-              words!
+              wordlist anywhere except your own browser, so rest assured that no
+              one can steal your words!
             </p>
           </div>
           <button

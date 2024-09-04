@@ -55,7 +55,6 @@ export default class SearchArea extends Component {
 
   async componentDidMount() {
     const wordlists = await db.wordlists.toArray();
-    console.log(wordlists);
     if (wordlists.length > 0) {
       this.setState({
         filenames: wordlists.map((wordlist) => wordlist.name),
@@ -66,7 +65,6 @@ export default class SearchArea extends Component {
         this.handleNewWordlist(wordlist.contents, wordlist.name, false, true);
       }
     }
-    console.log(this.state.filenames);
   }
 
   hasAnyInputs() {
