@@ -2,7 +2,11 @@ import React from 'react';
 import '../css/Header.scss';
 import logo from '../images/icon-logo.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGithub, faTwitter } from '@fortawesome/free-brands-svg-icons';
+import {
+  faBluesky,
+  faGithub,
+  faTwitter,
+} from '@fortawesome/free-brands-svg-icons';
 
 export default function Header() {
   return (
@@ -40,6 +44,16 @@ export default function Header() {
             >
               <FontAwesomeIcon
                 icon={faTwitter}
+                className="social-icon hover-blue"
+              />
+            </a>
+            <a
+              href="https://bsky.app/profile/aaronson.bsky.social"
+              rel="noreferrer noopener"
+              target="_blank"
+            >
+              <FontAwesomeIcon
+                icon={faBluesky}
                 className="social-icon hover-blue"
               />
             </a>
