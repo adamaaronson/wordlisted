@@ -18,7 +18,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 
 const DICTIONARY_NAME = 'English dictionary';
-const DEBUG = true;
+const DEBUG = false;
 
 export default class SearchArea extends Component {
   constructor(props) {

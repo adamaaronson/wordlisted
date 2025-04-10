@@ -66,10 +66,6 @@ export default class SearchResultsList extends Component {
     let lowValue = low + lowIndex * colorDistance;
     let highValue = lowValue + colorDistance;
 
-    if (!allColors[lowIndex]) {
-      console.log(n, low, high, lowColor, highColor, midColors);
-    }
-
     return this.interpolateTwoColors(
       n,
       lowValue,

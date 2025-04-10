@@ -3,6 +3,7 @@ import Wordplay from './wordplay';
 export default class Wordlist {
   constructor(list) {
     this.list = list;
+    this.set = new Set();
     this.scores = {};
     this.clean();
   }
@@ -58,7 +59,8 @@ export default class Wordlist {
 
     this.list = this.list.filter((x) => x.length > 0); // remove blank entries
     this.list.sort(); // sort
-    this.list = [...new Set(this.list)]; // remove dupes
+    this.set = new Set(this.list);
+    this.list = [...this.set]; // remove dupes
   }
 
   // returns random word from the list
@@ -92,79 +94,27 @@ export default class Wordlist {
 
   // returns array of pairs of words (word1, word2) in the wordlist such that func(word1) = word2
   getPairs(func) {
-    // array of {word, func(word)} objects
-    var wordPairs = this.list.map((word) => this.makePair(func, word));
-
-    // remove pairs where word1 === word2
-    wordPairs = wordPairs.filter((word) => word.word1 !== word.word2);
-
-    // sort by word2
-    wordPairs.sort((x, y) => x.word2.localeCompare(y.word2));
-
-    var resultPairs = [];
-    var pairCounter = 0;
-    var listCounter = 0;
-
-    // iterates through sorted array and wordlist simultaneously to find pairs whose word2 are in the wordlist
-    while (pairCounter < wordPairs.length && listCounter < this.list.length) {
-      var pairCurrent = wordPairs[pairCounter];
-      var listCurrent = this.list[listCounter];
-
-      if (listCurrent > pairCurrent.word2) {
-        pairCounter++;
-      } else if (listCurrent === pairCurrent.word2) {
-        resultPairs.push(pairCurrent);
-        pairCounter++;
-      } else {
-        listCounter++;
-      }
-    }
-
-    resultPairs.sort((x, y) => x.word1.localeCompare(y.word1));
-
-    return resultPairs;
+    return this.list
+      .map((word) => ({ word1: word, word2: func(word) }))
+      .filter((pair) => pair.word1 !== pair.word2)
+      .filter((pair) => this.set.has(pair.word2));
   }
 
   // returns array of pairs of words (word1, word2) in the wordlist such that
   // the array func(word1) contains word2
   getMultipairs(func) {
-    // array of {word, func(word)} objects
-    let wordPairs = [];
-    for (let word1 of this.list) {
-      for (let word2 of func(word1)) {
-        wordPairs.push({ word1: word1, word2: word2 });
-      }
+    let multipairs = [];
+
+    for (let word of this.list) {
+      multipairs = multipairs.concat(
+        func(word)
+          .map((word2) => ({ word1: word, word2: word2 }))
+          .filter((pair) => pair.word1 !== pair.word2)
+          .filter((pair) => this.set.has(pair.word2))
+      );
     }
 
-    // remove pairs where word1 === word2
-    wordPairs = wordPairs.filter((word) => word.word1 !== word.word2);
-
-    // sort by word2
-    wordPairs.sort((x, y) => x.word2.localeCompare(y.word2));
-
-    var resultPairs = [];
-    var pairCounter = 0;
-    var listCounter = 0;
-
-    // iterates through sorted array and wordlist simultaneously
-    // to find pairs whose word2 are in the wordlist
-    while (pairCounter < wordPairs.length && listCounter < this.list.length) {
-      var pairCurrent = wordPairs[pairCounter];
-      var listCurrent = this.list[listCounter];
-
-      if (listCurrent > pairCurrent.word2) {
-        pairCounter++;
-      } else if (listCurrent === pairCurrent.word2) {
-        resultPairs.push(pairCurrent);
-        pairCounter++;
-      } else {
-        listCounter++;
-      }
-    }
-
-    resultPairs.sort((x, y) => x.word1.localeCompare(y.word1));
-
-    return resultPairs;
+    return multipairs;
   }
 
   // returns array of pairs of words (word1, word2) in the wordlist such that
