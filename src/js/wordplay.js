@@ -431,7 +431,7 @@ export default class Wordplay {
   // part1 can precede/follow word1 to form a valid word and
   // part2 can precede/follow word2 to form a valid word
   static precedeOrFollow(word, word1, isPrecede1, word2, isPrecede2, wordset) {
-    for (let i = 1; i < word.length - 1; i++) {
+    for (let i = 1; i < word.length; i++) {
       const part1 = word.slice(0, i);
       const part2 = word.slice(i);
       if (
