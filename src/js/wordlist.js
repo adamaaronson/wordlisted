@@ -54,7 +54,7 @@ export default class Wordlist {
   // sans blank entries
   clean() {
     this.list = this.list.map(
-      (word) => this.processWord(word) // changes to all caps, removes non-alphabetic characters, and assigns score
+      (word) => this.processWord(word), // changes to all caps, removes non-alphabetic characters, and assigns score
     );
 
     this.list = this.list.filter((x) => x.length > 0); // remove blank entries
@@ -110,7 +110,7 @@ export default class Wordlist {
         func(word)
           .map((word2) => ({ word1: word, word2: word2 }))
           .filter((pair) => pair.word1 !== pair.word2)
-          .filter((pair) => this.set.has(pair.word2))
+          .filter((pair) => this.set.has(pair.word2)),
       );
     }
 
@@ -144,5 +144,10 @@ export default class Wordlist {
     }
 
     return resultPairs;
+  }
+
+  // returns array of words in the wordlist such that func(word, this.set) is true
+  getWordsWithSet(func) {
+    return this.list.filter((word) => func(word, this.set));
   }
 }

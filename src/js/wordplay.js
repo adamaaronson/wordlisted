@@ -200,6 +200,11 @@ export default class Wordplay {
     return new RegExp(regex).test(word);
   }
 
+  // returns whether word can be made using none of the given letters
+  static usesNoLettersFrom(word, letters) {
+    return letters.split('').every((letter) => !word.includes(letter));
+  }
+
   // returns whether word can be spelled with given spelling bee puzzle
   static spellingBee(word, centerLetter, outerLetters) {
     var allLetters = centerLetter + outerLetters;
@@ -309,7 +314,7 @@ export default class Wordplay {
     }
 
     let results = indices.map(
-      (i) => word.slice(0, i) + to + word.slice(i + from.length)
+      (i) => word.slice(0, i) + to + word.slice(i + from.length),
     );
     results = [...new Set(results)]; // remove duplicates
     return results;
@@ -371,7 +376,7 @@ export default class Wordplay {
       word.length % 2 === 0 &&
       this.areAnagrams(
         word.slice(0, word.length / 2),
-        word.slice(word.length / 2)
+        word.slice(word.length / 2),
       )
     );
   }
@@ -419,5 +424,25 @@ export default class Wordplay {
   // returns whether word's letters are in alphabetical order
   static isAlphabetical(word) {
     return word === this.sort(word);
+  }
+
+  // returns whether word can be split into two parts where
+  // both parts are valid words and
+  // part1 can precede/follow word1 to form a valid word and
+  // part2 can precede/follow word2 to form a valid word
+  static precedeOrFollow(word, word1, isPrecede1, word2, isPrecede2, wordset) {
+    for (let i = 1; i < word.length - 1; i++) {
+      const part1 = word.slice(0, i);
+      const part2 = word.slice(i);
+      if (
+        wordset.has(part1) &&
+        wordset.has(part2) &&
+        wordset.has(isPrecede1 ? part1 + word1 : word1 + part1) &&
+        wordset.has(isPrecede2 ? part2 + word2 : word2 + part2)
+      ) {
+        return [part1, part2];
+      }
+    }
+    return false;
   }
 }

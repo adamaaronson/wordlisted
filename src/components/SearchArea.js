@@ -152,6 +152,13 @@ export default class SearchArea extends Component {
             .getMappairs(searchMode.func(...functionInputs), searchMode.mapFunc)
             .map((pair) => [pair.word1, pair.word2]);
           break;
+        case searchTypes.WITHSET:
+          results = this.state.wordlist
+            .getWordsWithSet(
+              searchMode.func(...functionInputs, this.state.wordlist.set),
+            )
+            .map((x) => [x]);
+          break;
         default:
           break;
       }
@@ -218,7 +225,7 @@ export default class SearchArea extends Component {
     newWords,
     fileName,
     shouldUpdateDB,
-    isAdditional = this.state.addingWordlist
+    isAdditional = this.state.addingWordlist,
   ) {
     if (shouldUpdateDB) {
       await db.wordlists.add({
@@ -295,7 +302,7 @@ export default class SearchArea extends Component {
                 (oldState.wordlist.scores[d] === undefined
                   ? 0
                   : oldState.wordlist.scores[d]),
-              0
+              0,
             ) -
             a.reduce(
               (c, d) =>
@@ -303,8 +310,8 @@ export default class SearchArea extends Component {
                 (oldState.wordlist.scores[d] === undefined
                   ? 0
                   : oldState.wordlist.scores[d]),
-              0
-            )
+              0,
+            ),
         );
       }
 

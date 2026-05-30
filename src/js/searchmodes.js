@@ -76,6 +76,14 @@ const searchModes = [
         func: (letters) => (x) => Wordplay.isScrabbleWord(letters, x),
       },
       {
+        value: 'forbidden-letters',
+        label: 'Forbidden letters',
+        desc: 'Words that contain none of the given letters; e.g. AEIOU yields RHYTHM.',
+        fields: ['Letters'],
+        type: searchTypes.SINGLE,
+        func: (letters) => (x) => Wordplay.usesNoLettersFrom(x, letters),
+      },
+      {
         value: 'limited-alphabet',
         label: 'Limited alphabet',
         desc: 'Words that can be written using only the given letters, any number of times; e.g. ABCDEFG yields CABBAGE.',
@@ -262,6 +270,65 @@ const searchModes = [
         fields: ['Replace', 'With'],
         type: searchTypes.PAIRS,
         func: (replace, with_) => (x) => x.replace(new RegExp(replace), with_),
+      },
+    ],
+  },
+  {
+    label: 'Two parts (new!)',
+    options: [
+      {
+        value: 'both-precede',
+        label: 'Both precede',
+        desc: 'Two-part words where both parts are valid words and both parts can precede the given word to yield another valid word. e.g. BOARD yields KEYCARD (KEYBOARD, CARDBOARD)',
+        fields: ['Word'],
+        type: searchTypes.WITHSET,
+        func: (word, wordset) => (x) =>
+          Wordplay.precedeOrFollow(x, word, true, word, true, wordset),
+      },
+      {
+        value: 'both-follow',
+        label: 'Both follow',
+        desc: 'Two-part words where both parts are valid words and both parts can follow the given word to yield another valid word. e.g. FIRE yields DOGHOUSE (FIREDOG, FIREHOUSE)',
+        fields: ['Word'],
+        type: searchTypes.WITHSET,
+        func: (word, wordset) => (x) =>
+          Wordplay.precedeOrFollow(x, word, false, word, false, wordset),
+      },
+      {
+        value: 'precede-different',
+        label: 'Precede different words',
+        desc: 'Two-part words where both parts are valid words, the first part can precede the first word to yield a valid word, and the second part can precede the second word to yield a valid word. e.g. CAP and GOWN yields FLATBED (FLATCAP, BEDGOWN)',
+        fields: ['First word', 'Second word'],
+        type: searchTypes.WITHSET,
+        func: (word1, word2, wordset) => (x) =>
+          Wordplay.precedeOrFollow(x, word1, true, word2, true, wordset),
+      },
+      {
+        value: 'follow-different',
+        label: 'Follow different words',
+        desc: 'Two-part words where both parts are valid words, the first part can follow the first word to yield a valid word, and the second part can follow the second word to yield a valid word. e.g. BLACK and BLUE yields TOPCOAT (BLACKTOP, BLUECOAT)',
+        fields: ['First word', 'Second word'],
+        type: searchTypes.WITHSET,
+        func: (word1, word2, wordset) => (x) =>
+          Wordplay.precedeOrFollow(x, word1, false, word2, false, wordset),
+      },
+      {
+        value: 'precede-follow',
+        label: 'Precede and follow',
+        desc: 'Two-part words where both parts are valid words, the first part can precede the first word to yield a valid word, and the second part can follow the second word to yield a valid word. e.g. FOOT and HEAD yields FLATLAND (FLATFOOT, HEADLAND)',
+        fields: ['First word', 'Second word'],
+        type: searchTypes.WITHSET,
+        func: (word1, word2, wordset) => (x) =>
+          Wordplay.precedeOrFollow(x, word1, true, word2, false, wordset),
+      },
+      {
+        value: 'follow-precede',
+        label: 'Follow and precede',
+        desc: 'Two-part words where both parts are valid words, the first part can follow the first word to yield a valid word, and the second part can precede the second word to yield a valid word. e.g. IN and OUT yields FIELDWORK (INFIELD, WORKOUT)',
+        fields: ['First word', 'Second word'],
+        type: searchTypes.WITHSET,
+        func: (word1, word2, wordset) => (x) =>
+          Wordplay.precedeOrFollow(x, word1, false, word2, true, wordset),
       },
     ],
   },
