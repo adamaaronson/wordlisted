@@ -445,4 +445,14 @@ export default class Wordplay {
     }
     return false;
   }
+
+  static addInside(outerWord, innerWord) {
+    const possibilities = [];
+    for (let i = 1; i < outerWord.length; i++) {
+      possibilities.push(
+        outerWord.slice(0, i) + innerWord + outerWord.slice(i),
+      );
+    }
+    return possibilities;
+  }
 }

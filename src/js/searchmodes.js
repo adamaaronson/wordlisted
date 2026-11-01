@@ -113,8 +113,8 @@ const searchModes = [
         func: (word) => (x) => Wordplay.isSpread(x, word),
       },
       {
-        value: 'sandwich-word',
-        label: 'Sandwich word',
+        value: 'bookends',
+        label: 'Bookends',
         desc: 'Words formed by slicing the given word in two and adding letters inside; e.g. CRUST yields CRUMBLIEST.',
         fields: ['Word'],
         type: searchTypes.SINGLE,
@@ -264,6 +264,22 @@ const searchModes = [
         func: (swap, with_) => (x) => Wordplay.letterSwap(x, swap, with_),
       },
       {
+        value: 'add-inside',
+        label: 'Add inside (new!)',
+        desc: 'Pairs of words formed by slicing the given word in two and adding a word on the inside, e.g. FRANCE yields EEL → FREELANCE.',
+        fields: ['Word'],
+        type: searchTypes.MULTIPAIRS,
+        func: (word) => (x) => Wordplay.addInside(word, x),
+      },
+      {
+        value: 'add-outside',
+        label: 'Add outside (new!)',
+        desc: 'Pairs of words formed by slicing a word in two and adding the given word on the inside, e.g. EEL yields TRESS → TREELESS.',
+        fields: ['Word'],
+        type: searchTypes.MULTIPAIRS,
+        func: (word) => (x) => Wordplay.addInside(x, word),
+      },
+      {
         value: 'regex-replacement',
         label: 'Regex replacement',
         desc: 'Pairs of words formed by performing a regex-based replacement, e.g. <code>^..(.*)$</code> and <code>$1</code> yields HEADDRESS → ADDRESS.',
@@ -274,7 +290,7 @@ const searchModes = [
     ],
   },
   {
-    label: 'Two parts (new!)',
+    label: 'Two parts',
     options: [
       {
         value: 'both-precede',
