@@ -266,18 +266,18 @@ const searchModes = [
       {
         value: 'add-inside',
         label: 'Add inside (new!)',
-        desc: 'Pairs of words formed by slicing the given word in two and adding a word on the inside, e.g. FRANCE yields EEL → FREELANCE.',
-        fields: ['Word'],
-        type: searchTypes.MULTIPAIRS,
-        func: (word) => (x) => Wordplay.addInside(word, x),
-      },
-      {
-        value: 'add-outside',
-        label: 'Add outside (new!)',
         desc: 'Pairs of words formed by slicing a word in two and adding the given word on the inside, e.g. EEL yields TRESS → TREELESS.',
         fields: ['Word'],
         type: searchTypes.MULTIPAIRS,
         func: (word) => (x) => Wordplay.addInside(x, word),
+      },
+      {
+        value: 'add-outside',
+        label: 'Add outside (new!)',
+        desc: 'Pairs of words formed by slicing the given word in two and adding a word on the inside, e.g. FRANCE yields EEL → FREELANCE.',
+        fields: ['Word'],
+        type: searchTypes.MULTIPAIRS,
+        func: (word) => (x) => Wordplay.addInside(word, x),
       },
       {
         value: 'regex-replacement',
