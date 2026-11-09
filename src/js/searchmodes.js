@@ -449,6 +449,15 @@ const searchModes = [
         func: () => (x) =>
           Wordplay.isAlphabetical([...x].toReversed().join('')),
       },
+      {
+        value: 'alternating-vowels',
+        label: 'Alternating vowels (new!)',
+        desc: 'Words that alternate between consonants and vowels; e.g. WRONGED.',
+        fields: [],
+        type: searchTypes.SINGLE,
+        func: () => (x) =>
+          Wordplay.matchesRegex(x, /^[aeiouy]?([^aeiou][aeiouy])*[^aeiou]?$/),
+      },
     ],
   },
   {
