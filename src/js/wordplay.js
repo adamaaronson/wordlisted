@@ -473,4 +473,24 @@ export default class Wordplay {
     const counts = [...letterCounts.values()].toSorted((a, b) => a - b);
     return counts.every((val, index) => val === index + 1);
   }
+
+  static subtract(word1, word2) {
+    const letterCounts = new Map();
+    for (const letter of word1) {
+      letterCounts.set(letter, (letterCounts.get(letter) ?? 0) + 1);
+    }
+    for (const letter of word2) {
+      const count = letterCounts.get(letter) ?? 0;
+      if (count === 0) {
+        return '';
+      }
+      letterCounts.set(letter, count - 1);
+    }
+
+    let str = '';
+    for (const [letter, count] of letterCounts.entries()) {
+      str += letter.repeat(count);
+    }
+    return str;
+  }
 }

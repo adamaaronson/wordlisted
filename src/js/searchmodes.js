@@ -231,6 +231,15 @@ const searchModes = [
         mapFunc: (x) => Wordplay.sort(x),
       },
       {
+        value: 'twowordanagram',
+        label: 'Two-word anagrams (new!)',
+        desc: 'Pairs of words that anagram to the given word; e.g. ASTRONOMER yields MOON → STARER.',
+        fields: ['Word'],
+        type: searchTypes.MAPPAIRS,
+        func: (word) => (x) => Wordplay.subtract(word, x),
+        mapFunc: (x) => Wordplay.sort(x),
+      },
+      {
         value: 'beheadments',
         label: 'Beheadments',
         desc: 'Pairs of words formed by removing the first letter; e.g. EQUALITY → QUALITY.',
@@ -437,7 +446,8 @@ const searchModes = [
         desc: 'Words whose letters are in reverse alphabetical order; e.g. WRONGED.',
         fields: [],
         type: searchTypes.SINGLE,
-        func: () => (x) => Wordplay.isAlphabetical([...x].toReversed().join("")),
+        func: () => (x) =>
+          Wordplay.isAlphabetical([...x].toReversed().join('')),
       },
     ],
   },
