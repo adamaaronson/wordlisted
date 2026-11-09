@@ -455,4 +455,22 @@ export default class Wordplay {
     }
     return possibilities;
   }
+
+  static isRectangular(word) {
+    const letterCounts = new Map();
+    for (const letter of word) {
+      letterCounts.set(letter, (letterCounts.get(letter) ?? 0) + 1);
+    }
+    const counts = new Set(letterCounts.values());
+    return counts.size === 1 && !counts.has(1);
+  }
+
+  static isTriangular(word) {
+    const letterCounts = new Map();
+    for (const letter of word) {
+      letterCounts.set(letter, (letterCounts.get(letter) ?? 0) + 1);
+    }
+    const counts = [...letterCounts.values()].toSorted((a, b) => a - b);
+    return counts.every((val, index) => val === index + 1);
+  }
 }
