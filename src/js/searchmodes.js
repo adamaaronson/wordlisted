@@ -452,7 +452,7 @@ const searchModes = [
       {
         value: 'alternating-vowels',
         label: 'Alternating vowels (new!)',
-        desc: 'Words that alternate between consonants and vowels; e.g. WRONGED.',
+        desc: 'Words that alternate between consonants and vowels; e.g. OVERIMAGINATIVE.',
         fields: [],
         type: searchTypes.SINGLE,
         func: () => (x) =>
