@@ -493,4 +493,30 @@ export default class Wordplay {
     }
     return str;
   }
+
+  static removeJoey(word, joey) {
+    const possibilities = new Set();
+
+    const removeFrom = (wordIndex, joeyIndex, keptSoFar) => {
+      if (joeyIndex === joey.length) {
+        possibilities.add(keptSoFar + word.slice(wordIndex));
+        return;
+      }
+
+      const lettersLeftInWord = word.length - wordIndex;
+      const lettersLeftToRemove = joey.length - joeyIndex;
+      if (lettersLeftInWord < lettersLeftToRemove) return;
+
+      const currentLetter = word[wordIndex];
+      const nextLetterToRemove = joey[joeyIndex];
+
+      if (currentLetter === nextLetterToRemove) {
+        removeFrom(wordIndex + 1, joeyIndex + 1, keptSoFar);
+      }
+      removeFrom(wordIndex + 1, joeyIndex, keptSoFar + currentLetter);
+    };
+
+    removeFrom(0, 0, '');
+    return [...possibilities];
+  }
 }

@@ -222,6 +222,14 @@ const searchModes = [
         func: (str) => (x) => x + str,
       },
       {
+        value: 'remove-joey',
+        label: 'Remove joey (new!)',
+        desc: 'Pairs of words formed by removing the given letters in order, but not necessarily consecutively; e.g. JOEY yields JOURNEY → URN.',
+        fields: ['Letters'],
+        type: searchTypes.MULTIPAIRS,
+        func: (str) => (x) => Wordplay.removeJoey(x, str),
+      },
+      {
         value: 'anagramwith',
         label: 'Anagram with',
         desc: 'Pairs of words formed by anagramming one word along with the given word; e.g. FOUR yields TEN → FORTUNE.',
