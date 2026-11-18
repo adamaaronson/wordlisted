@@ -207,7 +207,7 @@ const searchModes = [
       },
       {
         value: 'remove-joey',
-        label: 'Add or remove joey (new!)',
+        label: 'Add or remove joey',
         desc: 'Pairs of words formed by adding or removing the given letters in order, but not necessarily consecutively; e.g. JOEY yields JOURNEY → URN.',
         fields: ['Letters'],
         type: searchTypes.MULTIPAIRS,
@@ -240,7 +240,7 @@ const searchModes = [
       },
       {
         value: 'twowordanagram',
-        label: 'Two-word anagrams (new!)',
+        label: 'Two-word anagram',
         desc: 'Pairs of words that anagram to the given word; e.g. ASTRONOMER yields MOON → STARER.',
         fields: ['Word'],
         type: searchTypes.MAPPAIRS,
@@ -282,7 +282,7 @@ const searchModes = [
       },
       {
         value: 'add-inside',
-        label: 'Add inside (new!)',
+        label: 'Add inside',
         desc: 'Pairs of words formed by slicing a word in two and adding the given word on the inside, e.g. EEL yields TRESS → TREELESS.',
         fields: ['Word'],
         type: searchTypes.MULTIPAIRS,
@@ -290,7 +290,7 @@ const searchModes = [
       },
       {
         value: 'add-outside',
-        label: 'Add outside (new!)',
+        label: 'Add outside',
         desc: 'Pairs of words formed by slicing the given word in two and adding a word on the inside, e.g. FRANCE yields EEL → FREELANCE.',
         fields: ['Word'],
         type: searchTypes.MULTIPAIRS,
@@ -426,7 +426,7 @@ const searchModes = [
       },
       {
         value: 'rectangular',
-        label: 'Rectangular (new!)',
+        label: 'Rectangular',
         desc: 'Words whose letters all appear multiple times with the same frequency; e.g. HAPPENCHANCE.',
         fields: [],
         type: searchTypes.SINGLE,
@@ -434,7 +434,7 @@ const searchModes = [
       },
       {
         value: 'triangular',
-        label: 'Triangular (new!)',
+        label: 'Triangular',
         desc: 'Words whose letters can be arranged in a triangle with same-letter rows; e.g. REMEMBERER.',
         fields: [],
         type: searchTypes.SINGLE,
@@ -450,7 +450,7 @@ const searchModes = [
       },
       {
         value: 'reverse-alphabetical',
-        label: 'Reverse alphabetical (new!)',
+        label: 'Reverse alphabetical',
         desc: 'Words whose letters are in reverse alphabetical order; e.g. WRONGED.',
         fields: [],
         type: searchTypes.SINGLE,
@@ -459,7 +459,7 @@ const searchModes = [
       },
       {
         value: 'alternating-vowels',
-        label: 'Alternating vowels (new!)',
+        label: 'Alternating vowels',
         desc: 'Words that alternate between consonants and vowels; e.g. OVERIMAGINATIVE.',
         fields: [],
         type: searchTypes.SINGLE,
